@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129111749) do
+ActiveRecord::Schema.define(version: 20161129145859) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(version: 20161129111749) do
   create_table "maps", force: :cascade do |t|
     t.string   "name"
     t.boolean  "public",     default: true
-    t.integer  "longitude"
-    t.integer  "latitude"
+    t.float    "longitude"
+    t.float    "latitude"
     t.integer  "user_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 20161129111749) do
 
   create_table "places", force: :cascade do |t|
     t.string   "title"
-    t.integer  "longitude"
-    t.integer  "latitude"
+    t.float    "longitude"
+    t.float    "latitude"
     t.integer  "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
