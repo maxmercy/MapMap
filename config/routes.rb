@@ -11,4 +11,13 @@ Rails.application.routes.draw do
   get 'users/', to: 'users#index'
   get 'users/:user_id', to: 'users#show', as: :profil_user
 
+  resources :places
+
+  # resources :users do
+  #   resources :maps
+  # end
+  resources :maps
+
+
+
 end

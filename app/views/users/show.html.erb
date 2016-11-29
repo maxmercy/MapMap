@@ -5,6 +5,32 @@
         <div class="col-md-4">
               <h4> Hello <%= @user.email %> </h4>
 
+              <p> Select a map to share-it, edit-it, duplicate-it, or create a new map. </p>
+
+              <button type="button" class="btn btn-default btn-new-map-js">New Map?</button>
+              <div class='form-new-map-js' style="display: none;">
+
+
+                <%= form_tag("/maps", method: :POST) do %>
+                  <%= label_tag(:city, "Map Center on the city:") %>
+                  <%= text_field_tag(:city) %>
+                  <%= submit_tag("Go!") %>
+                <% end %>
+
+              </div>
+
+              <p>Your maps:</p>
+              <ul>
+                    <li> map1 </li>
+                    <li> map2 </li>
+                    <li> map3 </li>
+                    <li> map4 </li>
+              </ul>
+
+
+
+
+
         </div>
 
         <div class="col-md-8">
