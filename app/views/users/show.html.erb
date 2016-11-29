@@ -14,18 +14,23 @@
                 <%= form_tag("/maps", method: :POST) do %>
                   <%= label_tag(:city, "Map Center on the city:") %>
                   <%= text_field_tag(:city) %>
+
+                  <input type="hidden" name="creator_id" value= <%=@current_user.id%>  >
                   <%= submit_tag("Go!") %>
                 <% end %>
 
               </div>
 
-              <p>Your maps:</p>
-              <ul>
-                    <li> map1 </li>
-                    <li> map2 </li>
-                    <li> map3 </li>
-                    <li> map4 </li>
-              </ul>
+
+                    <p>Your maps:</p>
+                      <p><%= @user_maps.size %></p>
+                    <ul>
+                       <% @user_maps.each do |map| %>
+                          <li> <%= map.name %> places.</li>
+                      <%end%>
+                    </ul>
+
+
 
 
 
