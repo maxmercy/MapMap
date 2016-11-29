@@ -14,6 +14,9 @@ class MapsController < ApplicationController
 
 
   def create
+
+      
+
       city = params[:city]
       geocord_city = Geocoder.search(city).first
       coord_city = geocord_city.coordinates
