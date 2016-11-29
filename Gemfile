@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 # My gem
 gem 'devise'
 #gem 'omniauth-facebook'
+gem 'geocoder'
 
 
 

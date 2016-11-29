@@ -4,7 +4,7 @@ class CreateMaps < ActiveRecord::Migration[5.0]
       t.string :name
       t.boolean :public
       t.integer :longitude
-      t.integer :latitude3
+      t.integer :latitude
 
       t.belongs_to :user, foreign_key: true
 

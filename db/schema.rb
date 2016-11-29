@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20161129111749) do
     t.string   "name"
     t.boolean  "public",     default: true
     t.integer  "longitude"
-    t.integer  "latitude3"
+    t.integer  "latitude"
     t.integer  "user_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
