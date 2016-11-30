@@ -22,6 +22,6 @@ Rails.application.routes.draw do
    resources :places, controller: "places_api"
   end
 
-  post "/api/palces/:id/create" => "places_api#create_item"
+  post "/api/places" => "places_api#create_item"
 
 end

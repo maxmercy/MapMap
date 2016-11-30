@@ -22,6 +22,20 @@
           <input type="text" name="get-places" id="get-places">
         </div>
 
+
+        <h4>Your  <%= @map.places.size %> Selection(s):</h4>
+
+            <ul class="listPlacesMap-js">
+
+         <% @map.places.each do |place| %>
+            <li> <%= place.title %>     </li>
+
+        <%end%>
+
+      </ul>
+
+
+
     </div>
 
 
@@ -29,7 +43,7 @@
 
 
     <div class="col-md-9">
-        <div id="map"   data-longitude=<%= @map.longitude%> data-latitude=<%= @map.latitude%> </div>
+        <div id="map"   data-mapid=<%=@map.id%>  data-longitude=<%= @map.longitude%> data-latitude=<%= @map.latitude%> </div>
     </div>
 
 </div>

@@ -28,7 +28,7 @@ class MapsController < ApplicationController
                       )
       map.save
       redirect_to map_path(map.id)
-      
+
   end
 
 
