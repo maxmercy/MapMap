@@ -6,7 +6,6 @@ class MapsController < ApplicationController
   end
 
   def show
-
     @map = Map.find(params[:id])
     @creator = User.find(@map.user_id)
 
@@ -16,7 +15,6 @@ class MapsController < ApplicationController
   def create
 
       
-
       city = params[:city]
       geocord_city = Geocoder.search(city).first
       coord_city = geocord_city.coordinates
