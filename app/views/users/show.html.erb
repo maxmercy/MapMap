@@ -27,7 +27,8 @@
                     <ul>
 
                        <% @user_maps.each do |map| %>
-                          <li>    <%= map.name %> places.</li>
+                          <li>       <%= link_to  map.name, map_path(map.id) %>     </li>
+
                       <%end%>
 
                     </ul>

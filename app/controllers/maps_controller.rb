@@ -6,8 +6,10 @@ class MapsController < ApplicationController
   end
 
   def show
+
     @map = Map.find(params[:id])
     @creator = User.find(@map.user_id)
+
 
   end
 
@@ -26,6 +28,7 @@ class MapsController < ApplicationController
                       )
       map.save
       redirect_to map_path(map.id)
+      
   end
 
 
