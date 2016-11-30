@@ -25,9 +25,11 @@
                     <p>Your maps:</p>
                       <p><%= @user_maps.size %></p>
                     <ul>
+
                        <% @user_maps.each do |map| %>
-                          <li> <%= map.name %> places.</li>
+                          <li>    <%= map.name %> places.</li>
                       <%end%>
+
                     </ul>
 
 

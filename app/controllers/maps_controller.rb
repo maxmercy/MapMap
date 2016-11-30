@@ -14,7 +14,6 @@ class MapsController < ApplicationController
 
   def create
 
-      
       city = params[:city]
       geocord_city = Geocoder.search(city).first
       coord_city = geocord_city.coordinates
@@ -24,11 +23,9 @@ class MapsController < ApplicationController
                         longitude: long_city,
                         latitude: lat_city,
                         user_id: params[:creator_id].to_i
-                        )
+                      )
       map.save
-
       redirect_to map_path(map.id)
-
   end
 
 

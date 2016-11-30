@@ -16,7 +16,17 @@
             <li>latitude:
                 <%= @map.latitude%></li>
         </ul>
+
+        <h4>Looking for a place?</h4>
+        <div id="input-wrapper">
+          <input type="text" name="get-places" id="get-places">
+        </div>
+
     </div>
+
+
+
+
 
     <div class="col-md-9">
         <div id="map"   data-longitude=<%= @map.longitude%> data-latitude=<%= @map.latitude%> </div>
