@@ -1,14 +1,11 @@
 var mapid = 0
 var map
 
-$(document).on('ready', function(){
-
-  if ($("#map").length > 0) {
-     initMap();
-  };
+$(document).on('ready', function() {
+    if ($("#map").length > 0) {
+        initMap();
+    };
 });
-
-
 
 function onError(err) {
     console.log("What are you using, IE 7??", err);
@@ -23,33 +20,32 @@ function initMap() {
     console.log(mapid)
 
     var centerPosition = {
-      lat: parseFloat(latitude),
-      lng: parseFloat(longitude)
+        lat: parseFloat(latitude),
+        lng: parseFloat(longitude)
     };
     map = new google.maps.Map(document.getElementById('map'), {
-      center: centerPosition,
-      zoom: 14
+        center: centerPosition,
+        zoom: 14
     });
-    map.setOptions({styles: styles});
+    map.setOptions({
+        styles: styles
+    });
 
-  infowindow = new google.maps.InfoWindow();
-  geocoder = new google.maps.Geocoder;
+    infowindow = new google.maps.InfoWindow();
+    geocoder = new google.maps.Geocoder;
 
-  createInitialMarker()
-
-  setupAutocomplete();
-  listenerClick();
-
-  addYourLocationButton(map);
+    createInitialMarker()
+    setupAutocomplete();
+    listenerClick();
+    addYourLocationButton(map);
 }
 
 function listenerClick() {
-  map.addListener('click', function(clickPosition) {
-     placeMarkerAndPanTo(clickPosition.latLng, map);
-     reverseGeocoder(clickPosition.latLng)
-   });
-  }
-
+    map.addListener('click', function(clickPosition) {
+        placeMarkerAndPanTo(clickPosition.latLng, map);
+        reverseGeocoder(clickPosition.latLng)
+    });
+}
 
 function setupAutocomplete() {
     var input = $('#get-places')[0];
@@ -66,153 +62,137 @@ function setupAutocomplete() {
     });
 }
 
-
 function placeMarkerAndPanTo(latLng, map) {
- var marker = new google.maps.Marker({
-   position: latLng,
-   map: map
- });
- map.panTo(latLng);
+    var marker = new google.maps.Marker({
+        position: latLng,
+        map: map
+    });
+    map.panTo(latLng);
 };
 
-
-function  createInitialMarker() {
+function createInitialMarker() {
     var placeinfo = document.querySelectorAll('.placeslist');
     if (placeinfo.length > 0) {
-        $.each(placeinfo, function( index, toto ) {
-          latitude = (toto.dataset.place_lat)
-          longitude = (toto.dataset.place_lng)
-          place_position = {
-            lat: parseFloat(latitude),
-            lng: parseFloat(longitude)
-          };
-          latLng = place_position;
-
-          placeMarkerAndPanTo(place_position,map)
-
-      });
+        $.each(placeinfo, function(index, toto) {
+            latitude = (toto.dataset.place_lat)
+            longitude = (toto.dataset.place_lng)
+            place_position = {
+                lat: parseFloat(latitude),
+                lng: parseFloat(longitude)
+            };
+            latLng = place_position;
+            placeMarkerAndPanTo(place_position, map)
+        });
     };
-
-    // mapip  longitude latitude
 }
 
-
-
-
-  /////////////////////////////////////////////
- //              API submission             //
+/////////////////////////////////////////////
+//              API submission             //
 /////////////////////////////////////////////
 
-function createPlaces(place){
-  var data_place = {
+function createPlaces(place) {
+    var data_place = {
 
-    title: place.name,
-    longitude: place.geometry.location.lng() ,
-    latitude: place.geometry.location.lat() ,
-    rating: place.rating,
-    address: place.formatted_address,
-    phone: place.international_phone_number ,
-    url_gmap: place.url ,
-    map_id: mapid
-    // category: ,
-  }
+        title: place.name,
+        longitude: place.geometry.location.lng(),
+        latitude: place.geometry.location.lat(),
+        rating: place.rating,
+        address: place.formatted_address,
+        phone: place.international_phone_number,
+        url_gmap: place.url,
+        map_id: mapid
+            // category: ,
+    }
 
     $.ajax({
-		url: '/api/places',
-		type: "POST",
-		data: data_place ,
-		success: function(){
-  		console.log('yeah')
-      appendListPlace(data_place.title)
-
-
-		},
-    error: function(){
-			console.log("add Place Failed")
-		}
-	});
+        url: '/api/places',
+        type: "POST",
+        data: data_place,
+        success: function() {
+            console.log('yeah')
+            appendListPlace(data_place.title)
+        },
+        error: function() {
+            console.log("add Place Failed")
+        }
+    });
 }
 
 function appendListPlace(title) {
-      var html = `
+    var html = `
           <li>${title}</li>
                   `;
-
     $(".listPlacesMap-js").append(html)
-  };
-
-
-
-
-
-
-
-function reverseGeocoder(latlong) {
-      var geocoder = new google.maps.Geocoder;
-      geocoder.geocode({'location': latlong}, function(results, status) {
-          if (status === google.maps.GeocoderStatus.OK) {
-            if (results[1]) {
-              map.setZoom(17);
-              var marker = new google.maps.Marker({
-                position: latlong,
-                map: map
-              });
-              infowindow.setContent(results[1].formatted_address);
-              infowindow.open(map, marker);
-              searchAroundClick(latlong)
-            } else {
-              window.alert('No results found');
-            }
-          } else {
-            window.alert('Geocoder failed due to: ' + status);
-          }
-        });
-
 };
 
+function reverseGeocoder(latlong) {
+    var geocoder = new google.maps.Geocoder;
+    geocoder.geocode({
+        'location': latlong
+    }, function(results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+            if (results[1]) {
+                map.setZoom(17);
+                var marker = new google.maps.Marker({
+                    position: latlong,
+                    map: map
+                });
+                infowindow.setContent(results[1].formatted_address);
+                infowindow.open(map, marker);
+                searchAroundClick(latlong)
+            } else {
+                window.alert('No results found');
+            }
+        } else {
+            window.alert('Geocoder failed due to: ' + status);
+        }
+    });
+};
 
 function searchAroundClick(latlong) {
-      var service = new google.maps.places.PlacesService(map);
-      service.nearbySearch({
+    var service = new google.maps.places.PlacesService(map);
+    service.nearbySearch({
         location: latlong,
-          types: ['establishment'],
-          rankBy: google.maps.places.RankBy.DISTANCE,
+        types: ['establishment'],
+        rankBy: google.maps.places.RankBy.DISTANCE,
 
-      }, resultsClick);
+    }, resultsClick);
 
-  }
+}
 
-  function resultsClick(results){
-  console.log(results)
+function resultsClick(results) {
+    console.log(results)
 }
 
 // #00ffe6  #20B2AA #90EE90  	#9ACD32 #FF4500 #00008B
-var styles = [
-  {
-    stylers: [
-      { hue: "#00008B" },
-      { saturation: 15 }
-    ]
-  },{
+var styles = [{
+    stylers: [{
+        hue: "#00008B"
+    }, {
+        saturation: 15
+    }]
+}, {
     featureType: "road",
     elementType: "geometry",
-    stylers: [
-      { lightness: 100 },
-      { visibility: "simplified" }
-    ]
-  },{
+    stylers: [{
+        lightness: 100
+    }, {
+        visibility: "simplified"
+    }]
+}, {
     featureType: "road",
     elementType: "labels",
-    stylers: [
-      { visibility: "off" }
-    ]
-  }
-];
+    stylers: [{
+        visibility: "off"
+    }]
+}];
 
 
 
-function addYourLocationButton(map)
-{
+
+// add geolocalisation button symbol on the map. to do: get my own symbol
+
+function addYourLocationButton(map) {
     var controlDiv = document.createElement('div');
 
     var firstChild = document.createElement('button');
@@ -246,12 +226,12 @@ function addYourLocationButton(map)
 
     firstChild.addEventListener('click', function() {
         var imgX = '0';
-        var animationInterval = setInterval(function(){
-            if(imgX == '-18') imgX = '0';
+        var animationInterval = setInterval(function() {
+            if (imgX == '-18') imgX = '0';
             else imgX = '-18';
-            $('#you_location_img').css('background-position', imgX+'px 0px');
+            $('#you_location_img').css('background-position', imgX + 'px 0px');
         }, 500);
-        if(navigator.geolocation) {
+        if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
@@ -260,8 +240,7 @@ function addYourLocationButton(map)
                 clearInterval(animationInterval);
                 $('#you_location_img').css('background-position', '-144px 0px');
             });
-        }
-        else{
+        } else {
             clearInterval(animationInterval);
             $('#you_location_img').css('background-position', '0px 0px');
         }

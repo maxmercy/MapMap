@@ -1,64 +1,39 @@
-
-
 <div class="container-fluid">
-  <div class="row">
+    <div class="row">
         <div class="col-md-4">
-              <h4> Hello <%= @user.email %> </h4>
+            <h4>
+                Hello
+                <%= @user.email %>
+            </h4>
 
-              <p> Select a map to share-it, edit-it, duplicate-it, or create a new map. </p>
+            <p>
+                Select a map to share-it, edit-it, duplicate-it, or create a new map.
+            </p>
 
-              <button type="button" class="btn btn-default btn-new-map-js">New Map?</button>
-              <div class='form-new-map-js' style="display: none;">
+            <button type="button" class="btn btn-default btn-new-map-js">New Map?</button>
+            <div class='form-new-map-js' style="display: none;">
 
-
-                <%= form_tag("/maps", method: :POST) do %>
-                  <%= label_tag(:city, "Map Center on the city:") %>
-                  <%= text_field_tag(:city) %>
-
-                  <input type="hidden" name="creator_id" value= <%=@current_user.id%>  >
-                  <%= submit_tag("Go!") %>
+                <%= form_tag("/maps") do %>
+                <%= label_tag(:city, "Map Center on the city:") %>
+                <%= text_field_tag(:city) %>
+                <%= submit_tag("Go!") %>
                 <% end %>
 
-              </div>
+            </div>
 
+            <p>Your maps:</p>
+            <p><%= @user_maps.size %></p>
+            <ul>
 
-                    <p>Your maps:</p>
-                      <p><%= @user_maps.size %></p>
-                    <ul>
+                <% @user_maps.each do |map| %>
+                <li>
+                    <%= link_to  map.name, map_path(map.id) %>
+                </li>
 
-                       <% @user_maps.each do |map| %>
-                          <li> <%= link_to  map.name, map_path(map.id) %>     </li>
+                <%end%>
 
-                      <%end%>
-
-                    </ul>
-
-
-
-
-
-
-
+            </ul>
         </div>
-
-        <div class="col-md-8">
-
-
-
-
-        </div>
-
-
- </div>
-
-
-
-
-
-
-
-
-
-
-
+        <div class="col-md-8"></div>
+    </div>
 </div>
