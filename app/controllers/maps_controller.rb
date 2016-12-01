@@ -10,7 +10,21 @@ class MapsController < ApplicationController
 
   def create
     city = params[:city]
-    map = Map.create(name: city, user_id: current_user.id)
+    map = Map.create(name: city, city: city, user_id: current_user.id)
     redirect_to map_path(map)
   end
+
+  def update
+    new_name = params[:map_name]
+    map =  Map.find(params[:id])
+    map.update_attributes(name: new_name )
+    redirect_to map
+  end
+
+  def destroy
+    map = Map.find(params[:id])
+    map.destroy
+    redirect_to profil_user_path(current_user)
+  end
+
 end

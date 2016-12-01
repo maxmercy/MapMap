@@ -1,18 +1,41 @@
 <div class="row ">
     <div class="col-md-3 show-map-info">
-        <h1>
-            @map
-            <%= @map.name %>
-        </h1>
+        <div class="js-map-name">
+          <h1><%= @map.name %></h1>
+          <% if (@map.name != @map.city ) %>
+          <h3>(city: <%=@map.city%>)</h3>
+          <%end%>
+        </div>
+        <button type="button" class="btn btn-default btn-sm " id="btn-mapcenter">
+            recenter <span class="glyphicon glyphicon-screenshot"></span>
+        </button>
+
+        <button type="button" class="btn btn-default btn-sm " id="btn-mapname">
+            rename <span class="glyphicon glyphicon-pencil"></span>
+        </button>
+
+
+
+        <%= button_to map_path(@map.id), method: :delete, data: { confirm: 'Are you sure you want to delete?' }, class: 'btn btn-default btn-sm ' do %>
+              delete <span class="glyphicon glyphicon-trash"></span>
+        <% end %>
+        <!-- <button type="button" class="btn btn-default btn-sm " id="btn-delete" >
+            delete <span class="glyphicon glyphicon-trash"></span>
+        </button> -->
+
+
+        <div class="js-map-name-form" style="display: none;">
+            <h4> New name: </h4>
+            <%= form_tag( @map, method: "patch") do %>
+              <%= label_tag(:map_name, "New name:") %>
+              <%= text_field_tag(:map_name) %>
+              <%= submit_tag("Submit") %>
+            <% end %>
+          </div>
+
+
         <h4>  Created by  <%= @creator.email%></h4>
 
-        <!-- <p>Coordinates of the city:</p>
-        <ul>
-            <li>longitude:
-                <%= @map.longitude%></li>
-            <li>latitude:
-                <%= @map.latitude%></li>
-        </ul> -->
 
         <h4>Looking for a place? Search or click!</h4>
         <div id="input-wrapper">
@@ -25,7 +48,21 @@
         <ul class="listPlacesMap-js">
            <% @map.places.each do |place| %>
               <li class="placeslist" data-placeid=<%=place.id%>  data-place_lng=<%= place.longitude%> data-place_lat=<%= place.latitude%> >
-                <%= place.title %>
+                <strong><%= place.title %></strong>
+
+                <%= button_to place_path(place.id), method: :get, class: 'btn btn-default btn-sm ' do %>
+                     Edit <span class="glyphicon glyphicon-pencil"></span>
+                <% end %>
+                <%= button_to map_path(place.id), method: :delete, data: { confirm: 'Are you sure you want to remove the place from your map?' }, class: 'btn btn-default btn-sm ' do %>
+                      Remove <span class="glyphicon glyphicon-remove"></span>
+                <% end %>
+<!--
+                <button type="button" class="btn btn-default btn-sm " id="edit_place_btn">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-sm " id="remove_place_btn">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button> -->
               </li>
           <%end%>
         </ul>

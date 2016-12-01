@@ -8,11 +8,9 @@ class Map < ApplicationRecord
   before_validation :geolocate
 
   def geolocate
-    geocord_city = Geocoder.search(name).first
+    geocord_city = Geocoder.search(city).first
     coord_city = geocord_city.coordinates
     self.latitude = coord_city[0]
     self.longitude = coord_city[1]
   end
-
-
 end

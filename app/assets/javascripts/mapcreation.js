@@ -1,6 +1,7 @@
 var mapid = 0
 var map
 
+
 $(document).on('ready', function() {
     if ($("#map").length > 0) {
         initMap();
@@ -34,10 +35,13 @@ function initMap() {
     infowindow = new google.maps.InfoWindow();
     geocoder = new google.maps.Geocoder;
 
+    mapcenterlistener(centerPosition);
     createInitialMarker()
     setupAutocomplete();
     listenerClick();
     addYourLocationButton(map);
+
+
 }
 
 function listenerClick() {
@@ -86,8 +90,19 @@ function createInitialMarker() {
     };
 }
 
+
+// button respond for recenter the map
+function mapcenterlistener(centerPosition) {
+  $("#btn-mapcenter").click(function() {
+
+    console.log(map)
+    map.setCenter(centerPosition );
+  });
+};
+
+
 /////////////////////////////////////////////
-//              API submission             //
+//            submission             //
 /////////////////////////////////////////////
 
 function createPlaces(place) {
@@ -105,11 +120,11 @@ function createPlaces(place) {
     }
 
     $.ajax({
-        url: '/api/places',
+        url: '/places',
         type: "POST",
         data: data_place,
         success: function() {
-            console.log('yeah')
+            console.log(place)
             appendListPlace(data_place.title)
         },
         error: function() {
@@ -120,8 +135,15 @@ function createPlaces(place) {
 
 function appendListPlace(title) {
     var html = `
-          <li>${title}</li>
-                  `;
+              <li> <strong>${title}</strong>
+              <button type="button" class="btn btn-default btn-sm " id="btn-mapcenter">
+                  <span class="glyphicon glyphicon-pencil"></span>
+              </button>
+
+              <button type="button" class="btn btn-default btn-sm " id="btn-mapname">
+                  <span class="glyphicon glyphicon-remove"></span>
+              </button></li>
+              `;
     $(".listPlacesMap-js").append(html)
 };
 
