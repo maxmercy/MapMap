@@ -124,8 +124,8 @@ function createPlaces(place) {
         type: "POST",
         data: data_place,
         success: function() {
-            console.log(place)
-            appendListPlace(data_place.title)
+            console.log(response)
+            // appendListPlace()
         },
         error: function() {
             console.log("add Place Failed")
@@ -134,16 +134,8 @@ function createPlaces(place) {
 }
 
 function appendListPlace(title) {
-    var html = `
-              <li> <strong>${title}</strong>
-              <button type="button" class="btn btn-default btn-sm " id="btn-mapcenter">
-                  <span class="glyphicon glyphicon-pencil"></span>
-              </button>
 
-              <button type="button" class="btn btn-default btn-sm " id="btn-mapname">
-                  <span class="glyphicon glyphicon-remove"></span>
-              </button></li>
-              `;
+
     $(".listPlacesMap-js").append(html)
 };
 

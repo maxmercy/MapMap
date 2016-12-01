@@ -1,1 +1,6 @@
-<h1>HOLA</h1>
+<%= button_to place_path(place.id), method: :get, class: 'btn btn-default btn-sm ' do %>
+     Edit <span class="glyphicon glyphicon-pencil"></span>
+<% end %>
+<%= button_to map_path( place_id_to_remove:  place.id), method: :patch , data: {  confirm: 'Are you sure you want to remove the place from your map?' }, class: 'btn btn-default btn-sm ' do %>
+      Remove <span class="glyphicon glyphicon-remove"></span>
+<% end %>
