@@ -1,0 +1,9 @@
+var html = `<li><strong><%=  @place.title %></strong></li>
+            <%= button_to place_path(@place.id), method: :get, class: 'btn btn-default btn-sm ' do %>
+            Edit <span class="glyphicon glyphicon-pencil"></span>
+            <% end %>
+            `
+
+console.log("hi")
+
+$(".listPlacesMap-js").append(html)

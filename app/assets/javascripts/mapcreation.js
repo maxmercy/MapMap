@@ -120,10 +120,10 @@ function createPlaces(place) {
     }
 
     $.ajax({
-        url: '/places',
+        url: '/places.js',
         type: "POST",
         data: data_place,
-        success: function() {
+        success: function(response) {
             console.log(response)
             // appendListPlace()
         },
