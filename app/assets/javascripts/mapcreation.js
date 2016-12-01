@@ -5,10 +5,7 @@ $(document).on('ready', function(){
 
   if ($("#map").length > 0) {
      initMap();
-
   };
-
-
 });
 
 
@@ -18,7 +15,6 @@ function onError(err) {
 }
 
 function initMap() {
-
     var mapinfo = document.getElementById('map');
     var centralRadius
     var latitude = (mapinfo.dataset.latitude)
@@ -32,22 +28,25 @@ function initMap() {
     };
     map = new google.maps.Map(document.getElementById('map'), {
       center: centerPosition,
-      zoom: 13
+      zoom: 14
     });
+    map.setOptions({styles: styles});
 
   infowindow = new google.maps.InfoWindow();
   geocoder = new google.maps.Geocoder;
 
+  createInitialMarker()
+
   setupAutocomplete();
   listenerClick();
+
+  addYourLocationButton(map);
 }
 
 function listenerClick() {
   map.addListener('click', function(clickPosition) {
      placeMarkerAndPanTo(clickPosition.latLng, map);
-     console.log(clickPosition.latLng)
      reverseGeocoder(clickPosition.latLng)
-
    });
   }
 
@@ -77,15 +76,34 @@ function placeMarkerAndPanTo(latLng, map) {
 };
 
 
+function  createInitialMarker() {
+    var placeinfo = document.querySelectorAll('.placeslist');
+    if (placeinfo.length > 0) {
+        $.each(placeinfo, function( index, toto ) {
+          latitude = (toto.dataset.place_lat)
+          longitude = (toto.dataset.place_lng)
+          place_position = {
+            lat: parseFloat(latitude),
+            lng: parseFloat(longitude)
+          };
+          latLng = place_position;
+
+          placeMarkerAndPanTo(place_position,map)
+
+      });
+    };
+
+    // mapip  longitude latitude
+}
+
+
+
 
   /////////////////////////////////////////////
  //              API submission             //
 /////////////////////////////////////////////
 
 function createPlaces(place){
-  console.log(place)
-  console.log(map)
-  console.log(mapid)
   var data_place = {
 
     title: place.name,
@@ -98,7 +116,6 @@ function createPlaces(place){
     map_id: mapid
     // category: ,
   }
-  console.log(data_place)
 
     $.ajax({
 		url: '/api/places',
@@ -135,14 +152,13 @@ function reverseGeocoder(latlong) {
       geocoder.geocode({'location': latlong}, function(results, status) {
           if (status === google.maps.GeocoderStatus.OK) {
             if (results[1]) {
-              map.setZoom(11);
+              map.setZoom(17);
               var marker = new google.maps.Marker({
                 position: latlong,
                 map: map
               });
               infowindow.setContent(results[1].formatted_address);
               infowindow.open(map, marker);
-              console.log(results)
               searchAroundClick(latlong)
             } else {
               window.alert('No results found');
@@ -156,8 +172,6 @@ function reverseGeocoder(latlong) {
 
 
 function searchAroundClick(latlong) {
-      console.log(latlong)
-      console.log(map)
       var service = new google.maps.places.PlacesService(map);
       service.nearbySearch({
         location: latlong,
@@ -170,4 +184,89 @@ function searchAroundClick(latlong) {
 
   function resultsClick(results){
   console.log(results)
+}
+
+// #00ffe6  #20B2AA #90EE90  	#9ACD32 #FF4500 #00008B
+var styles = [
+  {
+    stylers: [
+      { hue: "#00008B" },
+      { saturation: 15 }
+    ]
+  },{
+    featureType: "road",
+    elementType: "geometry",
+    stylers: [
+      { lightness: 100 },
+      { visibility: "simplified" }
+    ]
+  },{
+    featureType: "road",
+    elementType: "labels",
+    stylers: [
+      { visibility: "off" }
+    ]
+  }
+];
+
+
+
+function addYourLocationButton(map)
+{
+    var controlDiv = document.createElement('div');
+
+    var firstChild = document.createElement('button');
+    firstChild.style.backgroundColor = '#fff';
+    firstChild.style.border = 'none';
+    firstChild.style.outline = 'none';
+    firstChild.style.width = '28px';
+    firstChild.style.height = '28px';
+    firstChild.style.borderRadius = '2px';
+    firstChild.style.boxShadow = '0 1px 4px rgba(0,0,0,0.3)';
+    firstChild.style.cursor = 'pointer';
+    firstChild.style.marginRight = '10px';
+    firstChild.style.padding = '0px';
+    firstChild.title = 'Your Location';
+    controlDiv.appendChild(firstChild);
+
+    var secondChild = document.createElement('div');
+    secondChild.style.margin = '5px';
+    secondChild.style.width = '18px';
+    secondChild.style.height = '18px';
+    secondChild.style.backgroundImage = 'url(https://maps.gstatic.com/tactile/mylocation/mylocation-sprite-1x.png)';
+    secondChild.style.backgroundSize = '180px 18px';
+    secondChild.style.backgroundPosition = '0px 0px';
+    secondChild.style.backgroundRepeat = 'no-repeat';
+    secondChild.id = 'you_location_img';
+    firstChild.appendChild(secondChild);
+
+    google.maps.event.addListener(map, 'dragend', function() {
+        $('#you_location_img').css('background-position', '0px 0px');
+    });
+
+    firstChild.addEventListener('click', function() {
+        var imgX = '0';
+        var animationInterval = setInterval(function(){
+            if(imgX == '-18') imgX = '0';
+            else imgX = '-18';
+            $('#you_location_img').css('background-position', imgX+'px 0px');
+        }, 500);
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+
+                map.setCenter(latlng);
+                clearInterval(animationInterval);
+                $('#you_location_img').css('background-position', '-144px 0px');
+            });
+        }
+        else{
+            clearInterval(animationInterval);
+            $('#you_location_img').css('background-position', '0px 0px');
+        }
+    });
+
+    controlDiv.index = 1;
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(controlDiv);
 }

@@ -4,18 +4,15 @@
             @map
             <%= @map.name %>
         </h1>
-        <h4>
-            Map created by
-            <%= @creator.email%></h4>
+        <h4>  Created by  <%= @creator.email%></h4>
 
-        <p>
-            Coordinates of the city:</p>
+        <!-- <p>Coordinates of the city:</p>
         <ul>
             <li>longitude:
                 <%= @map.longitude%></li>
             <li>latitude:
                 <%= @map.latitude%></li>
-        </ul>
+        </ul> -->
 
         <h4>Looking for a place? Search or click!</h4>
         <div id="input-wrapper">
@@ -25,14 +22,13 @@
 
         <h4>Your  <%= @map.places.size %> Selection(s):</h4>
 
-            <ul class="listPlacesMap-js">
-
-         <% @map.places.each do |place| %>
-            <li> <%= place.title %>     </li>
-
-        <%end%>
-
-      </ul>
+        <ul class="listPlacesMap-js">
+           <% @map.places.each do |place| %>
+              <li class="placeslist" data-placeid=<%=place.id%>  data-place_lng=<%= place.longitude%> data-place_lat=<%= place.latitude%> >
+                <%= place.title %>
+              </li>
+          <%end%>
+        </ul>
 
 
 
