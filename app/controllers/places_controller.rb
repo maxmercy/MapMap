@@ -10,16 +10,12 @@ class PlacesController < ApplicationController
     place.address = params[:address]
     place.phone_number = params[:phone]
     place.gmap_url = params[:usr_gmap]
-
     place.save
-    @place = place
 
     @map.places.push(place)
-    respond_to do |format|
-    # format.json { render json: attr_reader :attr_names}
-    format.js {render layout: false}
-    end
+    @place = place
+
+    html = render_to_string partial: 'maps/listtest', locals: {place: place, }, layout: false
+    render json:  { html_to_append: html }
   end
-def index
-end
 end

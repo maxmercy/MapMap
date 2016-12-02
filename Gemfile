@@ -35,7 +35,7 @@ gem 'devise'
 #gem 'omniauth-facebook'
 gem 'geocoder'
 
-
+gem 'pry'
 
 
 group :development, :test do

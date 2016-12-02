@@ -9,21 +9,15 @@
         <button type="button" class="btn btn-default btn-sm " id="btn-mapcenter">
             recenter <span class="glyphicon glyphicon-screenshot"></span>
         </button>
-
         <button type="button" class="btn btn-default btn-sm " id="btn-mapname">
             rename <span class="glyphicon glyphicon-pencil"></span>
         </button>
-
-
-
         <%= button_to map_path(@map.id), method: :delete, data: { confirm: 'Are you sure you want to delete?' }, class: 'btn btn-default btn-sm ' do %>
               delete <span class="glyphicon glyphicon-trash"></span>
         <% end %>
         <!-- <button type="button" class="btn btn-default btn-sm " id="btn-delete" >
             delete <span class="glyphicon glyphicon-trash"></span>
         </button> -->
-
-
         <div class="js-map-name-form" style="display: none;">
             <h4> New name: </h4>
             <%= form_tag( @map, method: "patch") do %>
@@ -32,8 +26,6 @@
               <%= submit_tag("Submit") %>
             <% end %>
           </div>
-
-
         <h4>  Created by  <%= @creator.email%></h4>
 
 
@@ -41,21 +33,14 @@
         <div id="input-wrapper">
           <input type="text" name="get-places" id="get-places">
         </div>
-
-
         <h4>Your  <%= @map.places.size %> Selection(s):</h4>
-
         <ul class="listPlacesMap-js">
            <% @map.places.each do |place| %>
-              <li class="placeslist" data-placeid=<%=place.id%>  data-place_lng=<%= place.longitude%> data-place_lat=<%= place.latitude%> >
-                <strong><%= place.title %></strong>
-                <%= render 'listplacemap', place: place %>
-
+        
+                <%= render 'listplacemap', place: place , map: @place %>
               </li>
           <%end%>
         </ul>
-
-
 
     </div>
 
