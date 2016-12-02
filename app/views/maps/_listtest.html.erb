@@ -5,6 +5,9 @@
        Edit <span class="glyphicon glyphicon-pencil"></span>
   <% end %>
 
+  <%= button_to unlink_map_place_path( map_id: @map.id , place_id: place.id), method: :delete , data: {  confirm: 'Are you sure you want to remove the place from your map?' }, class: 'btn btn-default btn-sm ' do %>
+        Remove <span class="glyphicon glyphicon-remove"></span>
+  <% end %>
 
 
 </li>
