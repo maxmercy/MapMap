@@ -26,7 +26,7 @@ function initMap() {
     };
     map = new google.maps.Map(document.getElementById('map'), {
         center: centerPosition,
-        zoom: 14
+        zoom: 18
     });
     map.setOptions({
         styles: styles
@@ -57,7 +57,7 @@ function setupAutocomplete() {
     autocomplete.addListener('place_changed', function() {
         var place = autocomplete.getPlace();
         if (place.geometry.location) {
-            placeMarkerAndPanTo(place.geometry.location, map)
+            // placeMarkerAndPanTo(place.geometry.location, map)
             createPlaces(place)
             $('#get-places').val("");
         } else {
@@ -71,6 +71,7 @@ function placeMarkerAndPanTo(latLng, map) {
         position: latLng,
         map: map
     });
+    console.log(latLng)
     map.panTo(latLng);
 };
 
@@ -123,9 +124,9 @@ function createPlaces(place) {
         url: '/places',
         type: "POST",
         data: data_place,
-        success: function() {
-            console.log(response)
-            // appendListPlace()
+        success: function(response) {
+            appendListPlace(response)
+            placeMarkerAndPanTo(place.geometry.location, map)
         },
         error: function() {
             console.log("add Place Failed")
@@ -133,10 +134,10 @@ function createPlaces(place) {
     });
 }
 
-function appendListPlace(title) {
 
 
-    $(".listPlacesMap-js").append(html)
+function appendListPlace(response) {
+    $(".listPlacesMap-js").append(response.html_to_append)
 };
 
 function reverseGeocoder(latlong) {

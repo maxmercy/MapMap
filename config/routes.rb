@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   # end
   resources :maps
 
+  delete '/map_place/delete' , to: 'map_places#destroy', as: :unlink_map_place
+
 end

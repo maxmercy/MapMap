@@ -1,0 +1,10 @@
+<li class="placeslist" data-placeid=<%=place.id%>  data-place_lng=<%= place.longitude%> data-place_lat=<%= place.latitude%> >
+  <strong><%= place.title %></strong>
+
+  <%= button_to place_path(place.id), method: :get, class: 'btn btn-default btn-sm ' do %>
+       Edit <span class="glyphicon glyphicon-pencil"></span>
+  <% end %>
+
+
+
+</li>
