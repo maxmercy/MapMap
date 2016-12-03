@@ -18,10 +18,7 @@ function listenSubmitComment() {
         event.preventDefault();
         var new_comment = $(this).children('textarea').val();
         var map_place_id = $(this).children('input').attr('id');
-        if (new_comment) {
-            console.log(this)
-            update_comment(new_comment,map_place_id, $(this));
-        }
+        update_comment(new_comment,map_place_id, $(this));
     });
 };
 
@@ -45,6 +42,10 @@ function update_comment(new_comment,map_place_id, form) {
 function updateComment(new_comment,form) {
        $(form).toggle(120);
        $(form).parent().children(".content-comment").empty();
+       if (new_comment){
        $(form).parent().children(".content-comment").append(new_comment);
+       }else {
+      $(form).parent().children(".content-comment").append('You did not add any comment.');
+       }
        $(form).parent().children(".content-comment").toggle(120);
 };

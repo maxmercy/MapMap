@@ -17,13 +17,10 @@ class MapPlacesController < ApplicationController
   end
 
   def update
-    if params[:comment].present?
       new_comment = params[:comment]
       map_place =  MapPlace.find(params[:id])
       map_place.update_attributes(comment: new_comment)
       render json: {}, statue: 202
-    end
-
   end
 
 
