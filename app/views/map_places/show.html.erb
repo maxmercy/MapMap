@@ -1,0 +1,60 @@
+<div class="row ">
+    <div class="col-md-12">
+        <h1><%= @place.title %></h1>
+        <h2>For the map
+            <span><%=@map.name%></span>
+        </h2>
+        <h3>
+            created by
+            <%= @user.email%>
+        </h3>
+    </div>
+    <div class="col-md-6">
+        <dl class="dl-horizontal">
+            <dt>Your rating:</dt>
+            <dd><%= @map_place.user_rating %></dd>
+            <% if (@place.rating) %>
+            <dt>google rating:</dt>
+            <dd><%= @place.rating %></dd>
+            <% end %>
+            <dt>Your comment:  </dt>
+            <dd><span class="content-comment" style="display: block;">
+                <% if (@map_place.comment.length > 0) %>
+                <%= @map_place.comment %>
+                <% else %>
+                You did not add any comment.
+                <% end %>
+                </span>
+                <form class="form-edit-place" style="display: none;" >
+                <textarea name="comment" rows="5" cols="25"><%= @map_place.comment %></textarea><br>
+                <input type="submit" value="Submit" class="btn btn-default btn-sm " id=<%=@map_place.id%>>
+              </form>
+                <button type="button" class="btn btn-default btn-sm btn-field-toggler"  >
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+            </dd>
+            <% if (@place.address) %>
+            <dt>adress:</dt>
+            <dd><%= @place.address %></dd>
+            <% end %>
+            <% if ( @place.phone_number) %>
+            <dt>phone number:</dt>
+            <dd><%= @place.phone_number %></dd>
+            <% end %>
+
+            <% if ( @place.gmap_url) %>
+            <dt>GoogleMap direction:</dt>
+
+            <dd>
+                <a href="<%= @place.gmap_url %>">
+                    <%=@place.title%></a>
+            </dd>
+            <% end %>
+            <% if (@place.rating) %>
+            <dt>google rating:</dt>
+            <dd><%= @place.rating %></dd>
+            <% end %>
+        </dl>
+        <%= link_to "Back to the Map", map_path(@map) %>
+    </div>
+</div>

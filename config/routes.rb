@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
 
 
+
   resources :places
 
   # resources :users do
@@ -20,6 +21,8 @@ Rails.application.routes.draw do
   # end
   resources :maps
 
-  delete '/map_place/delete' , to: 'map_places#destroy', as: :unlink_map_place
+  get '/map_places/map/:map_id/place/:place_id', to: 'map_places#show', as: :map_place_show
+  delete '/map_places/delete' , to: 'map_places#destroy', as: :unlink_map_place
+  patch  '/map_places/:id', to: 'map_places#update'
 
 end

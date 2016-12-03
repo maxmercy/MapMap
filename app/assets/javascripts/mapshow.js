@@ -2,6 +2,7 @@ $(document).on('ready', function() {
 
     if ($("#btn-mapname").length > 0) {
       mapnamelistener();
+
     };
 
 });
