@@ -30,4 +30,6 @@ class MapsController < ApplicationController
     redirect_to profil_user_path(current_user)
   end
 
+  
+
 end
