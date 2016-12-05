@@ -17,16 +17,20 @@ function listenSubmitComment() {
     $(".form-edit-place").bind("submit", function(event) {
         event.preventDefault();
         var new_comment = $(this).children('textarea').val();
-        var map_place_id = $(this).children('input').attr('id');
-        update_comment(new_comment,map_place_id, $(this));
+        var map_and_map_place_id = $(this).children('input').attr('id');
+        update_comment(new_comment,map_and_map_place_id, $(this));
     });
 };
 
-function update_comment(new_comment,map_place_id, form) {
-      console.log(this)
-        console.log(form)
+function update_comment(new_comment,map_and_map_place_id, form) {
+      var arr = map_and_map_place_id.split('&');
+      var map_id = arr[0];
+      var map_place_id = arr[1];
+      console.log(arr)
+        console.log(map_id)
+        console.log(map_place_id)
      $.ajax({
-        url: '/map_places/'+ map_place_id,
+        url: '/maps/'+ map_id  + '/map_places/'+ map_place_id,
         type: "patch",
         data: {comment: new_comment},
         success: updateComment(new_comment,form) ,

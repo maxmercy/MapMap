@@ -1,9 +1,9 @@
-<li class="placeslist" data-placeid=<%=place.id%>  data-place_lng=<%= place.longitude%> data-place_lat=<%= place.latitude%> >
-  <strong><%= place.title %></strong>
-  <%= button_to  map_place_show_url(map_id: @map.id , place_id: place.id), method: :get, class: 'btn btn-default btn-sm ' do %>
+<li class="placeslist" data-placeid=<%=map_place.id%>  data-place_lng=<%= map_place.place.longitude%> data-place_lat=<%= map_place.place.latitude%> >
+  <strong><%= map_place.place.title %></strong>
+  <%= button_to  map_map_place_path(map_id: map_place.map.id , id: map_place.id), method: :get, class: 'btn btn-default btn-sm ' do %>
      Edit <span class="glyphicon glyphicon-pencil"></span>
 <% end %>
-<%= button_to unlink_map_place_path( map_id: @map.id , place_id: place.id), method: :delete , data: {  confirm: 'Are you sure you want to remove the place from your map?' }, class: 'btn btn-default btn-sm ' do %>
+<%= button_to map_map_place_path(map_id: map_place.map.id , id: map_place.id), method: :delete , data: {  confirm: 'Are you sure you want to remove the place from your map?' }, class: 'btn btn-default btn-sm ' do %>
       Remove <span class="glyphicon glyphicon-remove"></span>
 <% end %>
 </li>

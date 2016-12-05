@@ -18,7 +18,6 @@ function initMap() {
     var latitude = (mapinfo.dataset.latitude)
     var longitude = (mapinfo.dataset.longitude)
     mapid = mapinfo.dataset.mapid
-    console.log(mapid)
 
     var centerPosition = {
         lat: parseFloat(latitude),
@@ -34,7 +33,7 @@ function initMap() {
 
     infowindow = new google.maps.InfoWindow();
     geocoder = new google.maps.Geocoder;
-
+    console.log(centerPosition)
     mapcenterlistener(centerPosition);
     createInitialMarker()
     setupAutocomplete();
@@ -71,7 +70,6 @@ function placeMarkerAndPanTo(latLng, map) {
         position: latLng,
         map: map
     });
-    console.log(latLng)
     map.panTo(latLng);
 };
 
@@ -94,9 +92,10 @@ function createInitialMarker() {
 
 // button respond for recenter the map
 function mapcenterlistener(centerPosition) {
-  $("#btn-mapcenter").click(function() {
+      console.log('here')
+    $("#btn-mapcenter").click(function() {
 
-    console.log(map)
+    console.log('test')
     map.setCenter(centerPosition );
   });
 };
@@ -125,6 +124,7 @@ function createPlaces(place) {
         type: "POST",
         data: data_place,
         success: function(response) {
+          console.log('place added')
             appendListPlace(response)
             placeMarkerAndPanTo(place.geometry.location, map)
         },

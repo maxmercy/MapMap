@@ -27,7 +27,7 @@
                 </span>
                 <form class="form-edit-place" style="display: none;" >
                 <textarea name="comment" rows="5" cols="25"><%= @map_place.comment %></textarea><br>
-                <input type="submit" value="Submit" class="btn btn-default btn-sm " id=<%=@map_place.id%>>
+                <input type="submit" value="Submit" class="btn btn-default btn-sm " id=<%=@map_place.map.id%>&<%=@map_place.id%>>
               </form>
                 <button type="button" class="btn btn-default btn-sm btn-field-toggler"  >
                     <span class="glyphicon glyphicon-pencil"></span>

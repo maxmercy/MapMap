@@ -1,7 +1,7 @@
 class MapPlacesController < ApplicationController
 
   def show
-    @map_place = MapPlace.find_by(map_id: params[:map_id], place_id: params[:place_id])
+    @map_place = MapPlace.find(params[:id])
     @map = @map_place.map
     @place = @map_place.place
     @user = @map.user
@@ -9,10 +9,9 @@ class MapPlacesController < ApplicationController
 
 
   def destroy
-      map = Map.find(params[:map_id])
-      place_id = params[:place_id]
-      linkMapPlace = MapPlace.find_by(map_id: map.id, place_id: place_id)
-      linkMapPlace.delete
+      map_place = MapPlace.find(params[:id])
+      map = map_place.map
+      map_place.delete
       redirect_to map
   end
 

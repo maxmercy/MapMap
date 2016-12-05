@@ -21,7 +21,21 @@ class MapsController < ApplicationController
       map.update_attributes(name: new_name )
       redirect_to map
     end
+  end
 
+  def duplicate
+    @map_origin = Map.find(params[:id])
+    @map_duplicate_name = @map_origin.name + "-copy-" + Time.now.to_formatted_s(:number)
+    current_user_id =  current_user.id
+    @map_duplicate = Map.new(name: @map_duplicate_name,
+                            city: @map_origin.city,
+                            user_id: current_user_id ,
+                            longitude: @map_origin.longitude,
+                            latitude: @map_origin.latitude
+                            )
+    @map_duplicate.save
+    @map_duplicate.duplicate(@map_origin)
+    redirect_to map_path(@map_duplicate)
   end
 
   def destroy
@@ -30,6 +44,6 @@ class MapsController < ApplicationController
     redirect_to profil_user_path(current_user)
   end
 
-  
+
 
 end
