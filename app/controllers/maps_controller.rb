@@ -8,6 +8,10 @@ class MapsController < ApplicationController
     @creator = @map.user
   end
 
+  def show_public
+    @map = Map.find_by(public_id: params[:public_id])
+  end
+
   def edit
     @map = Map.find(params[:id])
     @creator = @map.user

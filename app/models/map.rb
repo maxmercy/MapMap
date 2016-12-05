@@ -6,6 +6,7 @@ class Map < ApplicationRecord
   validates :latitude, :longitude, presence: true
 
   before_validation :geolocate
+  before_save :generate_public_id
 
   def geolocate
     geocord_city = Geocoder.search(city).first
@@ -24,5 +25,11 @@ class Map < ApplicationRecord
     end
   end
 
+
+private
+
+  def generate_public_id
+      self.public_id  = self.city + '_' + SecureRandom.urlsafe_base64
+  end
 
 end
