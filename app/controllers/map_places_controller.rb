@@ -2,6 +2,7 @@ class MapPlacesController < ApplicationController
 
   def edit
     @map_place = MapPlace.find(params[:id])
+    authorize @map_place
     @map = @map_place.map
     @place = @map_place.place
     @user = @map.user
@@ -10,6 +11,7 @@ class MapPlacesController < ApplicationController
 
   def destroy
       map_place = MapPlace.find(params[:id])
+      authorize map_place
       map = map_place.map
       map_place.delete
       redirect_to edit_map_path(map)
@@ -18,6 +20,7 @@ class MapPlacesController < ApplicationController
   def update
       new_comment = params[:comment]
       map_place =  MapPlace.find(params[:id])
+      authorize map_place
       map_place.update_attributes(comment: new_comment)
       render json: {}, statue: 202
   end

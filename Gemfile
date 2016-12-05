@@ -35,8 +35,13 @@ gem 'devise'
 
 gem 'figaro'
 #gem 'omniauth-facebook'
-gem 'geocoder'
 
+#  authorization system
+gem "pundit"
+
+
+gem 'geocoder'
+gem 'bootstrap_form'
 gem 'pry'
 
 

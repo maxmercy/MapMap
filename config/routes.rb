@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :map_places
   end
 
+  post '/maps/:id/share', to: 'maps#map_share', as: :map_share
   get '/maps/s/:public_id', to: 'maps#show_public', as: :map_public
   # post  '/maps/:id/duplicate', to: 'maps#duplicate', as: :duplicate_map
   # get '/map_places/:id', to: 'map_places#show', as: :map_place_show
