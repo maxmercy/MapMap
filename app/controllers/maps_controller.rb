@@ -8,10 +8,17 @@ class MapsController < ApplicationController
     @creator = @map.user
   end
 
+  def edit
+    @map = Map.find(params[:id])
+    @creator = @map.user
+  end
+
+
+
   def create
     city = params[:city]
     map = Map.create(name: city, city: city, user_id: current_user.id)
-    redirect_to map_path(map)
+    redirect_to edit_map_path(map)
   end
 
   def update
@@ -19,7 +26,7 @@ class MapsController < ApplicationController
       new_name = params[:map_name]
       map =  Map.find(params[:id])
       map.update_attributes(name: new_name )
-      redirect_to map
+      redirect_to edit_map_path
     end
   end
 
@@ -35,7 +42,7 @@ class MapsController < ApplicationController
                             )
     @map_duplicate.save
     @map_duplicate.duplicate(@map_origin)
-    redirect_to map_path(@map_duplicate)
+    redirect_to edit_map_path(@map_duplicate)
   end
 
   def destroy

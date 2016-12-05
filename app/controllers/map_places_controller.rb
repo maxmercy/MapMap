@@ -1,6 +1,6 @@
 class MapPlacesController < ApplicationController
 
-  def show
+  def edit
     @map_place = MapPlace.find(params[:id])
     @map = @map_place.map
     @place = @map_place.place
@@ -12,7 +12,7 @@ class MapPlacesController < ApplicationController
       map_place = MapPlace.find(params[:id])
       map = map_place.map
       map_place.delete
-      redirect_to map
+      redirect_to edit_map_path(map)
   end
 
   def update
@@ -21,7 +21,5 @@ class MapPlacesController < ApplicationController
       map_place.update_attributes(comment: new_comment)
       render json: {}, statue: 202
   end
-
-
 
 end
