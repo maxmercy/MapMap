@@ -22,13 +22,16 @@ class MapsController < ApplicationController
   end
 
   def update
-    if params[:map_name].present?
-      new_name = params[:map_name]
       @map =  Map.find(params[:id])
       authorize @map
+      if params[:map_name].present?
+        new_name = params[:map_name]
       @map.update_attributes(name: new_name )
       redirect_to edit_map_path
+    else
+      redirect_to edit_map_path
     end
+
   end
 
   def duplicate

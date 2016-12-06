@@ -2,15 +2,33 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #map {
-
-  height:800px;;
-
+  height:800px;
+  margin: 0px 30px;
 }
 
 .show-map-info {
   padding-left: 30px;
+  display: inline-block;
 }
 
-.glyphicon {
-  
+.show-map-info *{
+  display: inline-block;
+  }
+
+.search-part *{
+  display: inline-block;
+  }
+
+.show-map-info h1 {
+font-family: 'Rubik One', sans-serif;
+font-size: 500%;
+}
+
+.itim-typo-medium {
+  font-size: 250%;
+  }
+
+.button-typo-map {
+    font-family: 'Itim', cursive;
+    font-size: 1.5em;
 }
