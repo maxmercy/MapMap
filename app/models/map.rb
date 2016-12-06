@@ -15,6 +15,7 @@ class Map < ApplicationRecord
     self.longitude = coord_city[1]
   end
 
+
   def duplicate_map_places(map_origin)
     map_places_origin = MapPlace.where(map_id: map_origin.id)
 

@@ -22,4 +22,8 @@ class MapPolicy < ApplicationPolicy
     user == record.user
   end
 
+  def save_public?
+    true
+  end
+
 end

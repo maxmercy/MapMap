@@ -11,7 +11,7 @@ class SharingMapMailer < ApplicationMailer
     @friend_email = params[:friend_email]
     @message_perso = params[:message_perso]
     @map = Map.find(params[:id])
-binding.pry
+    @user_email = @map.user.email
     mail(to: @friend_email, subject:   @friend_name + " want to share a map with you")
   end
 

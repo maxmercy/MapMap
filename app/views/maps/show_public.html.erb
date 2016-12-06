@@ -9,6 +9,10 @@
         <button type="button" class="btn btn-default btn-sm " id="btn-mapcenter">
             recenter <span class="glyphicon glyphicon-screenshot"></span>
         </button>
+        <%= button_to save_map_public_path(@map.id), method: :duplicate, class: 'btn btn-default btn-sm ' do %>
+        Save in your map.
+        <span class="glyphicon glyphicon-duplicate"></span>
+        <% end %>
 
 
         <h4>  Created by  <%= @map.user.email%></h4>
