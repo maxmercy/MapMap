@@ -9,7 +9,7 @@
         <button type="button" class="btn btn-default btn-sm " id="btn-mapcenter">
             recenter <span class="glyphicon glyphicon-screenshot"></span>
         </button>
-        <%= button_to save_map_public_path(@map.id), method: :duplicate, class: 'btn btn-default btn-sm ' do %>
+        <%= button_to save_map_public_path(@map.public_id), method: :duplicate, class: 'btn btn-default btn-sm ' do %>
         Save in your map.
         <span class="glyphicon glyphicon-duplicate"></span>
         <% end %>
@@ -17,12 +17,7 @@
 
         <h4>  Created by  <%= @map.user.email%></h4>
 
-
-        <h4>Looking for a place? Search or click!</h4>
-        <div id="input-wrapper">
-          <input type="text" name="get-places" id="get-places">
-        </div>
-        <h4>Your  <%= @map.places.size %> Selection(s):</h4>
+        <h4>Recommended places selection(s):</h4>
         <ul class="listPlacesMap-js">
            <% @map.map_places.each do |map_place| %>
                 <%= render 'listplacemap_public', map_place: map_place , map: @map %>
