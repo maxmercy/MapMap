@@ -10,9 +10,14 @@ class MapsController < ApplicationController
   end
 
   def edit
-    @map = Map.find(params[:id])
-    authorize @map
-    @creator = @map.user
+    if Map.exists?(id: params[:id])
+      @map = Map.find(params[:id])
+      @creator = @map.user
+      authorize @map
+    else
+      flash[:notice] = "The URL you were looking for could not be found."
+      redirect_to root_path
+    end
   end
 
   def create

@@ -1,12 +1,13 @@
 <div class="row ">
-    <div class="col-md-6">
+    <div class="col-md-6 ">
         <div class="row ">
             <div class="col-md-12 show-map-info">
                 <div class="js-map-name">
                     <h1 ><%= @map.name %></h1>
                     <% if (@map.name != @map.city ) %>
-                    <h4 class="itim-typo-medium hidden-xs">(city:
-                        <%=@map.city%>)</h4>
+                    <p class="itim-typo-medium hidden-xs">
+                       &nbsp&nbsp&nbsp(<%=@map.city%>)
+                     </p>
                     <%end%>
                 </div>
             </div>
@@ -52,68 +53,68 @@
                 </div>
             </div>
         </div>
-
         <div class="row ">
-            <div class="col-md-4 show-place-info">
-                <ul class="listPlacesMap-js">
-                    <% @map.map_places.each do |map_place| %>
-                    <%= render 'listplacemap', map_place: map_place , map: @map %>
-                    <%end%>
-                </ul>
-
-            </div>
-
-            <!-- Modal Email -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h4 class="modal-title" id="myModalLabel">Share your map:
-                                <%=@map.name %></h4>
-                        </div>
-                        <div class="modal-body">
-
-                            <%= bootstrap_form_tag url: map_share_path do |f| %>
-                            <%= f.text_field :user_name, label: "Your Name:"%>
-                            <%= f.text_field :friend_name, label: "Your Friend's Name:"%>
-                            <%= f.email_field :friend_email, value: 'name@example.com', label: "Your Friend's e-mail:" %>
-                            <%= f.text_area :message_perso, label: "Personalize your message:", value: "Here a link to my favourite places in "+ @map.city+".\nHope you will like them!" %>
-
-                            <div class="form-group">
-                                <label class="control-label">End of Message:</label>
-                                <p>Open your friend map on 'MapMap' at the link:<br>
-                                    <%= map_public_url(@map.public_id) %>
-                                    <br>
-
-                                    There you can consult the map without login<br>
-                                    With an account, you can save, modify and even create your own map for free!</p>
-
-                            </div>
-                            <div class="modal-footer">
-                                <%= f.button :submit,  class: "btn btn-success" do %>
-                                Send Your Message!
-                                <span class="glyphicon glyphicon-envelope"></span>
-                                <% end %>
-
-                            </div>
-                            <% end %>
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="row ">
-
             <div class="col-md-12 map-colum">
                 <div id="map" data-mapid=<%=@map.id%> data-longitude=<%= @map.longitude%> data-latitude=<%= @map.latitude%>></div>
             </div>
         </div>
+
+
+
     </div>
+
+
+
+
+    <div class="col-md-6 pre-scrollable Col-place-info">
+      <div class="row show-place-info ">
+          <% @map.map_places.each do |map_place| %>
+              <%= render 'listplacemap', map_place: map_place , map: @map %>
+          <%end%>
+      </div>
+
+    </div>
+</div>
+
+<!-- Modal Email -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Share your map:
+                    <%=@map.name %></h4>
+            </div>
+            <div class="modal-body">
+
+                <%= bootstrap_form_tag url: map_share_path, class: 'form-email' do |f| %>
+                <%= f.text_field :user_name, label: "Your Name:"%>
+                <%= f.text_field :friend_name, label: "Your Friend's Name:"%>
+                <%= f.email_field :friend_email, value: 'name@example.com', label: "Your Friend's e-mail:" %>
+                <%= f.text_area :message_perso, label: "Personalize your message:", value: "Here a link to my favourite places in "+ @map.city+".\nHope you will like them!" %>
+
+                <div class="form-group">
+                    <label class="control-label">End of Message:</label>
+                    <p>Open your friend map on 'MapMap' at the link:<br>
+                        <%= map_public_url(@map.public_id) %>
+                        <br>
+
+                        There you can consult the map without login<br>
+                        With an account, you can save, modify and even create your own map for free!</p>
+
+                </div>
+                <div class="modal-footer" >
+                    <%= f.button :submit,   class: "btn btn-success", :id => "emailsubmit" do %>
+                    Send Your Message!
+                    <span class="glyphicon glyphicon-envelope"></span>
+                    <% end %>
+
+                </div>
+                <% end %>
+            </div>
+        </div>
+
+    </div>
+</div>

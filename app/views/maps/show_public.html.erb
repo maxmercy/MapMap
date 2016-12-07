@@ -20,6 +20,7 @@
         <h4>Recommended places selection(s):</h4>
         <ul class="listPlacesMap-js">
            <% @map.map_places.each do |map_place| %>
+
                 <%= render 'listplacemap_public', map_place: map_place , map: @map %>
           <%end%>
         </ul>

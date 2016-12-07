@@ -4,54 +4,57 @@
         <title>MapMap</title>
         <%= csrf_meta_tags %>
 
-
-
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Rubik+One" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Itim" rel="stylesheet">
-        <script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlmPyxcLAoCywoLdBFfq-0hz-Wb7sfvtc&libraries=places" type="text/javascript"></script>
+        <link href="https://fonts.googleapis.com/css?family=Dekko|Lato|Permanent+Marker" rel="stylesheet">
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlmPyxcLAoCywoLdBFfq-0hz-Wb7sfvtc&libraries=places" type="text/javascript"></script>
 
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     </head>
 
     <body >
-    <nav>
+        <nav>
 
-      <nav role="navigation" class="navbar navbar-default">
-       <!-- Brand and toggle get grouped for better mobile display -->
-       <div class="navbar-header">
-           <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-               <span class="sr-only">Toggle navigation</span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-           </button>
-           <a href="/" class="navbar-brand">MaxMap</a>
+            <nav role="navigation" class="navbar navbar-default">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="/" class="navbar-brand">MaxMap</a>
 
-       </div>
-       <!-- Collection of nav links and other content for toggling -->
-       <div id="navbarCollapse" class="collapse navbar-collapse">
-           <ul class="nav navbar-nav">
-               <li class="active"><a href="/">Home</a></li>
-               <li class="notice"><%= notice %></li>
-               <li class="alert"><%= alert %></li>
-           </ul>
+                </div>
+                <!-- Collection of nav links and other content for toggling -->
+                <div id="navbarCollapse" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="/">Home</a>
+                        </li>
+                        <li class="notice"><%= notice %></li>
+                        <li class="alert"><%= alert %></li>
+                    </ul>
 
-           <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right">
 
-             <%= render 'devise/menu/profil_items' %>
-             <%= render 'devise/menu/login_items' %>
+                        <%= render 'devise/menu/profil_items' %>
+                        <%= render 'devise/menu/login_items' %>
 
-           </ul>
-       </div>
-   </nav>
-    <%= yield %>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+                    </ul>
+                </div>
+            </nav>
+            <div class="container-fluid">
+                <%= yield %>
+            </div>
+            <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+            <%= javascript_include_tag 'application'%>
 
-</body>
-</html>
+        </body>
+    </html>

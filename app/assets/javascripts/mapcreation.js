@@ -58,15 +58,22 @@ function setupAutocomplete() {
 }
 
 var markers = [];
+var iconmarker = {
+                  url: '/assets/arrowmarker-default.svg',
+                 };
+var iconmarkerselected = {
+                 url: '/assets/arrowmarker-selected.svg',
+                };
 
 function placeMarkerAndPanTo(latLng, map, timeout) {
   window.setTimeout(function() {
     var marker = new google.maps.Marker({
         animation: google.maps.Animation.DROP,
+        icon: iconmarker,
         position: latLng,
         map: map
     });
-
+      console.log(marker)
 
     marker.addListener('click', function() {
         if (marker.getAnimation() !== null) {
@@ -84,6 +91,7 @@ function placeMarkerAndPanTo(latLng, map, timeout) {
 
 
 
+
 }, timeout);
   map.panTo(latLng);
 };
@@ -95,8 +103,10 @@ var infowindow = new google.maps.InfoWindow({
 
 var contentString = 'Hello'
 
-function createInitialMarker() {
 
+
+// Creation of the initial marker at the opening of the map
+function createInitialMarker() {
   var placeinfo = document.querySelectorAll('.placeslist');
   if (placeinfo.length > 0) {
     $.each(placeinfo, function(index, toto) {
@@ -167,11 +177,12 @@ function createPlaces(place) {
     });
 }
 
-
-
 function appendListPlace(response) {
-    $(".listPlacesMap-js").append(response.html_to_append)
+    $(".show-place-info").prepend(response.html_to_append)
 };
+
+
+
 
 function reverseGeocoder(latlong) {
     var geocoder = new google.maps.Geocoder;

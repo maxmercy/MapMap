@@ -13,8 +13,13 @@
  *= require_tree .
  *= require_self
  */
+ // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+ @import '*';
 
 body {
-    font-family: 'Itim', cursive;
-    
+  /*font-family: 'Itim', cursive;*/
+font-family: 'Lato', sans-serif;
+
 }
