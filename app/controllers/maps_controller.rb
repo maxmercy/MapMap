@@ -103,7 +103,6 @@ class MapsController < ApplicationController
     info_email = params
     map = Map.find(params[:id])
     authorize map
-    flash[:info] = "Email is being prepared."
     SharingMapMailer.share_a_map(info_email).deliver_now
   end
 

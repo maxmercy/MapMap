@@ -13,7 +13,6 @@ class SharingMapMailer < ApplicationMailer
     @map = Map.find(params[:id])
     @user_email = @map.user.email
     mail(to: @friend_email, subject:   @friend_name + " want to share a map with you")
-    flash[:success] = "Email sent."
   end
 
 
