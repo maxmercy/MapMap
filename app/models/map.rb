@@ -9,14 +9,7 @@ class Map < ApplicationRecord
   before_validation :geolocate
   before_save :generate_public_id
 
-  def geolocate
-    return unless city.present?
 
-    geocord_city = Geocoder.search(city).first
-    coord_city = geocord_city.coordinates
-    self.latitude = coord_city[0]
-    self.longitude = coord_city[1]
-  end
 
 
   def duplicate_map_places(map_origin)
@@ -31,6 +24,16 @@ class Map < ApplicationRecord
 
 
 private
+
+  def geolocate
+    return unless city.present?
+
+     if geocord_city = Geocoder.search(city).first
+    coord_city = geocord_city.coordinates
+    self.latitude = coord_city[0]
+    self.longitude = coord_city[1]
+    end
+  end
 
   def generate_public_id
       self.public_id  = self.city + '_' + SecureRandom.urlsafe_base64

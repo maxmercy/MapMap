@@ -15,3 +15,10 @@
 //= require jquery_ujs
 
 //= require_tree .
+
+
+$('body').ready(function() {
+  setTimeout(function() {
+    $('.alert').slideUp();
+  }, 1500);
+});

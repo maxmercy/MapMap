@@ -7,9 +7,3 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Category.create(name: 'none')
-Category.create(name: 'bar')
-Category.create(name: 'restaurant')
-Category.create(name: 'museum')
-Category.create(name: 'view')
-Category.create(name: 'shop')
-Category.create(name: 'sport')

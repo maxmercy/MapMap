@@ -1,15 +1,16 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  longitude: 1
-  latitude: 1
-  category_id: 1
-  rating: 1
+ one:
+   title: place1
+   longitude: 1.11
+   latitude: 1.22
 
-two:
-  title: MyString
-  longitude: 1
-  latitude: 1
-  category_id: 1
-  rating: 1
+
+ two:
+   title: place2
+   longitude: 1.3
+   latitude: 1.6
+
+ three:
+   title: place3
+   longitude: 1.7
+   latitude: 1.8

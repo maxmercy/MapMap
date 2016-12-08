@@ -22,7 +22,6 @@ class ApplicationController < ActionController::Base
 
     def after_sign_in_path_for(resource)
       return stored_location_for(:user) || root_path
-
       # profil_user_path(user_id: current_user.id)
     end
 
@@ -31,13 +30,13 @@ class ApplicationController < ActionController::Base
 protected
 
   def show_errors(exception)
-    flash[:alert] = "I didn't found what you are looking for."
+    flash[:warning] = "I didn't found what you are looking for."
     redirect_to(request.referrer || root_path)
       # exception.record.new_record? ? ...
   end
 
   def user_not_authorized
-   flash[:alert] = "You are not authorized to perform this action."
+   flash[:danger] = "You are not authorized to perform this action."
    redirect_to(request.referrer || root_path)
  end
 

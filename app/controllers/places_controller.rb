@@ -14,8 +14,8 @@ class PlacesController < ApplicationController
     authorize new_place
 
     new_place.save
-    map.places.push(new_place)
 
+    map.places.push(new_place)
     map_place = MapPlace.where(map_id: map.id).find_by(place_id: new_place.id)
     html = render_to_string partial: 'maps/listplacemap', locals: {map_place: map_place}, layout: false
     render json:  { html_to_append: html, map_place_id: map_place.id }

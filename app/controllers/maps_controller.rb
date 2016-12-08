@@ -1,16 +1,19 @@
 class MapsController < ApplicationController
   skip_after_action :verify_authorized, only: :save_public
+  before_action :authenticate_user!, except: :show_public
 
   def new
     @map = Map.new
   end
 
+
   def show_public
     if Map.exists?(public_id: params[:public_id])
     @map = Map.find_by(public_id: params[:public_id])
-  else
-    redirect_to root_path
-  end
+    else
+      flash[:warning] = "The Map requested do not exist."  #error validation errors
+      redirect_to root_path
+    end
   end
 
   def edit
@@ -24,27 +27,26 @@ class MapsController < ApplicationController
     @map = Map.new(name: city, city: city, user_id: current_user.id)
     authorize @map
     if @map.save
-       redirect_to edit_map_path(@map)
+      flash[:success] = "A new map successfully created"  #error validation errors
+      redirect_to edit_map_path(@map)
     else
-       flash[:alert] = "error"  #error validation errors
-       redirect_to profil_user_path(current_user)
+     flash[:warning] = "No City was found with the name you provide. Please try again."  #error validation errors
+     redirect_to profil_user_path(current_user)
     end
-
-
-
   end
 
   def update
-      @map =  Map.find(params[:id])
-      authorize @map
-      if params[:map_name].present?
-        new_name = params[:map_name]
+    @map =  Map.find(params[:id])
+    authorize @map
+    if params[:map_name].present?
+      new_name = params[:map_name]
       @map.update_attributes(name: new_name )
+      flash[:success] = "Map successfully renamed"
       redirect_to edit_map_path
     else
+      flash[:info] = "Rename cancel - name field empty"
       redirect_to edit_map_path
     end
-
   end
 
   def duplicate
@@ -61,6 +63,7 @@ class MapsController < ApplicationController
 
     @map_duplicate.save
     @map_duplicate.duplicate_map_places(@map_origin)
+    flash[:success] = "Map successfully duplicate"
     redirect_to edit_map_path(@map_duplicate)
   end
 
@@ -79,8 +82,11 @@ class MapsController < ApplicationController
 
       @map_duplicate.save
       @map_duplicate.duplicate_map_places(@map_origin)
+      flash[:success] = "Success, the map is now in your profil."
       redirect_to edit_map_path(@map_duplicate)
+
     else
+      flash[:info] = "You need an account to edit this map."
       redirect_to new_user_session_path
     end
   end
@@ -89,6 +95,7 @@ class MapsController < ApplicationController
     map = Map.find(params[:id])
     authorize map
     map.destroy
+    flash[:info] = "The map has been destroy."
     redirect_to profil_user_path(current_user)
   end
 
@@ -96,6 +103,7 @@ class MapsController < ApplicationController
     info_email = params
     map = Map.find(params[:id])
     authorize map
+    flash[:info] = "Email is being prepared."
     SharingMapMailer.share_a_map(info_email).deliver_now
   end
 

@@ -1,0 +1,394 @@
+diff --git a/Gemfile b/Gemfile
+index 5b85aff..5239af8 100644
+--- a/Gemfile
++++ b/Gemfile
+@@ -41,7 +41,7 @@ gem "pundit"
+ 
+ 
+ gem 'geocoder'
+-#gem 'bootstrap-sass', '~> 3.3.6'
++gem 'bootstrap-sass', '~> 3.3.6'
+ gem 'bootstrap_form'
+ gem 'pry'
+ 
+diff --git a/Gemfile.lock b/Gemfile.lock
+index 1ad2562..626b536 100644
+--- a/Gemfile.lock
++++ b/Gemfile.lock
+@@ -39,7 +39,12 @@ GEM
+       minitest (~> 5.1)
+       tzinfo (~> 1.1)
+     arel (7.1.4)
++    autoprefixer-rails (6.5.3.1)
++      execjs
+     bcrypt (3.1.11)
++    bootstrap-sass (3.3.7)
++      autoprefixer-rails (>= 5.2.1)
++      sass (>= 3.3.4)
+     bootstrap_form (2.5.2)
+     builder (3.2.2)
+     byebug (9.0.6)
+@@ -180,6 +185,7 @@ PLATFORMS
+   ruby
+ 
+ DEPENDENCIES
++  bootstrap-sass (~> 3.3.6)
+   bootstrap_form
+   byebug
+   coffee-rails (~> 4.2)
+diff --git a/app/assets/images/arrowmarker-default.svg b/app/assets/images/arrowmarker-default.svg
+index 288decd..93ffdac 100644
+--- a/app/assets/images/arrowmarker-default.svg
++++ b/app/assets/images/arrowmarker-default.svg
+@@ -128,4 +128,4 @@
+                inkscape:transform-center-y="-6.4459234"
+                inkscape:transform-center-x="-2.1750964"
+                style="color:#000000;fill:#ff6600;stroke:#1a1a1a;stroke-width:10.234828"
+-               id="rect9673" /></g></g></g></g></g></svg>
++               id="rect9673" /></g></g></g></g></g></svg>
+\ No newline at end of file
+diff --git a/app/assets/javascripts/application.js b/app/assets/javascripts/application.js
+index 105a4f1..e4756a4 100644
+--- a/app/assets/javascripts/application.js
++++ b/app/assets/javascripts/application.js
+@@ -11,5 +11,7 @@
+ // about supported directives.
+ //
+ //= require jquery
++//= require bootstrap-sprockets
+ //= require jquery_ujs
++
+ //= require_tree .
+diff --git a/app/assets/stylesheets/application.scss b/app/assets/stylesheets/application.scss
+index 736bbd4..b3e8236 100644
+--- a/app/assets/stylesheets/application.scss
++++ b/app/assets/stylesheets/application.scss
+@@ -13,6 +13,10 @@
+  *= require_tree .
+  *= require_self
+  */
++ // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
++ @import "bootstrap-sprockets";
++ @import "bootstrap";
++ @import '*';
+ 
+ body {
+   /*font-family: 'Itim', cursive;*/
+diff --git a/app/controllers/application_controller.rb b/app/controllers/application_controller.rb
+index 016afd4..f855d44 100644
+--- a/app/controllers/application_controller.rb
++++ b/app/controllers/application_controller.rb
+@@ -17,11 +17,14 @@ class ApplicationController < ActionController::Base
+   before_filter :store_current_location, :unless => :devise_controller?
+ 
+ 
+-  def after_sign_in_path_for(resource)
+-    return stored_location_for(:user) || root_path
+ 
+-    # profil_user_path(user_id: current_user.id)
+-  end
++
++
++    def after_sign_in_path_for(resource)
++      return stored_location_for(:user) || root_path
++
++      # profil_user_path(user_id: current_user.id)
++    end
+ 
+ 
+ 
+diff --git a/app/controllers/maps_controller.rb b/app/controllers/maps_controller.rb
+index c1826ca..4e25f7f 100644
+--- a/app/controllers/maps_controller.rb
++++ b/app/controllers/maps_controller.rb
+@@ -30,6 +30,8 @@ class MapsController < ApplicationController
+        redirect_to profil_user_path(current_user)
+     end
+ 
++
++
+   end
+ 
+   def update
+diff --git a/app/models/map.rb b/app/models/map.rb
+index b1abdfc..0472940 100644
+--- a/app/models/map.rb
++++ b/app/models/map.rb
+@@ -5,6 +5,7 @@ class Map < ApplicationRecord
+ 
+   validates :latitude, :longitude, :name, :city, presence: true
+ 
++
+   before_validation :geolocate
+   before_save :generate_public_id
+ 
+@@ -24,14 +25,14 @@ class Map < ApplicationRecord
+ 
+ private
+ 
+-  def geolocate
+-    return unless city.present?
+-    if geocord_city = Geocoder.search(city).first
+-    coord_city = geocord_city.coordinates
+-    self.latitude = coord_city[0]
+-    self.longitude = coord_city[1]
+-    end
+-  end
++def geolocate
++  return unless city.present?
++
++  geocord_city = Geocoder.search(city).first
++  coord_city = geocord_city.coordinates
++  self.latitude = coord_city[0]
++  self.longitude = coord_city[1]
++end
+ 
+   def generate_public_id
+       self.public_id  = self.city + '_' + SecureRandom.urlsafe_base64
+diff --git a/app/models/map_place.rb b/app/models/map_place.rb
+index a4a677f..a396e3a 100644
+--- a/app/models/map_place.rb
++++ b/app/models/map_place.rb
+@@ -2,5 +2,4 @@ class MapPlace < ApplicationRecord
+   belongs_to :map
+   belongs_to :place
+   belongs_to :category
+-
+ end
+diff --git a/app/views/layouts/application.html.erb b/app/views/layouts/application.html.erb
+index b822026..94144a5 100644
+--- a/app/views/layouts/application.html.erb
++++ b/app/views/layouts/application.html.erb
+@@ -52,7 +52,8 @@
+             <div class="container-fluid">
+                 <%= yield %>
+             </div>
+-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
++            <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
++            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+             <%= javascript_include_tag 'application'%>
+ 
+         </body>
+diff --git a/db/seeds.rb b/db/seeds.rb
+index 1beea2a..c3c6052 100644
+--- a/db/seeds.rb
++++ b/db/seeds.rb
+@@ -5,3 +5,5 @@
+ #
+ #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+ #   Character.create(name: 'Luke', movie: movies.first)
++
++Category.create(name: 'none')
+diff --git a/test/controllers/maps_controller_test.rb b/test/controllers/maps_controller_test.rb
+index d254ca7..7a7e4b6 100644
+--- a/test/controllers/maps_controller_test.rb
++++ b/test/controllers/maps_controller_test.rb
+@@ -5,17 +5,14 @@ class MapsControllerTest < ActionDispatch::IntegrationTest
+   #   assert true
+   # end
+ 
+-  # test "when post create a city a map is created" do
+-  #   current_user = users(:user1)
+-  #   assert_difference('Map.count') do
+-  #     post maps_url, params: { city: "london"}
+-  #   end
++  #  test "when post create a city a map is created" do
++  #    current_user = users(:user1)
++  #    assert_difference('Map.count') do
++  #      post maps_url, params: { city: "london"}
++  #    end
+   #
+-  #   assert_redirected_to map_path(Map.last)
+-  # end
+-
+-
+-
++  #    assert_redirected_to map_path(Map.last)
++  #  end
+ 
+ 
+ 
+diff --git a/test/fixtures/categories.yml b/test/fixtures/categories.yml
+deleted file mode 100644
+index e69de29..0000000
+diff --git a/test/fixtures/map_places.yml b/test/fixtures/map_places.yml
+index c0d8af5..ff66646 100644
+--- a/test/fixtures/map_places.yml
++++ b/test/fixtures/map_places.yml
+@@ -1,17 +1,17 @@
+-one:
+-  comment: bravo
+-  map: one
+-  place: one
+-  category: one
++  one:
++   comment: bravo
++   map: one
++   place: one
++   category: one
+ 
+-two:
+-  comment: hello
+-  map: one
+-  place: two
+-  category: two
++ two:
++   comment: hello
++   map: one
++   place: two
++   category: two
+ 
+-three:
+-  comment: hello
+-  map: two
+-  place: one
+-  category: one
++ three:
++   comment: hello
++   map: two
++   place: one
++   category: one
+diff --git a/test/fixtures/mapplaces.yml b/test/fixtures/mapplaces.yml
+new file mode 100644
+index 0000000..aa3b65b
+--- /dev/null
++++ b/test/fixtures/mapplaces.yml
+@@ -0,0 +1,5 @@
++ one:
++  name: place1
++
++two:
++  name: place2
+diff --git a/test/fixtures/maps.yml b/test/fixtures/maps.yml
+index df41721..dccba91 100644
+--- a/test/fixtures/maps.yml
++++ b/test/fixtures/maps.yml
+@@ -1,13 +1,15 @@
+ # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+ 
+ one:
+-  name: place1
++  name: MyString
++  public: false
+   longitude: 1
+   latitude: 1
+   user: one
+ 
+ two:
+-  name: place2
++  name: MyString
++  public: false
+   longitude: 1
+   latitude: 1
+   user: two
+diff --git a/test/fixtures/places.yml b/test/fixtures/places.yml
+index 6272c68..e116071 100644
+--- a/test/fixtures/places.yml
++++ b/test/fixtures/places.yml
+@@ -1,14 +1,16 @@
+-one:
+-  title: place1
+-  longitude: 1.11
+-  latitude: 1.22
+-
+-two:
+-  title: place2
+-  longitude: 1.3
+-  latitude: 1.6
+-
+-three:
+-  title: place3
+-  longitude: 1.7
+-  latitude: 1.8
++
++ one:
++   title: place1
++   longitude: 1.11
++   latitude: 1.22
++
++
++ two:
++   title: place2
++   longitude: 1.3
++   latitude: 1.6
++
++ three:
++   title: place3
++   longitude: 1.7
++   latitude: 1.8
+diff --git a/test/fixtures/users.yml b/test/fixtures/users.yml
+index 3603a35..6fac8be 100644
+--- a/test/fixtures/users.yml
++++ b/test/fixtures/users.yml
+@@ -1,6 +1 @@
+-
+-user1:
+-  email: toto@gmail.com
+-
+-user2:
+-  email: tata@gmail.com
++# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+diff --git a/test/models/map_test.rb b/test/models/map_test.rb
+index c8c12e3..5af0d99 100644
+--- a/test/models/map_test.rb
++++ b/test/models/map_test.rb
+@@ -1,35 +1,33 @@
+ require 'test_helper'
+ 
+ class MapTest < ActiveSupport::TestCase
+-  # test "the truth" do
+-  #   assert true
+-  # end
+-  test "should not save a map without name" do
+-    map = Map.new
+-    assert_not map.save, "Saved the Map without a name"
+-  end
+ 
+-  test "if the city does not exist, it will not be valid" do
+-    map = Map.new(name: "name", city: "zzzzzzzzzzzzzzzz", user_id: 1)
+-    assert_not map.save, "Can not create a map with unvalide city-name"
+-  end
++   test "should not save a map without name" do
++     map = Map.new
++     assert_not map.save, "Saved the Map without a name"
++   end
+ 
+-  test "before validation, geoocordinate should be set" do
+-    map = Map.new(name: "london", city: "london", user_id: 1)
+-    map.valid?
+-    assert_not_nil map.longitude
+-    assert_not_nil map.latitude
+-  end
++   test "if the city does not exist, it will not be valid" do
++     map = Map.new(name: "name", city: "zzzzzzzzzzzzzzzz", user_id: 1)
++     assert_not map.save, "Can not create a map with unvalide city-name"
++   end
+ 
+-  test "Add a map should increase number of map of the user" do
+-    map = Map.new(name: "london", city: "london", user_id:  users(:user1).id)
+-    map.save
+-    nbr_map_before = users(:user1).maps.size
+-    map = Map.new(name: "paris", city: "paris", user_id: users(:user1).id)
+-    map.save
+-    nbr_map_after =users(:user1).maps.size
+-    assert_not_equal( nbr_map_before, nbr_map_after)
+-  end
++   test "before validation, geoocordinate should be set" do
++     map = Map.new(name: "london", city: "london", user_id: 1)
++     map.valid?
++     assert_not_nil map.longitude
++     assert_not_nil map.latitude
++   end
++
++   test "Add a map should increase number of map of the user" do
++     map = Map.new(name: "london", city: "london", user_id:  users(:user1).id)
++     map.save
++     nbr_map_before = users(:user1).maps.size
++     map = Map.new(name: "paris", city: "paris", user_id: users(:user1).id)
++     map.save
++     nbr_map_after =users(:user1).maps.size
++     assert_not_equal( nbr_map_before, nbr_map_after)
++   end
+ 
+ 
+ end
