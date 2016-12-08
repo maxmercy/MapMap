@@ -3,12 +3,15 @@ class Map < ApplicationRecord
   has_many :map_places
   has_many :places, through: :map_places
 
-  validates :latitude, :longitude, presence: true
+  validates :latitude, :longitude, :name, :city, presence: true
+
 
   before_validation :geolocate
   before_save :generate_public_id
 
   def geolocate
+    return unless city.present?
+
     geocord_city = Geocoder.search(city).first
     coord_city = geocord_city.coordinates
     self.latitude = coord_city[0]

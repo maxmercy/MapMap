@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
-
   include Pundit
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from ActiveRecord::RecordInvalid, :with => :show_errors
+  rescue_from ActiveRecord::RecordNotFound, :with =>  :show_errors
+
+
   after_action :verify_authorized, except: :show_public, unless: :devise_controller?
   protect_from_forgery with: :exception
 
@@ -20,6 +25,21 @@ class ApplicationController < ActionController::Base
 
       # profil_user_path(user_id: current_user.id)
     end
+
+
+
+protected
+
+  def show_errors(exception)
+    flash[:alert] = "I didn't found what you are looking for."
+    redirect_to(request.referrer || root_path)
+      # exception.record.new_record? ? ...
+  end
+
+  def user_not_authorized
+   flash[:alert] = "You are not authorized to perform this action."
+   redirect_to(request.referrer || root_path)
+ end
 
 
 

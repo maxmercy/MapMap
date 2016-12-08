@@ -14,21 +14,24 @@ class MapsController < ApplicationController
   end
 
   def edit
-    if Map.exists?(id: params[:id])
-      @map = Map.find(params[:id])
+      @map = current_user.maps.find(params[:id])
       @creator = @map.user
       authorize @map
-    else
-      flash[:notice] = "The URL you were looking for could not be found."
-      redirect_to root_path
-    end
   end
 
   def create
     city = params[:city]
-    @map = Map.create(name: city, city: city, user_id: current_user.id)
+    @map = Map.new(name: city, city: city, user_id: current_user.id)
     authorize @map
-    redirect_to edit_map_path(@map)
+    if @map.save
+       redirect_to edit_map_path(@map)
+    else
+       flash[:alert] = "error"  #error validation errors
+       redirect_to profil_user_path(current_user)
+    end
+
+
+
   end
 
   def update
