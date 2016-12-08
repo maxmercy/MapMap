@@ -9,9 +9,16 @@
         <button type="button" class="btn btn-default btn-sm " id="btn-mapcenter">
             recenter <span class="glyphicon glyphicon-screenshot"></span>
         </button>
-        <%= button_to save_map_public_path(@map.public_id), method: :duplicate, class: 'btn btn-default btn-sm ' do %>
+
+        <% if current_user %>
+        <%= button_to save_map_public_path(@map.public_id), method: :duplicate, class: 'btn btn-primary btn-sm ' do %>
         Save in your map.
         <span class="glyphicon glyphicon-duplicate"></span>
+        <% end %>
+        <% else %>
+        <h3>In order to save and customize the map you need to sign in or register for this service</h3>
+        <br>
+      <button class="btn btn-primary btn-sm" href="#signup" data-toggle="modal" data-target="#loginModal">Sign In/Register</button>
         <% end %>
 
 

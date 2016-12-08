@@ -1,0 +1,89 @@
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="bs-example bs-example-tabs">
+                <ul id="myTab" class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#signin" data-toggle="tab">Sign In</a>
+                    </li>
+                    <li class="">
+                        <a href="#signup" data-toggle="tab">Register</a>
+                    </li>
+                    <li class="">
+                        <a href="#why" data-toggle="tab">Why?</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- modal body -->
+            <div class="modal-body">
+                <div id="myTabContent" class="tab-content">
+                  <!-- tab why -->
+                    <div class="tab-pane fade in" id="why">
+                        <p>We need this information so that you can receive access to the site and its content. Rest assured your information will not be sold, traded, or given to anyone.</p>
+                        <br>
+                        <P>Please contact
+                        <a mailto:href="map.for.a.friend@gmail.com"></a>map.for.a.friend@gmail.com</a>
+                        for any other inquiries.</p>
+                    </div>
+
+                    <!-- tab sign in -->
+                    <div class="tab-pane fade active in" id="signin">
+                        <h2>Log in</h2>
+                        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                        <div class="field">
+                            <%= f.label :email %><br/>
+                            <%= f.email_field :email, autofocus: true %>
+                        </div>
+                        <div class="field">
+                            <%= f.label :password %><br/>
+                            <%= f.password_field :password, autocomplete: "off" %>
+                        </div>
+                        <% if devise_mapping.rememberable? -%>
+                        <div class="field">
+                            <%= f.check_box :remember_me %>
+                            <%= f.label :remember_me %>
+                        </div>
+                        <% end -%>
+
+                    <div class="modal-footer">
+                        <div class="actions">
+                            <%= f.submit "Log in" %>
+                        </div>
+                        <% end %>
+                    </div>
+                    </div>
+                    <!-- tab sign up -->
+                    <div class="tab-pane fade" id="signup">
+                        <h2>Sign up</h2>
+                        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                        <%= devise_error_messages! %>
+                        <div class="field">
+                            <%= f.label :email %><br/>
+                            <%= f.email_field :email, autofocus: true %>
+                        </div>
+
+                        <div class="field">
+                            <%= f.label :password %>
+                            <% if @minimum_password_length %>
+                            <em>(<%= @minimum_password_length %>
+                                characters minimum)</em>
+                            <% end %><br/>
+                            <%= f.password_field :password, autocomplete: "off" %>
+                        </div>
+
+                        <div class="field">
+                            <%= f.label :password_confirmation %><br/>
+                            <%= f.password_field :password_confirmation, autocomplete: "off" %>
+                        </div>
+                          <div class="modal-footer">
+                        <div class="actions">
+                            <%= f.submit "Sign up" %>
+                        </div>
+                        <% end %>
+                      </div>
+                    </div>
+
+              </div>
+        </div>
+</div>
