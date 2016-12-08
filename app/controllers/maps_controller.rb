@@ -6,7 +6,11 @@ class MapsController < ApplicationController
   end
 
   def show_public
+    if Map.exists?(public_id: params[:public_id])
     @map = Map.find_by(public_id: params[:public_id])
+  else
+    redirect_to root_path
+  end
   end
 
   def edit
@@ -22,8 +26,9 @@ class MapsController < ApplicationController
 
   def create
     city = params[:city]
-    map = Map.create(name: city, city: city, user_id: current_user.id)
-    redirect_to edit_map_path(map)
+    @map = Map.create(name: city, city: city, user_id: current_user.id)
+    authorize @map
+    redirect_to edit_map_path(@map)
   end
 
   def update

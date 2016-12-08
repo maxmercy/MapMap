@@ -4,6 +4,7 @@ var map;
 $(document).on('ready', function() {
     if ($("#map").length > 0) {
         initMap();
+        placemarkerlink()
     };
 });
 
@@ -57,91 +58,119 @@ function setupAutocomplete() {
     });
 }
 
+// Creation of the initial marker at the opening of the map
+function createInitialMarker() {
+    var placeinfo = document.querySelectorAll('.placeslist');
+    if (placeinfo.length > 0) {
+
+
+        $.each(placeinfo, function(index, toto) {
+            latitude = (toto.dataset.place_lat)
+            longitude = (toto.dataset.place_lng)
+            place_position = {
+                lat: parseFloat(latitude),
+                lng: parseFloat(longitude)
+            };
+            latLng = place_position;
+            id = (toto.dataset.placeid)
+            placeMarkerAndPanTo(place_position, map, id, index * 0)
+        });
+
+    };
+}
+
+// Marker intelligence
 var markers = [];
+
 var iconmarker = {
-                  url: '/assets/arrowmarker-default.svg',
-                 };
+    url: '/assets/arrowmarker-default.svg',
+};
 var iconmarkerselected = {
-                 url: '/assets/arrowmarker-selected.svg',
-                };
+    url: '/assets/arrowmarker-selected.svg',
+};
 
-function placeMarkerAndPanTo(latLng, map, timeout) {
-  window.setTimeout(function() {
-    var marker = new google.maps.Marker({
-        animation: google.maps.Animation.DROP,
-        icon: iconmarker,
-        position: latLng,
-        map: map
-    });
-      console.log(marker)
+function placeMarkerAndPanTo(latLng, map, id, timeout) {
+    window.setTimeout(function() {
+        var marker = new google.maps.Marker({
+            animation: google.maps.Animation.DROP,
+            icon: iconmarker,
+            position: latLng,
+            map: map,
+            store_id: id,
+        });
+        markers.push(marker)
+        marker.addListener('click', function() {
+            if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+            } else {
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+                setTimeout(function() {
+                    marker.setAnimation(null);
+                }, 750);
+            }
+            // this.setIcon(iconmarkerselected);
+            var name = `name`;
+            var address = 'an address ';
+            console.log(this.store_id)
+            console.log(marker)
+            infowindow.setContent(name + address);
+            infowindow.open(map, this);
+        });
 
-    marker.addListener('click', function() {
-        if (marker.getAnimation() !== null) {
-          marker.setAnimation(null);
-        } else {
-          marker.setAnimation(google.maps.Animation.BOUNCE);
-           setTimeout(function(){ marker.setAnimation(null); }, 750);
-        }
 
-        var name = `name`;
-        var address = 'an address ';
-        infowindow.setContent(name + address);
-        infowindow.open(map, this);
-    });
+    }, timeout);
+    map.panTo(latLng);
 
 
 
 
-}, timeout);
-  map.panTo(latLng);
 };
 
 var infowindow = new google.maps.InfoWindow({
     content: contentString
-  });
-
+});
 
 var contentString = 'Hello'
 
 
 
-// Creation of the initial marker at the opening of the map
-function createInitialMarker() {
-  var placeinfo = document.querySelectorAll('.placeslist');
-  if (placeinfo.length > 0) {
-    $.each(placeinfo, function(index, toto) {
-      latitude = (toto.dataset.place_lat)
-      longitude = (toto.dataset.place_lng)
-      place_position = {
-      lat: parseFloat(latitude),
-      lng: parseFloat(longitude)
-      };
-      latLng = place_position;
-      placeMarkerAndPanTo(place_position, map, index * 100)
-    });
-
-
-  };
-  // $.each(markers, function(index, marker) {
-  //   google.maps.event.addListener(marker, 'click', toggleBounce());
-  // });
-}
-
-// function toggleBounce(marker) {
-//   if (marker.getAnimation() !== null) {
-//     marker.setAnimation(null);
-//   } else {
-//     marker.setAnimation(google.maps.Animation.BOUNCE);
-//         setTimeout(function(){ marker.setAnimation(null); }, 750);
-//   }
-// }
-
 // button respond for recenter the map
 function mapcenterlistener(centerPosition) {
     $("#btn-mapcenter").click(function() {
-    map.setCenter(centerPosition );
-  });
+        map.setCenter(centerPosition);
+    });
 };
+
+
+function placemarkerlink(){
+  var timer;
+  $('.show-place-info').on('mouseenter',".placeslist", function() {
+    self = this
+    timer = setTimeout(function () {
+      var id = $(self).data('placeid');
+      var marker = markers.filter(function(marker) {
+          return marker.store_id == id
+      });
+      marker[0].setIcon(iconmarkerselected);
+      marker[0].setAnimation(google.maps.Animation.BOUNCE);
+      setTimeout(function() {
+          marker[0].setAnimation(null);
+      });
+      map.panTo(marker[0].position);
+      infowindow.open(map, marker[0]);
+    }, 400);
+  }).on('mouseleave',".placeslist", function() {
+     clearTimeout(timer);
+    var id = $(self).data('placeid');
+    var marker = markers.filter(function(marker) {
+        return marker.store_id == id
+    });
+      marker[0].setIcon(iconmarker);
+  });
+}
+
+
+
 
 
 /////////////////////////////////////////////
@@ -167,9 +196,9 @@ function createPlaces(place) {
         type: "POST",
         data: data_place,
         success: function(response) {
-          console.log('place added')
-            appendListPlace(response)
-            placeMarkerAndPanTo(place.geometry.location, map)
+            appendListPlace(response.html_to_append)
+            map_place_id = response.map_place_id
+            placeMarkerAndPanTo(place.geometry.location, map, map_place_id)
         },
         error: function() {
             console.log("add Place Failed")
@@ -177,8 +206,9 @@ function createPlaces(place) {
     });
 }
 
-function appendListPlace(response) {
-    $(".show-place-info").prepend(response.html_to_append)
+function appendListPlace(html_to_append) {
+    $(".show-place-info").prepend(html_to_append)
+
 };
 
 

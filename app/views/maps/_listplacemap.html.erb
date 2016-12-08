@@ -1,6 +1,6 @@
-<div class="col-lg-4  col-md-6 col-sd-6 col-xs-6 listPlacesMap-js placeslist" data-placeid=<%=map_place.id%> data-place_lng=<%= map_place.place.longitude%> data-place_lat=<%= map_place.place.latitude%>>
-    <div class="box-map-place pre-scrollable">
-
+<div class="col-lg-4  col-md-6 col-sd-6 col-xs-6 listPlacesMap-js  placeslist" data-placeid=<%=map_place.id%> data-place_lng=<%= map_place.place.longitude%> data-place_lat=<%= map_place.place.latitude%>>
+    <div class="box-map-place listPlacesMap-js pre-scrollable">
+        <div class="marker_number"></div>
       <h1><%= map_place.place.title %></h1>
       <dl>
           <dt>Your rating:</dt>
@@ -11,7 +11,7 @@
           <% end %>
           <dt>Your comment:
           </dt>
-          <dd>
+          <dd class='comment-dd'>
               <span class="content-comment" style="display: block;">
                   <% if (map_place.comment.length > 0) %>
                   <%= map_place.comment %>
@@ -21,7 +21,7 @@
               </span>
               <form class="form-edit-place" style="display: none;">
                   <textarea name="comment" rows="5" cols="25"><%= map_place.comment %></textarea><br>
-                  <input type="submit" value="Submit" class="btn btn-default btn-sm " id=<%=map_place.map.id%>&<%=map_place.id%>>
+                  <input type="submit" value="Submit" class="btn btn-default btn-sm btn-submit-comment" id=<%=map_place.map.id%>&<%=map_place.id%>>
               </form>
               <button type="button" class="btn btn-default btn-sm btn-field-toggler">
                   <span class="glyphicon glyphicon-pencil"></span>
@@ -44,14 +44,11 @@
                   <%=map_place.place.title%></a>
           </dd>
           <% end %>
-          <% if (map_place.place.rating) %>
-          <dt>google rating:</dt>
-          <dd><%= map_place.place.rating %></dd>
-          <% end %>
           <%= button_to map_map_place_path(map_id: map_place.map.id , id: map_place.id), method: :delete , data: {  confirm: 'Are you sure you want to remove the place from your map?' }, class: 'btn btn-default btn-sm ' do %>
           Remove
           <span class="glyphicon glyphicon-remove"></span>
           <% end %>
+
       </dl>
 
 

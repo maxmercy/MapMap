@@ -2,8 +2,7 @@ $(document).on('ready', function() {
 
     if ($("#btn-mapname").length > 0) {
       mapnamelistener();
-      custommodalclick();
-      mapplaceaction();
+      checkEmptyFormSubmission()
     };
 
 });
@@ -19,16 +18,20 @@ function mapnamelistener() {
 };
 
 
-function custommodalclick() {
-    $('#emailsubmit').click(function() {
-      console.log('ore')
-        $('#myModal').modal('hide');
+function checkEmptyFormSubmission(){
+    $('#emailsubmit').click(function(event) {
+        $('.js-empty-warning').filter(function(){
+          return !this.value
+        }).addClass('empty-input-warning');
+        console.log('hello')
+
+        if ($('form').find('input.empty-input-warning').length > 0) {
+            event.preventDefault();
+            $('.empty-warning-div').show()
+            $('form *').removeClass('empty-input-warning')
+        }
+        else {
+            $('#myModal').modal('hide');
+        }
     });
 };
-
-
-function mapplaceaction() {
-  
-box-map-place
-
-}

@@ -6,29 +6,30 @@ $(document).on('ready', function() {
 
 
 function listenEditComment() {
-    $(".btn-field-toggler").click(function() {
+    $('.show-place-info').on('click',".btn-field-toggler", function() {
         $(this).parent().children(".content-comment").toggle(120);
         $(this).parent().children(".form-edit-place").toggle(120);
+
+    });
+
+};
+
+
+function listenSubmitComment() {
+    $('body').on('click',".btn-submit-comment", function(event) {
+    // $(".form-edit-place").bind("submit", function(event) {
+        event.preventDefault();
+        var new_comment = $(this).parent().children('textarea').val();
+        var map_and_map_place_id = $(this).parent().children('input').attr('id');
+        update_comment(new_comment,map_and_map_place_id, $(this).parent());
     });
 };
 
-function listenSubmitComment() {
-    var self = this;
-    $(".form-edit-place").bind("submit", function(event) {
-        event.preventDefault();
-        var new_comment = $(this).children('textarea').val();
-        var map_and_map_place_id = $(this).children('input').attr('id');
-        update_comment(new_comment,map_and_map_place_id, $(this));
-    });
-};
 
 function update_comment(new_comment,map_and_map_place_id, form) {
       var arr = map_and_map_place_id.split('&');
       var map_id = arr[0];
       var map_place_id = arr[1];
-      console.log(arr)
-        console.log(map_id)
-        console.log(map_place_id)
      $.ajax({
         url: '/maps/'+ map_id  + '/map_places/'+ map_place_id,
         type: "patch",
@@ -37,7 +38,6 @@ function update_comment(new_comment,map_and_map_place_id, form) {
         error: function() {
             console.log("Update comment failed");
         }
-
     });
 };
 
