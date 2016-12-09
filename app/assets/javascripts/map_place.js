@@ -50,7 +50,7 @@ function updateComment(new_comment,form) {
        $(form).parent().children(".content-comment").append(new_comment);
        }else {
       $(form).parent().children(".content-comment").append('You did not add any comment.');
-       }
+       }  
        $(form).parent().children(".content-comment").toggle(120);
 };
 
