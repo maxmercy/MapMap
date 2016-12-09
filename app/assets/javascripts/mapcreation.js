@@ -111,6 +111,8 @@ function placeMarkerAndPanTo(latLng, map, id, stripe_id, timeout) {
         });
         markers.push(marker)
         marker.addListener('click', function() {
+
+            focus_map_place(marker.store_id);
             if (marker.getAnimation() !== null) {
                 marker.setAnimation(null);
             } else {
@@ -128,6 +130,18 @@ function placeMarkerAndPanTo(latLng, map, id, stripe_id, timeout) {
     }, timeout);
     map.panTo(latLng);
 };
+
+
+function focus_map_place(map_place_id) {
+    $('#sprite-display-map-place-'+map_place_id).get(0).scrollIntoView( {behavior: "smooth"});
+    //put a focus state
+    $('.box-map-place-focus').removeClass('box-map-place-focus')
+    $('#sprite-display-map-place-'+map_place_id).parent().parent().addClass('box-map-place-focus')
+};
+
+
+
+
 
 
 function contentWidonsedition(map_place_id) {

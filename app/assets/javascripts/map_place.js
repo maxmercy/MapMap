@@ -1,9 +1,18 @@
 $(document).on('ready', function() {
-
+    focus_map_place_click()
     listenEditComment()
     listenSubmitComment()
     editcategory_sprite()
 });
+
+
+function focus_map_place_click() {
+  $('body').on('click',".box-map-place", function() {
+      $('.box-map-place').removeClass('box-map-place-focus')
+      $(this).addClass('box-map-place-focus')
+});
+};
+
 
 function listenEditComment() {
     $('.show-place-info').on('click',".btn-field-toggler", function() {
@@ -99,12 +108,6 @@ var marker_link
     };
 
    markers[index].setMap(null);
-   markers[index].setIcon(null);
-
-  
-
-
-   markers[index].setIcon(iconmarker);
    markers[index].setMap(map);
 
 console.log(marker_link)

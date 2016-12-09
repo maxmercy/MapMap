@@ -65,28 +65,3 @@ text-shadow: 1px 3px rgba(163, 163, 255, 0.8);
     font-family: 'Itim', cursive;
     font-size: 1.5em;
 }
-
-.Col-place-info{
-  max-height: 90vh;
-}
-
-
-
-.placeslist {
-padding: 0 7px;
-}
-
-.box-map-place {
-margin: 15px 0px;
-padding: 7px 7px 7px 7px;
-width: 98%;
-box-shadow: 0 4px 8px 0 rgba(163, 163, 255, 0.8), 0 6px 20px 0 rgba(163, 163, 255, 0.6);
--webkit-border-radius: 5px 0px 0px 0px;
--moz-border-radius: 5px 0px 0px 0px;
-border-radius: 5px 5px 5px 5px
-
-}
-
-.box-map-place:hover {
-box-shadow: 0 4px 8px 0 rgba(216, 101, 75, 0.8), 0 6px 20px 0 rgba(216, 101, 75, 0.6);
-}
