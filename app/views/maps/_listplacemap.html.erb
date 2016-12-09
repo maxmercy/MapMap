@@ -1,14 +1,45 @@
 <div class="col-lg-4  col-md-6 col-sd-6 col-xs-6 listPlacesMap-js  placeslist" data-placeid=<%=map_place.id%> data-place_lng=<%= map_place.place.longitude%> data-place_lat=<%= map_place.place.latitude%>>
     <div class="box-map-place listPlacesMap-js">
-        <div class="marker_number"></div>
-      <h1><%= map_place.place.title %></h1>
+        <div class="header_listPlacesMap">
+      <h4><%= map_place.place.title %></h4><div class="sprite_category  sprite_category-<%=map_place.sprite_number%>" data-toggle="modal" data-target="#sprite-choice"></div>
+      </div>
+      <br>
+
+          <!-- Modal -->
+<div class="modal fade" id="sprite-choice" tabindex="-1" role="dialog" aria-labelledby="sprite-choiceLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="sprite-choiceLabel">Choose the sprite</h4>
+      </div>
+      <div class="modal-body choice-sprite-category-list" data-mapplaceid=<%=map_place.id%>>
+            <div class="sprite_category sprite_category-1"  data-spriteid=1 ></div>
+            <div class="sprite_category sprite_category-2"  data-spriteid=2 ></div>
+            <div class="sprite_category sprite_category-3"  data-spriteid=3 ></div>
+            <div class="sprite_category sprite_category-4"  data-spriteid=4 ></div><br>
+            <div class="sprite_category sprite_category-5"  data-spriteid=5 ></div>
+            <div class="sprite_category sprite_category-6"  data-spriteid=6 ></div>
+            <div class="sprite_category sprite_category-7"  data-spriteid=7 ></div>
+            <div class="sprite_category sprite_category-8"  data-spriteid=8 ></div><br>
+            <div class="sprite_category sprite_category-9"  data-spriteid=9 ></div>
+            <div class="sprite_category sprite_category-10"  data-spriteid=10 ></div>
+            <div class="sprite_category sprite_category-11"  data-spriteid=11 ></div>
+            <div class="sprite_category sprite_category-12"  data-spriteid=12 ></div><br>
+            <div class="sprite_category sprite_category-13"  data-spriteid=13 ></div>
+            <div class="sprite_category sprite_category-14"  data-spriteid=14 ></div>
+            <div class="sprite_category sprite_category-15"  data-spriteid=15 ></div>
+            <div class="sprite_category sprite_category-16"  data-spriteid=16 ></div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<!--  -->
+
+
       <dl>
-          <dt>Your rating:</dt>
-          <dd><%= map_place.user_rating %></dd>
-          <% if (map_place.place.rating) %>
-          <dt>google rating:</dt>
-          <dd><%= map_place.place.rating %></dd>
-          <% end %>
           <dt>Your comment:
           </dt>
           <dd class='comment-dd'>

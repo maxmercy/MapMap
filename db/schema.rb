@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161205133519) do
+ActiveRecord::Schema.define(version: 20161209105846) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -21,11 +21,12 @@ ActiveRecord::Schema.define(version: 20161205133519) do
   create_table "map_places", force: :cascade do |t|
     t.integer  "map_id"
     t.integer  "place_id"
-    t.text     "comment",     default: ""
-    t.integer  "user_rating", default: 0
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "category_id", default: 1
+    t.text     "comment",       default: ""
+    t.integer  "user_rating",   default: 0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "category_id",   default: 1
+    t.integer  "sprite_number", default: 16
     t.index ["category_id"], name: "index_map_places_on_category_id"
     t.index ["map_id"], name: "index_map_places_on_map_id"
     t.index ["place_id"], name: "index_map_places_on_place_id"

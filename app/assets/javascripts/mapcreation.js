@@ -34,7 +34,7 @@ function initMap() {
     mapcenterlistener(centerPosition);
     createInitialMarker()
     setupAutocomplete();
-    listenerClick();
+    // listenerClick();
     addYourLocationButton(map);
 }
 
@@ -109,29 +109,19 @@ function placeMarkerAndPanTo(latLng, map, id, timeout) {
                 }, 750);
             }
             // this.setIcon(iconmarkerselected);
-            var name = `name`;
-            var address = 'an address ';
-            console.log(this.store_id)
-            console.log(marker)
-            infowindow.setContent(name + address);
+            contentWidonsedition(this.store_id);
+            infowindow.setContent(this.store_id);
             infowindow.open(map, this);
         });
-
-
     }, timeout);
     map.panTo(latLng);
+};
 
 
+function contentWidonsedition(map_place) {
 
 
 };
-
-var infowindow = new google.maps.InfoWindow({
-    content: contentString
-});
-
-var contentString = 'Hello'
-
 
 
 // button respond for recenter the map

@@ -5,7 +5,7 @@
 
 #map {
   margin: auto;
-  height: 50vh;
+  height: 65vh;
   width: 95%;
 }
 
@@ -47,18 +47,18 @@ height: 35px;
 .show-map-info h1 {
 //font-family: 'Rubik One', sans-serif;
 font-family: 'Permanent Marker', cursive;
-font-size: 4.2em;
-text-shadow: 2px 6px rgba(163, 163, 255, 0.8);
+font-size: 3.5em;
+text-shadow: 1px 4px rgba(163, 163, 255, 0.8);
 }
 .show-map-info p {
 //font-family: 'Rubik One', sans-serif;
 font-family: 'Permanent Marker', cursive;
 font-size: 2em;
-text-shadow: 2px 6px rgba(163, 163, 255, 0.8);
+text-shadow: 1px 3px rgba(163, 163, 255, 0.8);
 }
 
 .itim-typo-medium {
-  font-size: 250%;
+  font-size: 200%;
   }
 
 .button-typo-map {
@@ -78,9 +78,13 @@ padding: 0 7px;
 
 .box-map-place {
 margin: 15px 0px;
-padding: 0 6px 7px 6px;
+padding: 7px 7px 7px 7px;
 width: 98%;
 box-shadow: 0 4px 8px 0 rgba(163, 163, 255, 0.8), 0 6px 20px 0 rgba(163, 163, 255, 0.6);
+-webkit-border-radius: 5px 0px 0px 0px;
+-moz-border-radius: 5px 0px 0px 0px;
+border-radius: 5px 5px 5px 5px
+
 }
 
 .box-map-place:hover {

@@ -2,8 +2,8 @@ $(document).on('ready', function() {
 
     listenEditComment()
     listenSubmitComment()
+    editcategory_sprite()
 });
-
 
 function listenEditComment() {
     $('.show-place-info').on('click',".btn-field-toggler", function() {
@@ -53,3 +53,29 @@ function updateComment(new_comment,form) {
        }
        $(form).parent().children(".content-comment").toggle(120);
 };
+
+
+function editcategory_sprite() {
+    $('.show-place-info').on('click',".choice-sprite-category-list div", function() {
+        var sprite_id = this.dataset.spriteid;
+        var map_place_id = $(this).parent()[0].dataset.mapplaceid
+        console.log(sprite_id)
+        console.log(map_place_id)
+
+
+    });
+}
+
+
+
+// $('#mainimage').click(function(e)
+// {
+//     var offset_t = $(this).offset().top - $(window).scrollTop();
+//     var offset_l = $(this).offset().left - $(window).scrollLeft();
+//
+//     var left = Math.round( (e.clientX - offset_l) );
+//     var top = Math.round( (e.clientY - offset_t) );
+//
+//     alert("Left: " + left + " Top: " + top);
+//
+// });
