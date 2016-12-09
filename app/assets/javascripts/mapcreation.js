@@ -303,9 +303,9 @@ function resultsClick(results) {
 // #00ffe6  #20B2AA #90EE90  	#9ACD32 #FF4500 #00008B
 var styles = [{
     stylers: [{
-        hue: "#00008B"
+        hue: "#5303AB"
     }, {
-        saturation: 15
+        saturation: 0
     }]
 }, {
     featureType: "road",

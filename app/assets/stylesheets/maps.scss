@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.col-rigth_map-show {
+  background-color: white;
+  radius: 35px;
+  width: 47%;
+  margin-right: auto;
+}
 
 
 #map {
@@ -39,20 +45,18 @@ height: 35px;
 
 .show-map-info h1 {
 //font-family: 'Rubik One', sans-serif;
-font-family: 'Permanent Marker', cursive;
+font-family: 'Comfortaa', cursive;
+font-weight: bold;
 font-size: 3.5em;
-text-shadow: 1px 4px rgba(163, 163, 255, 0.8);
+// text-sha:=dow: 1px 4px rgba(163, 163, 255, 0.8);
 }
 
+ h4 {
+  font-family: 'Comfortaa', cursive;
+  font-weight: bold;
 
-.itim-typo-medium {
-  font-size: 200%;
-  }
-
-.button-typo-map {
-    font-family: 'Itim', cursive;
-    font-size: 1.5em;
 }
+
 
 
 .gm-style {

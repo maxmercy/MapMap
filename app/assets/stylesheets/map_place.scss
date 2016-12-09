@@ -19,23 +19,22 @@ padding: 0 7px;
 }
 
 .box-map-place {
-margin: 15px 0px;
+margin: auto;
+margin-bottom: 5px;
+
+background-color:  white;
 padding: 7px 7px 7px 7px;
 width: 98%;
 box-shadow: 0 4px 8px 0 rgba(163, 163, 255, 0.8), 0 6px 20px 0 rgba(163, 163, 255, 0.6);
 -webkit-border-radius: 5px 0px 0px 0px;
 -moz-border-radius: 5px 0px 0px 0px;
-border-radius: 5px 5px 5px 5px
+border-radius: 16px;
 
 }
 
 
 
-.box-map-place h4 {
-font-family: 'Dekko', cursive;
-font-weight: bold;
-border-bottom: solid medium #A3A3FF ;
-}
+
 
 .sprite_category {
   display: inline-block;
