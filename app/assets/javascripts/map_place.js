@@ -55,17 +55,33 @@ function updateComment(new_comment,form) {
 };
 
 
+
 function editcategory_sprite() {
     $('.show-place-info').on('click',".choice-sprite-category-list div", function() {
         var sprite_id = this.dataset.spriteid;
         var map_place_id = $(this).parent()[0].dataset.mapplaceid
-        console.log(sprite_id)
-        console.log(map_place_id)
-
-
+        var map_id = $(this).parent()[0].dataset.mapid
+        $.ajax({
+           url: '/maps/'+ map_id  + '/map_places/'+ map_place_id,
+           type: "patch",
+           data: {sprite_number: sprite_id},
+           success: updatespritemapplace(sprite_id, map_place_id) ,
+           error: function() {
+               console.log("Update comment failed");
+           }
+       });
     });
 }
 
+
+function updatespritemapplace(sprite_id, map_place_id) {
+    $('#sprite-choice-map-place-'+map_place_id).modal('toggle');
+  $('#sprite-display-map-place-'+map_place_id+' ').removeClass()
+  $('#sprite-display-map-place-'+map_place_id+' ').addClass('sprite_category  sprite_category-'+sprite_id, 1500, "easeInOutQuad")
+
+  console.log('success')
+  console.log('sprite_id')
+}
 
 
 // $('#mainimage').click(function(e)
