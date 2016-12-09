@@ -50,7 +50,7 @@ function updateComment(new_comment,form) {
        $(form).parent().children(".content-comment").append(new_comment);
        }else {
       $(form).parent().children(".content-comment").append('You did not add any comment.');
-       }  
+       }
        $(form).parent().children(".content-comment").toggle(120);
 };
 
@@ -79,8 +79,46 @@ function updatespritemapplace(sprite_id, map_place_id) {
   $('#sprite-display-map-place-'+map_place_id+' ').removeClass()
   $('#sprite-display-map-place-'+map_place_id+' ').addClass('sprite_category  sprite_category-'+sprite_id, 1500, "easeInOutQuad")
 
-  console.log('success')
-  console.log('sprite_id')
+var index
+var marker_link
+    for ( var i = 0 ; i < markers.length; i++) {
+      if (markers[i].store_id == map_place_id) {
+        marker_link = markers[i];
+        index = i
+        markers[i].stripe_id = sprite_id
+        break
+      }
+    }
+
+    var stripe_position = ((stripe_id * 45)-45)
+    var iconmarker = {
+        url: '/assets/categorypin.svg',
+        origin: new google.maps.Point(stripe_position, 0),
+        size: new google.maps.Size(45,67),
+        scaledSize: new google.maps.Size(720, 67)
+    };
+
+   markers[index].setMap(null);
+   markers[index].setIcon(null);
+
+  
+
+
+   markers[index].setIcon(iconmarker);
+   markers[index].setMap(map);
+
+console.log(marker_link)
+
+
+
+
+
+  // if (index > -1) {
+  //     array.splice(index, 1);
+  // }
+
+    // createInitialMarker()
+
 }
 
 
