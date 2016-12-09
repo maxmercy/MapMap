@@ -18,7 +18,6 @@ function listenEditComment() {
     $('.show-place-info').on('click',".btn-field-toggler", function() {
         $(this).parent().children(".content-comment").toggle(120);
         $(this).parent().children(".form-edit-place").toggle(120);
-
     });
 
 };
@@ -98,7 +97,6 @@ var marker_link
         break
       }
     }
-
     var stripe_position = ((stripe_id * 45)-45)
     var iconmarker = {
         url: '/assets/categorypin.svg',
@@ -106,22 +104,8 @@ var marker_link
         size: new google.maps.Size(45,67),
         scaledSize: new google.maps.Size(720, 67)
     };
-
    markers[index].setMap(null);
    markers[index].setMap(map);
-
-console.log(marker_link)
-
-
-
-
-
-  // if (index > -1) {
-  //     array.splice(index, 1);
-  // }
-
-    // createInitialMarker()
-
 }
 
 

@@ -1,0 +1,47 @@
+<div class="row ">
+    <div class="col-md-3 show-map-info">
+        <div class="js-map-name">
+          <h1><%= @map.name %></h1>
+          <% if (@map.name != @map.city ) %>
+          <h3>(city: <%=@map.city%>)</h3>
+          <%end%>
+        </div>
+        <button type="button" class="btn btn-default btn-sm " id="btn-mapcenter">
+            recenter <span class="glyphicon glyphicon-screenshot"></span>
+        </button>
+
+        <% if current_user %>
+        <%= button_to save_map_public_path(@map.public_id), method: :duplicate, class: 'btn btn-primary btn-sm ' do %>
+        Save in your map.
+        <span class="glyphicon glyphicon-duplicate"></span>
+        <% end %>
+        <% else %>
+        <h3>In order to save and customize the map you need to sign in or register for this service</h3>
+        <br>
+      <button class="btn btn-primary btn-sm" href="#signup" data-toggle="modal" data-target="#loginModal">Sign In/Register</button>
+        <% end %>
+
+
+        <h4>  Created by  <%= @map.user.email%></h4>
+
+        <h4>Recommended places selection(s):</h4>
+        <ul class="listPlacesMap-js">
+           <% @map.map_places.each do |map_place| %>
+
+                <%= render 'listplacemap_public', map_place: map_place , map: @map %>
+          <%end%>
+        </ul>
+
+    </div>
+
+
+
+
+
+
+
+    <div class="col-md-9">
+        <div id="map"   data-mapid=<%=@map.id%>  data-longitude=<%= @map.longitude%> data-latitude=<%= @map.latitude%> </div>
+    </div>
+
+</div>

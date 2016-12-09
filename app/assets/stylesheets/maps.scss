@@ -3,19 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+
 #map {
   margin: auto;
   height: 65vh;
-  width: 95%;
+  width: 95%
 }
-
-//
-// #map {
-//   margin: auto;
-//   height:50vh;
-//   width: 95%;
-//   max-width: 90vw;
-// }
 
 .row {
   display: flex;
@@ -50,12 +43,7 @@ font-family: 'Permanent Marker', cursive;
 font-size: 3.5em;
 text-shadow: 1px 4px rgba(163, 163, 255, 0.8);
 }
-.show-map-info p {
-//font-family: 'Rubik One', sans-serif;
-font-family: 'Permanent Marker', cursive;
-font-size: 2em;
-text-shadow: 1px 3px rgba(163, 163, 255, 0.8);
-}
+
 
 .itim-typo-medium {
   font-size: 200%;
@@ -64,4 +52,22 @@ text-shadow: 1px 3px rgba(163, 163, 255, 0.8);
 .button-typo-map {
     font-family: 'Itim', cursive;
     font-size: 1.5em;
+}
+
+
+.gm-style {
+  > div:first-child > div + div > div:last-child > div > div {
+    &:first-child > div,
+    &:first-child > div > div > div,
+    &:last-child,
+    &:last-child > img {
+      display: none !important;
+    }
+  }
+  .gm-style-iw {
+    background: rgba(163, 163, 255, 0.8);
+    top: 45px !important;
+    padding: 10px;
+    border-radius: 50%;
+  }
 }
