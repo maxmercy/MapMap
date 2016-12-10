@@ -249,7 +249,8 @@ function createPlaces(place) {
         map_id: mapid
             // category: ,
     }
-
+    console.log("before AJAX request")
+    console.log("data_place")
     $.ajax({
         url: '/places.js',
         type: "POST",
