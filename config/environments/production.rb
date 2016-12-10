@@ -55,34 +55,21 @@ Rails.application.configure do
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
-  # Use a real queuing backend for Active Job (and separate queues per environment)
-  # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "MapMap_#{Rails.env}"
-  config.action_mailer.perform_caching = false
 
-  # Ignore bad email addresses and do not raise email delivery errors.
-  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
-  # Don't care if the mailer can't send.
-  config.action_mailer.perform_deliveries = false
-  config.action_mailer.raise_delivery_errors = false
-
-
-  config.action_mailer.default_url_options =
-        { :host => 'https://maxmap.herokuapp.com/' }  #if it is local then 'localhost:3000'
-
-
+  config.action_mailer.default_url_options = { :host => 'maxmap.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
-    :address         => "smtp.gmail.com",
-    :domain         => "gmail.com",
-    :port           => 587,
-    :user_name       => ENV['gmail_username'],
-    :password       => ENV['gmail_password'],
-    :authentification => 'plain',
-    :enable_starttls_auto => true
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "maxmap.herokuapp.com",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: ENV["GMAIL_USERNAME"],
+    password: ENV["GMAIL_PASSWORD"]
   }
-
 
 
 
