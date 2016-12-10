@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161209105846) do
+ActiveRecord::Schema.define(version: 20161210143007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,9 +28,7 @@ ActiveRecord::Schema.define(version: 20161209105846) do
     t.integer  "user_rating",   default: 0
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.integer  "category_id",   default: 1
     t.integer  "sprite_number", default: 16
-    t.index ["category_id"], name: "index_map_places_on_category_id", using: :btree
     t.index ["map_id"], name: "index_map_places_on_map_id", using: :btree
     t.index ["place_id"], name: "index_map_places_on_place_id", using: :btree
   end
