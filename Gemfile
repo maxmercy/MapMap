@@ -39,6 +39,8 @@ gem 'figaro'
 #  authorization system
 gem "pundit"
 
+gem 'rails_12factor', group: :production
+
 
 gem 'geocoder'
 gem 'bootstrap-sass', '~> 3.3.6'
