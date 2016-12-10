@@ -55,10 +55,21 @@ Rails.application.configure do
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
+  # Use a real queuing backend for Active Job (and separate queues per environment)
+  # config.active_job.queue_adapter     = :resque
+  # config.active_job.queue_name_prefix = "MapMap_#{Rails.env}"
+  config.action_mailer.perform_caching = false
+
+  # Ignore bad email addresses and do not raise email delivery errors.
+  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
+  # config.action_mailer.raise_delivery_errors = false
+  # Don't care if the mailer can't send.
+  config.action_mailer.perform_deliveries = false
+  config.action_mailer.raise_delivery_errors = false
 
 
   config.action_mailer.default_url_options =
-        { :host => 'https://maxmaptesting.herokuapp.com/' }  #if it is local then 'localhost:3000'
+        { :host => 'https://maxmap.herokuapp.com/' }  #if it is local then 'localhost:3000'
 
 
   config.action_mailer.delivery_method = :smtp
