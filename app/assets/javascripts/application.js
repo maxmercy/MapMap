@@ -16,6 +16,10 @@
 
 //= require_tree .
 
+var icon_sprite_url = image-url(categorypin)
+var icon_sprite_selected_url = image-url(categorypinselected)
+
+
 
 $('body').ready(function() {
   setTimeout(function() {
