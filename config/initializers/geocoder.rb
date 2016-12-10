@@ -2,11 +2,7 @@
 Geocoder.configure(
 
   # geocoding service (see below for supported options):
-  :lookup => :yandex,
-
-  # IP address geocoding service (see below for supported options):
-  :ip_lookup => :maxmind,
-
+  :lookup => :google,
   # to use an API key:
   :api_key => "AIzaSyBlmPyxcLAoCywoLdBFfq-0hz-Wb7sfvtc",
 
@@ -16,8 +12,5 @@ Geocoder.configure(
   # set default units to kilometers:
   :units => :km,
 
-  # caching (see below for details):
-  :cache => Redis.new,
-  # :cache_prefix => "..."
 
 )
