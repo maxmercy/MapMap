@@ -252,7 +252,7 @@ function createPlaces(place) {
     console.log("before AJAX request")
     console.log(data_place)
     $.ajax({
-        url: '/places.js',
+        url: '/places',
         type: "POST",
         data: data_place,
         success: function(response) {
@@ -261,7 +261,8 @@ function createPlaces(place) {
             console.log(response)
             placeMarkerAndPanTo(place.geometry.location, map, map_place_id, 16)
         },
-        error: function() {
+        error: function(error) {
+            console.log(error)
             console.log("add Place Failed")
         }
     });
