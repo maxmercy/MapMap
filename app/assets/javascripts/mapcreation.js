@@ -92,6 +92,9 @@ function createInitialMarker() {
 var markers = [];
 
 
+var icon_sprite_url = "http://pipasmax.legtux.org/images/IH/categorypin.svg"
+var icon_sprite_selected_url = "http://pipasmax.legtux.org/images/IH/categorypinselected.svg"
+
 
 function placeMarkerAndPanTo(latLng, map, id, stripe_id, timeout) {
     var stripe_position = ((stripe_id * 45)-45)

@@ -69,7 +69,7 @@ Rails.application.configure do
 
 
   config.action_mailer.default_url_options =
-        { :host => 'localhost:3000' }  #if it is local then 'localhost:3000'
+        { :host => 'https://maxmaptesting.herokuapp.com/' }  #if it is local then 'localhost:3000'
 
 
   config.action_mailer.delivery_method = :smtp
