@@ -1,5 +1,5 @@
-<div class="row ">
-    <div class="col-md-6 col-rigth_map-show">
+<div class="row  ">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-left_map-show">
         <div class="row ">
             <div class="col-md-12 show-map-info">
                 <div class="js-map-name">
@@ -11,8 +11,8 @@
                     <%end%>
                 </div>
             </div>
-            <div class="col-md-12 show-map-info">
 
+            <div class="col-md-12 show-map-info">
                 <div class="js-map-name-form itim-typo-medium" style="display: none;">
                     <%= form_tag( @map, method: "patch") do %>
                     <%= label_tag(:map_name, "New name:") %>
@@ -20,7 +20,6 @@
                     <%= submit_tag("Submit") %>
                     <% end %>
                 </div>
-
                 <div class="js-button-action-map btn-group" role="group">
                     <button type="button" class="btn btn-info  btn-sm " id="btn-sendmap" data-toggle="modal" data-target="#myModal">
                         <span class="hidden-sm hidden-xs">Send This Map</span>
@@ -45,7 +44,7 @@
 
                 </div>
             </div>
-            <div class="col-md-12 search-part">
+            <div class="col-xs-12 col-sm-12 col-md-12 search-part">
 
                 <h4 class="itim-typo-medium">Looking for a place? Search or click!</h4><br>
                 <div id="input-wrapper">
@@ -53,8 +52,8 @@
                 </div>
             </div>
         </div>
-        <div class="row ">
-            <div class="col-xs-12 map-colum">
+        <div class="row row-map-pan">
+            <div class="col-xs-12 col-sm-12 col-md-12 map-colum column-map-pan ">
                 <div id="map" data-mapid=<%=@map.id%> data-longitude=<%= @map.longitude%> data-latitude=<%= @map.latitude%>></div>
             </div>
         </div>
@@ -66,7 +65,7 @@
 
 
 
-    <div class="col-md-6 pre-scrollable Col-place-info">
+    <div class="col-md-6 pre-scrollable col-place-info">
       <div class="row show-place-info ">
           <% @map.map_places.reverse.each do |map_place| %>
               <%= render 'listplacemap', map_place: map_place , map: @map %>

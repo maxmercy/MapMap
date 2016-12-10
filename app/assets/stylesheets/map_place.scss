@@ -7,11 +7,16 @@
   vertical-align: middle;
 }
 
-
-.Col-place-info{
+.col-place-info{
   max-height: 90vh;
 }
 
+@media only screen and (max-width : 767px) {
+    .col-place-info {
+          height: 400px;
+    }
+
+}
 
 
 .placeslist {
@@ -20,17 +25,38 @@ padding: 0 7px;
 
 .box-map-place {
 margin: auto;
-margin-bottom: 5px;
-
 background-color:  white;
 padding: 7px 7px 7px 7px;
 width: 98%;
-box-shadow: 0 4px 8px 0 rgba(163, 163, 255, 0.8), 0 6px 20px 0 rgba(163, 163, 255, 0.6);
--webkit-border-radius: 5px 0px 0px 0px;
--moz-border-radius: 5px 0px 0px 0px;
-border-radius: 16px;
-
+-webkit-border-radius:  14px 14px 0 0;
+-moz-border-radius:  14px 14px 0 0;
+border-radius: 14px 14px 0 0;
+border-bottom: solid 2px #888888;
 }
+
+
+.box-map-place-content {
+  margin: auto;
+  margin-bottom: 5px;
+  background-color:  white;
+  padding: 7px 7px 7px 7px;
+  width: 98%;
+  -webkit-border-radius: 0 0 14px 14px;
+  -moz-border-radius: 0 0 14px 14px;
+  border-radius: 0 0 14px 14px;
+}
+
+
+
+
+  // .show-place-inf * {
+  //   display: inline-block;
+  //   vertical-align: middle;
+  // }
+
+
+
+
 
 
 

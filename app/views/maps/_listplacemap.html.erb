@@ -1,10 +1,12 @@
 <div class="col-lg-4  col-md-6 col-sd-6 col-xs-6 listPlacesMap-js  placeslist" data-placeid=<%=map_place.id%> data-place_lng=<%= map_place.place.longitude%> data-place_lat=<%= map_place.place.latitude%> data-stripeid=<%=map_place.sprite_number%>>
-    
-    <div class="box-map-place">
-        <div class="header_listPlacesMap">
-      <h4><%= map_place.place.title %></h4><div class="sprite_category  sprite_category-<%=map_place.sprite_number%>" id="sprite-display-map-place-<%=map_place.id%>" data-toggle="modal" data-target="#sprite-choice-map-place-<%=map_place.id%>"></div>
+    <div class="row box-map-place">
+        <div class='col-md-9 header_listPlacesMap'>
+          <h4><%= map_place.place.title %></h4>
       </div>
-      <br>
+          <div class='col-md-3 header_listPlacesMap'>
+      <div class="sprite_category  sprite_category-<%=map_place.sprite_number%>" id="sprite-display-map-place-<%=map_place.id%>" data-toggle="modal" data-target="#sprite-choice-map-place-<%=map_place.id%>"></div>
+</div>
+</div>
 
 
     <div class="modal fade" id="sprite-choice-map-place-<%=map_place.id%>" tabindex="-1" role="dialog" aria-labelledby="sprite-choiceLabel" aria-hidden="true">
@@ -39,7 +41,7 @@
     </div>
     <!--  -->
 
-
+    <div class='box-map-place-content'>
       <dl>
           <dt>Your comment:
           </dt>
@@ -82,15 +84,14 @@
           <% end %>
 
       </dl>
-
-
-
-
-
-
-
-
-
-
   </div>
+
+
+
+
+
+
+
+
+
 </div>

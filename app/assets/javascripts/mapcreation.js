@@ -1,6 +1,11 @@
 var mapid = 0;
 var map;
 
+
+
+
+
+
 $(document).on('ready', function() {
     if ($("#map").length > 0) {
         initMap();
@@ -22,9 +27,12 @@ function initMap() {
         lat: parseFloat(latitude),
         lng: parseFloat(longitude)
     };
+
     map = new google.maps.Map(document.getElementById('map'), {
         center: centerPosition,
-        zoom: 14
+        zoom: 14,
+        clickableLabels: false,
+        clickableIcons: false
     });
     map.setOptions({
         styles: styles
@@ -301,7 +309,15 @@ function resultsClick(results) {
 }
 
 // #00ffe6  #20B2AA #90EE90  	#9ACD32 #FF4500 #00008B
-var styles = [{
+var styles = [
+  // {
+  //   featureType: "poi",
+  //   elementType: "labels"
+  //   stylers: [
+  //     { visibility: "off" }
+  //   ]
+  // },
+  {
     stylers: [{
         hue: "#5303AB"
     }, {
@@ -321,7 +337,8 @@ var styles = [{
     stylers: [{
         visibility: "off"
     }]
-}];
+}
+];
 
 
 

@@ -2,12 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.col-rigth_map-show {
+.col-left_map-show {
   background-color: white;
-  radius: 35px;
-  width: 47%;
+  radius: 94%;
   margin-right: auto;
 }
+
 
 
 #map {
@@ -15,6 +15,14 @@
   height: 65vh;
   width: 95%
 }
+
+@media only screen and (max-width : 767px) {
+    #map {
+        height: 300px;
+    }
+    
+}
+
 
 .row {
   display: flex;
@@ -68,10 +76,9 @@ font-size: 3.5em;
       display: none !important;
     }
   }
-  .gm-style-iw {
-    background: rgba(163, 163, 255, 0.8);
-    top: 45px !important;
-    padding: 10px;
-    border-radius: 50%;
-  }
-}
+  // .gm-style-iw * {
+  //   background-color: transparent;
+  //   border: none;
+  //
+  // }
+ }
