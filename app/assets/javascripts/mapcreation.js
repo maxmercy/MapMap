@@ -96,14 +96,14 @@ var markers = [];
 function placeMarkerAndPanTo(latLng, map, id, stripe_id, timeout) {
     var stripe_position = ((stripe_id * 45)-45)
     var iconmarker = {
-        url: '/assets/categorypin.svg',
+        url: '/assets/images/categorypin.svg',
         origin: new google.maps.Point(stripe_position, 0),
         size: new google.maps.Size(45,67),
         scaledSize: new google.maps.Size(720, 67)
     };
 
     var iconmarkerselected = {
-        url: '/assets/categorypinselected.svg',
+        url: '/assets/images/categorypinselected.svg',
         origin: new google.maps.Point(stripe_position, 0),
         size: new google.maps.Size(45,67),
         scaledSize: new google.maps.Size(720, 67)
@@ -181,14 +181,14 @@ function placemarkerlink(){
       stripe_id = marker[0].stripe_id
       var stripe_position = ((stripe_id * 45)-45)
       var iconmarker = {
-          url: '/assets/categorypin.svg',
+          url: '/assets/images/categorypin.svg',
           origin: new google.maps.Point(stripe_position, 0),
           size: new google.maps.Size(45,67),
           scaledSize: new google.maps.Size(720, 67)
       };
 
       var iconmarkerselected = {
-          url: '/assets/categorypinselected.svg',
+          url: '/assets/images/categorypinselected.svg',
           origin: new google.maps.Point(stripe_position, 0),
           size: new google.maps.Size(45,67),
           scaledSize: new google.maps.Size(720, 67)
@@ -212,14 +212,14 @@ function placemarkerlink(){
     stripe_id = marker[0].stripe_id
     var stripe_position = ((stripe_id * 45)-45)
     var iconmarker = {
-        url: '/assets/categorypin.svg',
+        url: '/assets/images/categorypin.svg',
         origin: new google.maps.Point(stripe_position, 0),
         size: new google.maps.Size(45,67),
         scaledSize: new google.maps.Size(720, 67)
     };
 
     var iconmarkerselected = {
-        url: '/assets/categorypinselected.svg',
+        url: '/assets/images/categorypinselected.svg',
         origin: new google.maps.Point(stripe_position, 0),
         size: new google.maps.Size(45,67),
         scaledSize: new google.maps.Size(720, 67)

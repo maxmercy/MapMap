@@ -99,7 +99,7 @@ var marker_link
     }
     var stripe_position = ((stripe_id * 45)-45)
     var iconmarker = {
-        url: '/assets/categorypin.svg',
+        url: '/assets/images/categorypin.svg',
         origin: new google.maps.Point(stripe_position, 0),
         size: new google.maps.Size(45,67),
         scaledSize: new google.maps.Size(720, 67)
