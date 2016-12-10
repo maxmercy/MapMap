@@ -250,7 +250,7 @@ function createPlaces(place) {
             // category: ,
     }
     console.log("before AJAX request")
-    console.log("data_place")
+    console.log(data_place)
     $.ajax({
         url: '/places.js',
         type: "POST",
