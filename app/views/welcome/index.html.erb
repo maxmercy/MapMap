@@ -1,18 +1,17 @@
-
 <div class="row welcome-row">
-  <div class="col-sm-12 welcome-colum">
-    <img src="http://pipasmax.legtux.org/images/IH/illus_planete.png" alt="logo maxmap map planete">
-        <h1>Welcome To ?MaxMap?</h1>
-
-
-      <% if !current_user %>
-      <h3>You need to sign in or register for this service</h3>
-      <br>
-    <button class="btn btn-primary btn-lg" href="#signup" data-toggle="modal" data-target="#loginModal">Sign In/Register</button>
-      <% else %>
-      <h3>Welcom <%= current_user.email %></h3>
-      <br>
-      <a class="btn btn-primary btn-lg" href="<%=profil_user_url(current_user)%>" >Access to your maps!</a>
-
-
-      <% end %>
+    <div class="col-sm-12 welcome-colum">
+        <img src="http://pipasmax.legtux.org/images/IH/illus_planete.png" alt="logo maxmap map planete">
+        <div id='welcome-message-index'>
+            <% if !current_user %>
+              <h1>Welcome</h1>
+              <h3>Share your city's plan with your friends!</h3>
+              <br>
+              <button class="btn btn-primary btn-lg btn-maxmap" href="#signup" data-toggle="modal" data-target="#loginModal">Sign In/Register</button>
+            <% else %>
+              <h1>Hello!</h1>
+              <h3><%= current_user.email %></h3>
+              <a class="btn btn-primary btn-lg btn-maxmap" href="<%=profil_user_url(current_user)%>">Access to your maps!</a>
+            <% end %>
+        </div>
+    </div>
+</div>

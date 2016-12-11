@@ -2,11 +2,37 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+ #welcome-message-index {
+    margin-top: 12%;
+    margin-left: 4%;
+    width: 230px;
+    background-color: white;
+    border-radius: 25px;
+    padding: 2px 6px 10px 6px;
+    color: #2ea2ad;
+    text-align: center;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.40), 0 10px 26px 0 rgba(0, 0, 0, 0.35);
+}
+
+
+.btn-maxmap {
+  background-color: #81C9D0;
+  border-radius: 16px;
+  padding-bottom: 16px;
+  border: none;
+
+}
+
+.btn-maxmap:hover {
+  background-color: #c080ce;
+}
+
 
 .welcome-colum img {
   position: fixed;
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
-   max-width: 45%;
+   max-width: 62%;
+   max-height: 62%;
 }

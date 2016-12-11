@@ -43,25 +43,30 @@ background-color: #811F94;
     font-size: 22px;
 }
 
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #81C9D0;
+    border: #81C9D0 3px solid;
+
+}
+
 .navbar-default .navbar-nav > li:first-of-type > a {
     border-radius: 16px 0 0 16px;
 }
 .navbar-default .navbar-nav > li:last-of-type > a {
     border-radius: 0 16px 16px 0;
-    border-right: white 2px solid;
+    border-right: 2px solid;
+}
+
+.navbar-default {
+ border: none;
 }
 
 
 
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    color: #FFC0CB;
-}
 
 
 
- .navbar-default {
-   border: none;
- }
+
 
 .alert {
     position: absolute;

@@ -16,9 +16,11 @@
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     </head>
 
-    <body >
 
-  <header>
+      <body class="<%= @user_show_page ? 'user_show_page' : ''%>">
+
+
+      <header>
             <nav role="navigation" class="navbar navbar-default navbar-header-top">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -31,8 +33,11 @@
                     </button>
 
                 <a class="navbar-brand" href="/">
-                    <img alt="Brand" id='brand-img-navbar' src="http://pipasmax.legtux.org/images/IH/logo_maxmapsolo.svg">
+                    <img alt="Brand" id='brand-img-navbar' src="<%= @user_show_page ? 'http://pipasmax.legtux.org/images/IH/logo_maxmap.svg' : 'http://pipasmax.legtux.org/images/IH/logo_maxmapsolo.svg'%>">
                 </a>
+
+
+
 
 
                 </div>
@@ -48,7 +53,7 @@
                     </ul>
                 </div>
             </nav>
-    </header>
+        </header>
 
 
             <div class="container-fluid">
