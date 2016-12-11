@@ -3,12 +3,14 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .col-left_map-show {
-  background-color: white;
-  radius: 94%;
-  margin-right: auto;
   margin-bottom: 22px;
 }
 
+.col-left_map-show {
+     .show-map-info , .search-part, .column-map-pan {
+    background-color: white;
+  }
+}
 
 
 #map {
@@ -65,6 +67,25 @@ font-size: 3.5em;
   font-weight: bold;
 
 }
+
+.btn-map-pan button {
+  background-color: #81C9D0;
+  border-radius: 2px;
+  padding: 4px 10px ;
+  border: none;
+  text-shadow: none;
+  color: #811F94;
+  border-radius: 30px;
+  font-size: 1.2em;
+
+}
+
+.btn-map-pan button:hover {
+  background-color:  #811F94;
+  color: #81C9D0;
+}
+
+
 
 
 

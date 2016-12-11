@@ -5,9 +5,10 @@
                 <div class="js-map-name">
                     <h1 ><%= @map.name %></h1>
                     <% if (@map.name != @map.city ) %>
-                    <p class="itim-typo-medium hidden-xs">
-                       &nbsp&nbsp&nbsp(<%=@map.city%>)
-                     </p>
+                    <br>
+                    <h3 class="itim-typo-medium hidden-xs">
+                    <%=@map.city%>
+                  </h3>
                     <%end%>
                 </div>
             </div>
@@ -20,7 +21,7 @@
                     <%= submit_tag("Submit") %>
                     <% end %>
                 </div>
-                <div class="js-button-action-map btn-group" role="group">
+                <div class="js-button-action-map btn-map-pan">
                     <button type="button" class="btn btn-info  btn-sm " id="btn-sendmap" data-toggle="modal" data-target="#myModal">
                         <span class="hidden-sm hidden-xs">Send This Map</span>
                         <span class="glyphicon glyphicon-envelope"></span>

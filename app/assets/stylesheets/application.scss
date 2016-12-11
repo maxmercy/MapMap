@@ -25,6 +25,11 @@ background-color: #811F94;
 
 }
 
+h3 {
+  margin-top: 0px;
+  margin-bottom: 8px;
+  color: #811F94;
+}
 .navbar-header-top {
   background: transparent;
   box-shadow: none;
@@ -40,13 +45,12 @@ background-color: #811F94;
     border: white 2px solid;
     border-right: none;
     padding: 10px;
-    font-size: 22px;
+    font-size: 14px;
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
     color: #81C9D0;
     border: #81C9D0 3px solid;
-
 }
 
 .navbar-default .navbar-nav > li:first-of-type > a {

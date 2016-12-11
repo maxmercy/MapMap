@@ -22,6 +22,12 @@
   padding: 0 4px 9px 4px;
   font-family: 'Comfortaa', cursive;
   font-weight: 100;
+  font-size: 1.2em;
+}
+
+.placeslist h4 {
+      font-size: 1.8em;
+      color: #811F94;
 }
 
 .box-map-place {
@@ -46,20 +52,23 @@ border-bottom: solid 2px #81C9D0;
   border-radius: 0 0 14px 14px;
 }
 
-
-.placeslist .btn {
+.placeslist button {
   background-color: #81C9D0;
   border-radius: 2px;
-  padding-bottom: 2px;
+  padding: 4px 10px ;
   border: none;
   text-shadow: none;
-  color: white;
+  color: #811F94;
   border-radius: 30px;
+  font-size: 1.2em;
+
 }
 
-.placeslist .btn:hover {
-  background-color: #c080ce;
+.placeslist button:hover {
+  background-color:  #811F94;
+  color: #81C9D0;
 }
+
 
 
 
@@ -73,7 +82,6 @@ border-bottom: solid 2px #81C9D0;
   background-image: url("http://pipasmax.legtux.org/images/IH/pictos_45px.svg");
   background-repeat: no-repeat;
   background-position: 0 0; // negative ingrement -45
-
 
 // tilt effect
   -webkit-transition: all 0.1s ease;
@@ -90,6 +98,7 @@ border-bottom: solid 2px #81C9D0;
     cursor: pointer;
 animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
 transform: translate3d(0, 0, 0);
+background-image: url("http://pipasmax.legtux.org/images/IH/pictos_45px_selected.svg");
 backface-visibility: hidden;
 perspective: 1000px;
 }

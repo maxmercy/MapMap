@@ -9,7 +9,6 @@
   background-attachment: fixed;
   background-position: 50% 40% ;
   background-size: 70% auto;
-
 }
 
 .user_show_page .navbar-default .navbar-nav > li > a:hover, .user_show_page .navbar-default .navbar-nav > li > a:focus {
@@ -68,7 +67,7 @@ text-align: center;
 }
 
 .col-welcom-user p img {
-  height: 2em;
+  height: 1.3em;
 }
 
 .col-welcom-user > p {
@@ -83,7 +82,7 @@ text-align: center;
 .col-welcom-user li {
   display: inline-flex;
   border: solid  #81C9D0;
-  border-radius: 25px;
+  border-radius: 25px 0 25px 0;
   margin: 10px;
   padding: 12px;
 }

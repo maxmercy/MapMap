@@ -92,8 +92,8 @@ function createInitialMarker() {
 var markers = [];
 
 
-var icon_sprite_url = "http://pipasmax.legtux.org/images/IH/categorypin.svg"
-var icon_sprite_selected_url = "http://pipasmax.legtux.org/images/IH/categorypinselected.svg"
+var icon_sprite_url = "http://pipasmax.legtux.org/images/IH/pictos_45px.svg"
+var icon_sprite_selected_url = "http://pipasmax.legtux.org/images/IH/pictos_45px_selected.svg"
 
 
 function placeMarkerAndPanTo(latLng, map, id, stripe_id, timeout) {
@@ -101,15 +101,15 @@ function placeMarkerAndPanTo(latLng, map, id, stripe_id, timeout) {
     var iconmarker = {
         url: icon_sprite_url,
         origin: new google.maps.Point(stripe_position, 0),
-        size: new google.maps.Size(45,67),
-        scaledSize: new google.maps.Size(720, 67)
+        size: new google.maps.Size(45,50),
+        scaledSize: new google.maps.Size(720, 50)
     };
 
     var iconmarkerselected = {
         url: icon_sprite_url,
         origin: new google.maps.Point(stripe_position, 0),
-        size: new google.maps.Size(45,67),
-        scaledSize: new google.maps.Size(720, 67)
+        size: new google.maps.Size(45,50),
+        scaledSize: new google.maps.Size(720, 50)
     };
     window.setTimeout(function() {
         var marker = new google.maps.Marker({
@@ -186,15 +186,15 @@ function placemarkerlink(){
       var iconmarker = {
           url: icon_sprite_url,
           origin: new google.maps.Point(stripe_position, 0),
-          size: new google.maps.Size(45,67),
-          scaledSize: new google.maps.Size(720, 67)
+          size: new google.maps.Size(45,50),
+          scaledSize: new google.maps.Size(720, 50)
       };
 
       var iconmarkerselected = {
           url: icon_sprite_url,
           origin: new google.maps.Point(stripe_position, 0),
-          size: new google.maps.Size(45,67),
-          scaledSize: new google.maps.Size(720, 67)
+          size: new google.maps.Size(45,50),
+          scaledSize: new google.maps.Size(720, 50)
       };
 
 
@@ -217,15 +217,15 @@ function placemarkerlink(){
     var iconmarker = {
         url: icon_sprite_url,
         origin: new google.maps.Point(stripe_position, 0),
-        size: new google.maps.Size(45,67),
-        scaledSize: new google.maps.Size(720, 67)
+        size: new google.maps.Size(45,50),
+        scaledSize: new google.maps.Size(720, 50)
     };
 
     var iconmarkerselected = {
         url: icon_sprite_url,
         origin: new google.maps.Point(stripe_position, 0),
-        size: new google.maps.Size(45,67),
-        scaledSize: new google.maps.Size(720, 67)
+        size: new google.maps.Size(45,50),
+        scaledSize: new google.maps.Size(720, 50)
     };
       marker[0].setIcon(iconmarker);
   });
