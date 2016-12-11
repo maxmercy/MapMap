@@ -1,12 +1,12 @@
 <div class="col-lg-4  col-md-6 col-sd-6 col-xs-6 listPlacesMap-js  placeslist" data-placeid=<%=map_place.id%> data-place_lng=<%= map_place.place.longitude%> data-place_lat=<%= map_place.place.latitude%> data-stripeid=<%=map_place.sprite_number%>>
     <div class="row box-map-place">
-        <div class='col-md-9 header_listPlacesMap'>
-          <h4><%= map_place.place.title %></h4>
-      </div>
-          <div class='col-md-3 header_listPlacesMap'>
-      <div class="sprite_category  sprite_category-<%=map_place.sprite_number%>" id="sprite-display-map-place-<%=map_place.id%>" data-toggle="modal" data-target="#sprite-choice-map-place-<%=map_place.id%>"></div>
-</div>
-</div>
+          <div class='col-md-8 header_listPlacesMap'>
+              <h4><%= map_place.place.title %></h4>
+          </div>
+              <div class='col-md-3 header_listPlacesMap'>
+          <div class="sprite_category  sprite_category-<%=map_place.sprite_number%>" id="sprite-display-map-place-<%=map_place.id%>" data-toggle="modal" data-target="#sprite-choice-map-place-<%=map_place.id%>"></div>
+          </div>
+    </div>
 
 
     <div class="modal fade" id="sprite-choice-map-place-<%=map_place.id%>" tabindex="-1" role="dialog" aria-labelledby="sprite-choiceLabel" aria-hidden="true">
@@ -44,6 +44,9 @@
     <div class='box-map-place-content'>
       <dl>
           <dt>Your comment:
+            <button type="button" class="btn btn-default btn-sm btn-field-toggler">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </button>
           </dt>
           <dd class='comment-dd'>
               <span class="content-comment" style="display: block;">
@@ -57,9 +60,7 @@
                   <textarea name="comment" rows="5" cols="25"><%= map_place.comment %></textarea><br>
                   <input type="submit" value="Submit" class="btn btn-default btn-sm btn-submit-comment" id=<%=map_place.map.id%>&<%=map_place.id%>>
               </form>
-              <button type="button" class="btn btn-default btn-sm btn-field-toggler">
-                  <span class="glyphicon glyphicon-pencil"></span>
-              </button>
+
           </dd>
           <% if (map_place.place.address) %>
           <dt>address:</dt>

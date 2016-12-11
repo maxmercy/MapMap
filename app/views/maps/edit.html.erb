@@ -65,7 +65,7 @@
 
 
 
-    <div class="col-md-6 pre-scrollable col-place-info">
+       <div class="col-md-6 col-place-info">  <!--pre-scrollable -->
       <div class="row show-place-info ">
           <% @map.map_places.reverse.each do |map_place| %>
               <%= render 'listplacemap', map_place: map_place , map: @map %>

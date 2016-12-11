@@ -16,8 +16,8 @@ function focus_map_place_click() {
 
 function listenEditComment() {
     $('.show-place-info').on('click',".btn-field-toggler", function() {
-        $(this).parent().children(".content-comment").toggle(120);
-        $(this).parent().children(".form-edit-place").toggle(120);
+        $(this).parent().parent().children('dd').children(".content-comment").toggle(120);
+        $(this).parent().parent().children('dd').children(".form-edit-place").toggle(120);
     });
 
 };
