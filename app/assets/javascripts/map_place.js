@@ -69,11 +69,12 @@ function editcategory_sprite() {
         var sprite_id = this.dataset.spriteid;
         var map_place_id = $(this).parent()[0].dataset.mapplaceid
         var map_id = $(this).parent()[0].dataset.mapid
+        updateSpriteMapPlace(sprite_id, map_place_id)
         $.ajax({
            url: '/maps/'+ map_id  + '/map_places/'+ map_place_id,
            type: "patch",
            data: {sprite_number: sprite_id},
-           success: updatespritemapplace(sprite_id, map_place_id) ,
+           success: console.log('succes'),
            error: function() {
                console.log("Update comment failed");
            }
@@ -82,7 +83,7 @@ function editcategory_sprite() {
 }
 
 
-function updatespritemapplace(sprite_id, map_place_id) {
+function updateSpriteMapPlace(sprite_id, map_place_id) {
     $('#sprite-choice-map-place-'+map_place_id).modal('toggle');
   $('#sprite-display-map-place-'+map_place_id+' ').removeClass()
   $('#sprite-display-map-place-'+map_place_id+' ').addClass('sprite_category  sprite_category-'+sprite_id, 1500, "easeInOutQuad")
