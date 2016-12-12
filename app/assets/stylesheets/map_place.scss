@@ -55,14 +55,15 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -moz-border-radius: 0 0 14px 14px;
   border-radius: 0 0 14px 14px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-family: Arial, sans-serif;
 }
 
-.placeslist:hover .box-map-place, .placeslist:hover:hover .box-map-place-content {
+
+// , .placeslist:hover:hover .box-map-place-content
+.placeslist:hover .box-map-place, .box-map-place-focus {
   background-color: #81C9D0;
   border-bottom: solid 2px #811F94;
 }
-
-
 
 .placeslist button {
   background-color: #81C9D0;
@@ -81,28 +82,20 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   color: #81C9D0;
 }
 
-
-
-
 .sprite_category {
   display: inline-block;
   margin: 4px;
   width: 45px;
   height: 50px;
-
   background-size: 720px 50px;
   background-image: url("http://pipasmax.legtux.org/images/IH/pictos_45px.svg");
   background-repeat: no-repeat;
   background-position: 0 0; // negative ingrement -45
-
-
 }
 
 .sprite_category:hover {
    background-image: url("http://pipasmax.legtux.org/images/IH/pictos_45px_selected.svg");
 }
-
-
 
 .sprite_category-1 {
   background-position: 0 0;

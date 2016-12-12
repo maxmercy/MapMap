@@ -5,7 +5,7 @@ var map;
 $(document).on('ready', function() {
     if ($("#map").length > 0) {
         initMap();
-        placemarkerlink()
+
     };
 });
 
@@ -40,6 +40,7 @@ function initMap() {
     setupAutocomplete();
     // listenerClick();
     addYourLocationButton(map);
+    placemarkerlink()
 }
 
 function listenerClick() {
@@ -119,6 +120,7 @@ function placeMarkerAndPanTo(latLng, map, id, stripe_id, timeout) {
         markers.push(marker)
         marker.addListener('click', function() {
 
+
             focus_map_place(marker.store_id);
             if (marker.getAnimation() !== null) {
                 marker.setAnimation(null);
@@ -140,21 +142,16 @@ function placeMarkerAndPanTo(latLng, map, id, stripe_id, timeout) {
 
 
 function focus_map_place(map_place_id) {
-    $('#sprite-display-map-place-'+map_place_id).get(0).scrollIntoView( {behavior: "smooth"});
-    //put a focus state
+    $('#sprite-placelist-'+map_place_id).get(0).scrollIntoView( {behavior: "smooth"});
     $('.box-map-place-focus').removeClass('box-map-place-focus')
-    $('#sprite-display-map-place-'+map_place_id).parent().parent().addClass('box-map-place-focus')
+    $('#sprite-placelist-'+map_place_id+' .box-map-place').addClass('box-map-place-focus')
+    // $('#sprite-display-map-place-'+map_place_id+' .box-map-place-content').addClass('box-map-place-focus')
 };
 
 
 
-
-
-
 function contentWidonsedition(map_place_id) {
-
     return 'hello'
-
 };
 
 
@@ -170,7 +167,9 @@ function placemarkerlink(){
     var timer;
   $('.show-place-info').on('mouseenter',".placeslist", function() {
     self = this
+    console.log('hello')
     timer = setTimeout(function () {
+
       var id = $(self).data('placeid');
       var marker = markers.filter(function(marker) {
           return marker.store_id == id
@@ -187,7 +186,7 @@ function placemarkerlink(){
       };
 
       var iconmarkerselected = {
-          url: icon_sprite_url,
+          url: icon_sprite_selected_url,
           origin: new google.maps.Point(stripe_position, 0),
           size: new google.maps.Size(45,50),
           scaledSize: new google.maps.Size(720, 50)
@@ -195,12 +194,15 @@ function placemarkerlink(){
 
 
       marker[0].setIcon(iconmarkerselected);
+      console.log(marker)
       marker[0].setAnimation(google.maps.Animation.BOUNCE);
-      setTimeout(function() {
-          marker[0].setAnimation(null);
-      });
+        setTimeout(function() {
+            marker[0].setAnimation(null);
+        },720);
       map.panTo(marker[0].position);
       infowindow.open(map, marker[0]);
+
+
     }, 400);
   }).on('mouseleave',".placeslist", function() {
      clearTimeout(timer);
@@ -223,7 +225,7 @@ function placemarkerlink(){
         size: new google.maps.Size(45,50),
         scaledSize: new google.maps.Size(720, 50)
     };
-      marker[0].setIcon(iconmarker);
+        marker[0].setIcon(iconmarker);
   });
 }
 

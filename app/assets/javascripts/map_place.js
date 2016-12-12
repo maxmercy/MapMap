@@ -7,12 +7,11 @@ $(document).on('ready', function() {
 
 
 function focus_map_place_click() {
-  $('body').on('click',".box-map-place", function() {
+  $('body').on('click',".placeslist", function() {
       $('.box-map-place').removeClass('box-map-place-focus')
-      $(this).addClass('box-map-place-focus')
+      $(this).children('.box-map-place').addClass('box-map-place-focus')
 });
 };
-
 
 function listenEditComment() {
     $('.show-place-info').on('click',".btn-field-toggler", function() {
@@ -21,7 +20,6 @@ function listenEditComment() {
     });
 
 };
-
 
 function listenSubmitComment() {
     $('body').on('click',".btn-submit-comment", function(event) {
@@ -32,7 +30,6 @@ function listenSubmitComment() {
         update_comment(new_comment,map_and_map_place_id, $(this).parent());
     });
 };
-
 
 function update_comment(new_comment,map_and_map_place_id, form) {
       var arr = map_and_map_place_id.split('&');
@@ -49,8 +46,6 @@ function update_comment(new_comment,map_and_map_place_id, form) {
     });
 };
 
-
-
 function updateComment(new_comment,form) {
        $(form).toggle(120);
        $(form).parent().children(".content-comment").empty();
@@ -61,8 +56,6 @@ function updateComment(new_comment,form) {
        }
        $(form).parent().children(".content-comment").toggle(120);
 };
-
-
 
 function editcategory_sprite() {
     $('.show-place-info').on('click',".choice-sprite-category-list div", function() {
@@ -81,7 +74,6 @@ function editcategory_sprite() {
        });
     });
 }
-
 
 function updateSpriteMapPlace(sprite_id, map_place_id) {
   $('#sprite-choice-map-place-'+map_place_id).modal('toggle');
