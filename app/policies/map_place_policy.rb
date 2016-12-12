@@ -15,8 +15,9 @@ class MapPlacePolicy < ApplicationPolicy
   end
 
   def update?
-    map = Map.find(record.map_id)
-    user == map.user
+    true
+    # map = Map.find(record.map_id)
+    # user == map.user
   end
 
 end
