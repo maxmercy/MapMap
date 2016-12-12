@@ -2,10 +2,6 @@ var mapid = 0;
 var map;
 
 
-
-
-
-
 $(document).on('ready', function() {
     if ($("#map").length > 0) {
         initMap();

@@ -84,7 +84,7 @@ function editcategory_sprite() {
 
 
 function updateSpriteMapPlace(sprite_id, map_place_id) {
-    $('#sprite-choice-map-place-'+map_place_id).modal('toggle');
+  $('#sprite-choice-map-place-'+map_place_id).modal('toggle');
   $('#sprite-display-map-place-'+map_place_id+' ').removeClass()
   $('#sprite-display-map-place-'+map_place_id+' ').addClass('sprite_category  sprite_category-'+sprite_id, 1500, "easeInOutQuad")
 
@@ -108,16 +108,3 @@ var marker_link
    markers[index].setMap(null);
    markers[index].setMap(map);
 }
-
-
-// $('#mainimage').click(function(e)
-// {
-//     var offset_t = $(this).offset().top - $(window).scrollTop();
-//     var offset_l = $(this).offset().left - $(window).scrollLeft();
-//
-//     var left = Math.round( (e.clientX - offset_l) );
-//     var top = Math.round( (e.clientY - offset_t) );
-//
-//     alert("Left: " + left + " Top: " + top);
-//
-// });

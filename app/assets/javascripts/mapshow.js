@@ -10,7 +10,7 @@ $(document).on('ready', function() {
 
 function mapnamelistener() {
   $("#btn-mapname").click(function() {
-      $('.js-map-name').fadeToggle(200);
+        // $('.js-map-name').fadeToggle(200);
       $('#btn-mapname').fadeToggle(200);
       $('.js-map-name-form').fadeToggle(200);
 

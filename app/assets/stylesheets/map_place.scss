@@ -25,6 +25,7 @@
   font-size: 1.2em;
 }
 
+
 .placeslist h4 {
       font-size: 1.8em;
       color: #811F94;
@@ -39,7 +40,10 @@ width: 98%;
 -moz-border-radius:  14px 14px 0 0;
 border-radius: 14px 14px 0 0;
 border-bottom: solid 2px #81C9D0;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+
 
 .box-map-place-content {
   margin: auto;
@@ -50,7 +54,15 @@ border-bottom: solid 2px #81C9D0;
   -webkit-border-radius: 0 0 14px 14px;
   -moz-border-radius: 0 0 14px 14px;
   border-radius: 0 0 14px 14px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.placeslist:hover .box-map-place, .placeslist:hover:hover .box-map-place-content {
+  background-color: #81C9D0;
+  border-bottom: solid 2px #811F94;
+}
+
+
 
 .placeslist button {
   background-color: #81C9D0;
@@ -64,7 +76,7 @@ border-bottom: solid 2px #81C9D0;
 
 }
 
-.placeslist button:hover {
+.placeslist:hover button {
   background-color:  #811F94;
   color: #81C9D0;
 }

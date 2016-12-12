@@ -1,24 +1,24 @@
 <div class="row  ">
     <div class="col-xs-12 col-sm-12 col-md-6 col-left_map-show">
         <div class="row ">
-            <div class="col-md-12 show-map-info">
+            <div class="col-xs-12 col-md-12 show-map-info">
                 <div class="js-map-name">
                     <h1 ><%= @map.name %></h1>
                     <% if (@map.name != @map.city ) %>
-                    <br>
-                    <h3 class="itim-typo-medium hidden-xs">
+
+                    <h3 class="itim-typo-medium">
                     <%=@map.city%>
                   </h3>
                     <%end%>
                 </div>
             </div>
 
-            <div class="col-md-12 show-map-info">
+            <div class="col-xs-12 col-md-12 show-map-info">
                 <div class="js-map-name-form itim-typo-medium" style="display: none;">
                     <%= form_tag( @map, method: "patch") do %>
                     <%= label_tag(:map_name, "New name:") %>
                     <%= text_field_tag(:map_name,  @map.name) %>
-                    <%= submit_tag("Submit") %>
+                    <%= submit_tag "Submit" , class: 'btn btn-default btn-sm form-name-location' %>
                     <% end %>
                 </div>
                 <div class="js-button-action-map btn-map-pan">
@@ -46,8 +46,8 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 search-part">
-
-                <h4 class="itim-typo-medium">Looking for a place? Search or click!</h4><br>
+                <img src="http://pipasmax.legtux.org/images/IH/logo_planete.svg" alt="logo planet maxmap">
+                <h4 class="itim-typo-medium">Looking for a place? Search here:</h4>
                 <div id="input-wrapper">
                     <input type="text" name="get-places" id="get-places">
                 </div>
