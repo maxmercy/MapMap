@@ -1,0 +1,36 @@
+<div class="row ">
+    <div class="col-md-6 ">
+        <div class="row ">
+            <div class="col-md-12 show-map-info">
+                <div class="js-map-name">
+                    <h1 ><%= @map.name %></h1>
+                    <% if (@map.name != @map.city ) %>
+                    <p class="itim-typo-medium hidden-xs">
+                        &nbsp&nbsp&nbsp(<%=@map.city%>)
+                    </p>
+                    <%end%>
+
+                </div>
+
+                <br>
+
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-xs-12 map-colum">
+                <div class="wrapper">
+                    <div id="map" data-mapid=<%=@map.id%> data-longitude=<%= @map.longitude%> data-latitude=<%= @map.latitude%>></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 pre-scrollable col-place-info">
+        <div class="row show-place-info ">
+            <% @map.map_places.reverse.each do |map_place| %>
+            <%= render 'listplacemap_public', map_place: map_place , map: @map %>
+            <%end%>
+        </div>
+
+    </div>
+</div>

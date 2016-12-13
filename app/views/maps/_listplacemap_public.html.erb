@@ -1,40 +1,50 @@
-<div class="col-lg-4  col-md-6 col-sd-6 col-xs-6 listPlacesMap-js  placeslist" data-placeid=<%=map_place.id%> data-place_lng=<%= map_place.place.longitude%> data-place_lat=<%= map_place.place.latitude%> data-stripeid=<%=map_place.sprite_number%>>
-    <div class="box-map-place">
-        <div class="header_listPlacesMap">
-      <h4><%= map_place.place.title %></h4><div class="sprite_category  sprite_category-<%=map_place.sprite_number%>" id="sprite-display-map-place-<%=map_place.id%>" data-target="#sprite-choice-map-place-<%=map_place.id%>"></div>
-      </div>
-      <br>
+<div
+    class="col-lg-4  col-md-6 col-sd-6 col-xs-6 listPlacesMap-js  placeslist"
+    id="sprite-placelist-<%=map_place.id%>"
+    data-placeid=<%=map_place.id%>
+    data-place_lng=<%= map_place.place.longitude%>
+    data-place_lat=<%= map_place.place.latitude%>
+    data-stripeid=<%=map_place.sprite_number%>>
+    <div class="row box-map-place">
+        <div class='col-md-8 header_listPlacesMap'>
+            <h4><%= map_place.place.title %></h4>
+        </div>
+        <div class='col-md-3 header_listPlacesMap'>
+            <div class="sprite_category  sprite_category-<%=map_place.sprite_number%>" id="sprite-display-map-place-<%=map_place.id%>"></div>
+        </div>
+    </div>
 
-      <dl>
-          <% if (map_place.comment.length > 0) %>
-          <dt>Your friend comment:
-          </dt>
-          <dd class='comment-dd'>
-              <span class="content-comment" style="display: block;">
-                  <%= map_place.comment %>
-              </span>
-          </dd>
+    <div class='box-map-place-content'>
+        <dl>
+
+            <dd class='comment-dd'>
+                <span class="content-comment" style="display: block;">
+                    <% if (map_place.comment.length > 0) %>
+                    <dt>Your Friend comment:
+                    </dt>
+                    <%= map_place.comment %>
+        
+                    <% end %>
+                </span>
+            </dd>
+            <% if (map_place.place.address) %>
+            <dt>address:</dt>
+            <dd><%= map_place.place.address %></dd>
             <% end %>
-          <% if (map_place.place.address) %>
-          <dt>address:</dt>
-          <dd><%= map_place.place.address %></dd>
-          <% end %>
-          <% if ( map_place.place.phone_number) %>
-          <dt>phone number:</dt>
-          <dd><%= map_place.place.phone_number %></dd>
-          <% end %>
+            <% if ( map_place.place.phone_number) %>
+            <dt>phone number:</dt>
+            <dd><%= map_place.place.phone_number %></dd>
+            <% end %>
 
-          <% if ( map_place.place.gmap_url) %>
-          <dt>GoogleMap direction:</dt>
+            <% if ( map_place.place.gmap_url) %>
+            <dt>GoogleMap direction:</dt>
 
-          <dd>
-              <a href="<%= map_place.place.gmap_url %>">
-                  <%=map_place.place.title%></a>
-          </dd>
-          <% end %>
+            <dd>
+                <a href="<%= map_place.place.gmap_url %>">
+                    <%=map_place.place.title%></a>
+            </dd>
+            <% end %>
+        </dl>
+    </div>
 
-      </dl>
-
-
-  </div>
 </div>

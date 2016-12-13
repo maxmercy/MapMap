@@ -1,54 +1,60 @@
-<div class="row ">
-    <div class="col-md-6 ">
+<div class="row  ">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-left_map-show">
         <div class="row ">
-            <div class="col-md-12 show-map-info">
+            <div class="col-xs-12 col-md-12 show-map-info">
                 <div class="js-map-name">
+                    <img src="http://pipasmax.legtux.org/images/IH/logo_planete.svg" alt="logo planet maxmap">
                     <h1 ><%= @map.name %></h1>
                     <% if (@map.name != @map.city ) %>
-                    <p class="itim-typo-medium hidden-xs">
-                       &nbsp&nbsp&nbsp(<%=@map.city%>)
-                     </p>
+
+                    <h3 class="itim-typo-medium">
+                        <%=@map.city%>
+                    </h3>
                     <%end%>
-                    <button type="button" class="btn btn-default btn-sm " id="btn-mapcenter">
-                        recenter <span class="glyphicon glyphicon-screenshot"></span>
-                    </button>
+                    <h4>
+                        Created by
+                        <%= @map.user.email%></h4>
+
                 </div>
-                  <h4>  Created by  <%= @map.user.email%></h4>
-                  <br>
-
-
-                <% if current_user %>
-                <%= button_to save_map_public_path(@map.public_id), method: :duplicate, class: 'btn btn-primary btn-lg ' do %>
-                Save in your map.
-                <span class="glyphicon glyphicon-duplicate"></span>
-                <% end %>
-                <% else %>
-                <p>To have a maximum experience, customize, share and save your map, you need to sign in or register for free</p>
-                <br>
-                <button class="btn btn-primary btn-lg" href="#signup" data-toggle="modal" data-target="#loginModal">Sign In/Register</button>
-                <% end %>
-
-
-
-
             </div>
+            <div class="col-xs-12 col-md-12 show-map-info">
+
+                <div class="js-button-action-map btn-map-pan">
+                  <button type="button" class="btn btn-primary btn-sm " id="btn-mapcenter">
+                      <span class="hidden-sm hidden-xs">recenter</span>
+                      <span class="glyphicon glyphicon-screenshot"></span>
+                  </button>
+                    <% if current_user %>
+                    <%= button_to save_map_public_path(@map.public_id), method: :duplicate, class: 'btn btn-primary btn-lg ' do %>
+                    Save in your map.
+                    <span class="glyphicon glyphicon-duplicate"></span>
+                    <% end %>
+                <% else %>
+                <br>
+                    <p>To have a maximum experience, customize, share and save your map, you need to sign in or register for free</p>
+  <br>
+
+                    <button class="btn btn-primary btn-lg" href="#signup" data-toggle="modal" data-target="#loginModal">Sign In/Register</button>
+                    <% end %>
+
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 search-part"></div>
         </div>
-        <div class="row ">
-            <div class="col-xs-12 map-colum">
-                <div class="wrapper">
+        <div class="row row-map-pan">
+            <div class="col-xs-12 col-sm-12 col-md-12 map-colum column-map-pan ">
                 <div id="map" data-mapid=<%=@map.id%> data-longitude=<%= @map.longitude%> data-latitude=<%= @map.latitude%>></div>
-              </div>
             </div>
         </div>
     </div>
 
-    <div class="col-md-6 pre-scrollable col-place-info">
-      <div class="row show-place-info ">
-          <% @map.map_places.reverse.each do |map_place| %>
-              <%= render 'listplacemap_public', map_place: map_place , map: @map %>
-          <%end%>
-      </div>
-
+    <div class="col-md-6 col-place-info">
+        <!--pre-scrollable -->
+        <div class="row show-place-info ">
+            <% @map.map_places.reverse.each do |map_place| %>
+            <%= render 'listplacemap_public', map_place: map_place , map: @map %>
+            <%end%>
+        </div>
 
     </div>
 </div>
