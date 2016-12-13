@@ -5,7 +5,6 @@ class Place < ApplicationRecord
 validates :title, :latitude, :longitude, presence: true
 
 def placecreation
-
 end
 
 end

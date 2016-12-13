@@ -3,108 +3,105 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .user_show_page {
-  background-color: #83CCD0 ;
-  background-image: url("http://pipasmax.legtux.org/images/IH/map.png");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: 50% 40% ;
-  // background-size: 70% auto;
+    background-color: #83CCD0;
+    background-image: url("http://pipasmax.legtux.org/images/IH/map.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 40%;
+    // background-size: 70% auto;
 }
 
-.user_show_page .navbar-default .navbar-nav > li > a:hover, .user_show_page .navbar-default .navbar-nav > li > a:focus {
+.user_show_page .navbar-default .navbar-nav > li > a:focus,
+.user_show_page .navbar-default .navbar-nav > li > a:hover {
     color: #811F94;
     border: #811F94 3px solid;
 }
 
 .user_show_page #brand-img-navbar {
-  height: 600%;
+    height: 600%;
 }
 
 .col-welcom-user {
-text-align: center;
+    text-align: center;
 }
 
 .col-welcom-user h4 {
-  margin-top: 92px;
-  font-size: 8em;
-  font-family: 'Comfortaa', cursive;
-  font-weight: 100;
+    margin-top: 92px;
+    font-size: 8em;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 100;
 }
-
 @media only screen and (max-width : 1170px) {
     .col-welcom-user h4 {
-
-      font-size: 5em;
+        font-size: 5em;
     }
 }
-
 @media only screen and (max-width : 750px) {
     .col-welcom-user h4 {
-      font-size: 3em;
+        font-size: 3em;
     }
 }
 
 .col-welcom-user h3 {
-  font-size: 2.6em;
-  font-family: 'Comfortaa', cursive;
-  font-weight: 100;
-  border-bottom: 7px solid #81C9D0;
-  display: inline;
+    font-size: 2.6em;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 100;
+    border-bottom: 7px solid #81C9D0;
+    display: inline;
 }
 
 .col-welcom-user h2 {
-  padding-top: 20px;
-  font-size: 2em;
-  font-family: 'Comfortaa', cursive;
-  font-weight: 100;
-  font-style: italic;
+    padding-top: 20px;
+    font-size: 2em;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 100;
+    font-style: italic;
 }
 
 .col-welcom-user p {
-  font-size: 1.8em;
-  font-family: 'Comfortaa', cursive;
-  font-weight: 100;
+    font-size: 1.8em;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 100;
 }
 
 .col-welcom-user p img {
-  height: 1.3em;
+    height: 1.3em;
 }
 
 .col-welcom-user > p {
-   padding-right: 40%;
-
+    padding-right: 40%;
 }
 
-.col-welcom-user ul  {
-  list-style: none;
+.col-welcom-user ul {
+    list-style: none;
 }
 
 .col-welcom-user li {
-  display: inline-flex;
-  border: solid  #811F94;
-  border-radius: 25px 0 25px 0;
-  margin: 10px;
-  padding: 12px;
+    display: inline-flex;
+    border: solid #811F94;
+    border-radius: 25px 0 25px 0;
+    margin: 10px;
+    padding: 12px;
 }
 
 .col-welcom-user li a {
-  font-size: 1.6em;
-  font-family: 'Comfortaa', cursive;
-  font-weight: 100;
-  color: #811F94;
+    font-size: 1.6em;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 100;
+    color: #811F94;
 }
 
 .text_field-new-city {
-    margin: 0 4px 0 4px;
+    margin: 0 4px;
     border-radius: 25px;
     padding: 6px;
 }
 
 .text_field-new-city:focus {
     outline: none;
-    border: solid  3px #811F94;
+    border: solid 3px #811F94;
     border-radius: 25px;
-  }
+}
 
 .submit-new-city {
     color: white;
@@ -115,11 +112,10 @@ text-align: center;
 }
 
 .submit-new-city:focus {
-  outline: none;
+    outline: none;
 }
 
-
 .form-new-map-js * {
-  font-family: 'Comfortaa', cursive;
-  display: inline-block;
+    font-family: 'Comfortaa', cursive;
+    display: inline-block;
 }

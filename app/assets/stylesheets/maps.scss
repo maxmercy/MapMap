@@ -3,114 +3,110 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .col-left_map-show {
-  margin-bottom: 22px;
+    margin-bottom: 22px;
 }
 
 .col-left_map-show {
-     .show-map-info , .search-part, .column-map-pan {
-    background-color: white;
-  }
+    .column-map-pan,
+    .search-part,
+    .show-map-info {
+        background-color: white;
+    }
 }
-
 
 #map {
-  margin: auto;
-  height: 65vh;
-  width: 95%
+    margin: auto;
+    height: 65vh;
+    width: 95%;
 }
-
-
 @media only screen and (max-width : 767px) {
     #map {
         height: 200px;
     }
-
 }
 
-
 .row {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .search-part h4 {
-  display: inline-block;
+    display: inline-block;
 }
 
 #input-wrapper {
     display: inline-block;
-
 }
 
 #get-places {
-height: 35px;
-  width: 250px;
+    height: 35px;
+    width: 250px;
 }
 
 .show-map-info {
-  padding-left: 30px;
-  display: inline-block;
+    padding-left: 30px;
+    display: inline-block;
 }
 
-.show-map-info *{
-  display: inline-block;
-  }
+.show-map-info * {
+    display: inline-block;
+}
 
-.search-part *{
-  display: inline-block;
-  }
+.search-part * {
+    display: inline-block;
+}
 
 .show-map-info h1 {
-//font-family: 'Rubik One', sans-serif;
-font-family: 'Comfortaa', cursive;
-font-weight: bold;
-font-size: 3.5em;
-// text-sha:=dow: 1px 4px rgba(163, 163, 255, 0.8);
+    //font-family: 'Rubik One', sans-serif;
+    font-family: 'Comfortaa', cursive;
+    font-weight: bold;
+    font-size: 3.5em; // text-sha:=dow: 1px 4px rgba(163, 163, 255, 0.8);
 }
 
- h4 {
-  font-family: 'Comfortaa', cursive;
-  font-weight: bold;
-
+h4 {
+    font-family: 'Comfortaa', cursive;
+    font-weight: bold;
 }
 
 .search-part {
-  padding-top: 10px;
+    padding-top: 10px;
 }
+
 .search-part img {
-   height: 56px;
+    height: 56px;
 }
 
-.btn-map-pan button, .form-name-location {
-  background-color: #81C9D0;
-  vertical-align: middle;
-  border-radius: 2px;
-  padding: 4px 10px ;
-  border: none;
-  text-shadow: none;
-  color: #811F94;
-  border-radius: 30px;
-  font-size: 1em;
+.btn-map-pan button,
+.form-name-location {
+    background-color: #81C9D0;
+    vertical-align: middle;
+    border-radius: 2px;
+    padding: 4px 10px;
+    border: none;
+    text-shadow: none;
+    color: #811F94;
+    border-radius: 30px;
+    font-size: 1em;
 }
 
-.btn-map-pan button:hover, .form-name-location:hover {
-  background-color:  #811F94;
-  color: #81C9D0;
+.btn-map-pan button:hover,
+.form-name-location:hover {
+    background-color: #811F94;
+    color: #81C9D0;
 }
-
 
 .gm-style {
-  > div:first-child > div + div > div:last-child > div > div {
-    &:first-child > div,
-    &:first-child > div > div > div,
-    &:last-child,
-    &:last-child > img {
-      display: none !important;
+    > div:first-child > div + div > div:last-child > div > div {
+        &:first-child > div,
+        &:first-child > div > div > div,
+        &:last-child,
+        &:last-child > img {
+            display: none !important;
+        }
     }
-  }
-  // .gm-style-iw * {
-  //   background-color: transparent;
-  //   border: none;
-  //
-  // }
- }
+    // .gm-style-iw * {
+    //   background-color: transparent;
+    //   border: none;
+    //
+    // }
+}

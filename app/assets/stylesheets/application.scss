@@ -13,34 +13,34 @@
  *= require_tree .
  *= require_self
  */
- // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
- @import "bootstrap-sprockets";
- @import "bootstrap";
- @import '*';
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import '*';
 
 body {
-  /*font-family: 'Itim', cursive;*/
-font-family: 'Lato', sans-serif;
-background-color: #811F94;
-
+    /*font-family: 'Itim', cursive;*/
+    font-family: 'Lato', sans-serif;
+    background-color: #811F94;
 }
 
 h3 {
-  margin-top: 0px;
-  margin-bottom: 8px;
-  color: #811F94;
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #811F94;
 }
+
 .navbar-header-top {
-  background: transparent;
-  box-shadow: none;
-  padding: 10px 10px 10px 0;
+    background: transparent;
+    box-shadow: none;
+    padding: 10px 10px 10px 0;
 }
 
 #brand-img-navbar {
-  height: 220%;
+    height: 220%;
 }
 
-.navbar-default .navbar-nav > li > a{
+.navbar-default .navbar-nav > li > a {
     color: white;
     border: white 2px solid;
     border-right: none;
@@ -48,7 +48,8 @@ h3 {
     font-size: 14px;
 }
 
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > li > a:hover {
     color: #81C9D0;
     border: #81C9D0 3px solid;
 }
@@ -56,56 +57,48 @@ h3 {
 .navbar-default .navbar-nav > li:first-of-type > a {
     border-radius: 16px 0 0 16px;
 }
+
 .navbar-default .navbar-nav > li:last-of-type > a {
     border-radius: 0 16px 16px 0;
     border-right: 2px solid;
 }
 
 .navbar-default {
- border: none;
+    border: none;
 }
-
-
-
-
-
-
-
 
 .alert {
     position: absolute;
     top: 20px;
     right: 50%;
     z-index: 5000;
-    width:300px;
+    width: 300px;
 }
-
-
 /*flash*/
 .alert-error {
     background-color: #f2dede;
     border-color: #eed3d7;
     color: #b94a48;
     text-align: left;
- }
+}
 
 .alert-alert {
     background-color: #f2dede;
     border-color: #eed3d7;
     color: #b94a48;
     text-align: left;
- }
+}
 
 .alert-success {
     background-color: #dff0d8;
     border-color: #d6e9c6;
     color: #468847;
     text-align: left;
- }
+}
 
 .alert-notice {
     background-color: #dff0d8;
     border-color: #d6e9c6;
     color: #468847;
     text-align: left;
- }
+}

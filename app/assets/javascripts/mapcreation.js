@@ -1,11 +1,9 @@
 var mapid = 0;
 var map;
 
-
 $(document).on('ready', function() {
     if ($("#map").length > 0) {
         initMap();
-
     };
 });
 
@@ -23,7 +21,6 @@ function initMap() {
         lat: parseFloat(latitude),
         lng: parseFloat(longitude)
     };
-
     map = new google.maps.Map(document.getElementById('map'), {
         center: centerPosition,
         zoom: 14,
@@ -38,7 +35,7 @@ function initMap() {
     mapcenterlistener(centerPosition);
     createInitialMarker()
     setupAutocomplete();
-    // listenerClick();
+    // listenerClick();  click on the map get 20 most close place info
     addYourLocationButton(map);
     placemarkerlink()
 }
@@ -67,8 +64,6 @@ function setupAutocomplete() {
 function createInitialMarker() {
     var placeinfo = document.querySelectorAll('.placeslist');
     if (placeinfo.length > 0) {
-
-
         $.each(placeinfo, function(index, toto) {
             latitude = (toto.dataset.place_lat)
             longitude = (toto.dataset.place_lng)
@@ -78,34 +73,30 @@ function createInitialMarker() {
             };
             latLng = place_position;
             id = (toto.dataset.placeid)
-            stripe_id = toto.dataset.stripeid// get the id of the stripe in view
+            stripe_id = toto.dataset.stripeid // get the id of the stripe in view
             placeMarkerAndPanTo(place_position, map, id, stripe_id, index * 0)
         });
-
     };
 }
 
 // Marker intelligence
 var markers = [];
-
-
 var icon_sprite_url = "http://pipasmax.legtux.org/images/IH/pictos_45px.svg"
 var icon_sprite_selected_url = "http://pipasmax.legtux.org/images/IH/pictos_45px_selected.svg"
 
-
 function placeMarkerAndPanTo(latLng, map, id, stripe_id, timeout) {
-    var stripe_position = ((stripe_id * 45)-45)
+    var stripe_position = ((stripe_id * 45) - 45)
     var iconmarker = {
         url: icon_sprite_url,
         origin: new google.maps.Point(stripe_position, 0),
-        size: new google.maps.Size(45,50),
+        size: new google.maps.Size(45, 50),
         scaledSize: new google.maps.Size(720, 50)
     };
 
     var iconmarkerselected = {
         url: icon_sprite_url,
         origin: new google.maps.Point(stripe_position, 0),
-        size: new google.maps.Size(45,50),
+        size: new google.maps.Size(45, 50),
         scaledSize: new google.maps.Size(720, 50)
     };
     window.setTimeout(function() {
@@ -119,8 +110,6 @@ function placeMarkerAndPanTo(latLng, map, id, stripe_id, timeout) {
         });
         markers.push(marker)
         marker.addListener('click', function() {
-
-
             focus_map_place(marker.store_id);
             if (marker.getAnimation() !== null) {
                 marker.setAnimation(null);
@@ -130,8 +119,7 @@ function placeMarkerAndPanTo(latLng, map, id, stripe_id, timeout) {
                     marker.setAnimation(null);
                 }, 750);
             }
-            // this.setIcon(iconmarkerselected);
-
+            this.setIcon(iconmarkerselected);
             var content = contentWidonsedition(this.store_id);
             infowindow.setContent(content);
             infowindow.open(map, this);
@@ -142,18 +130,17 @@ function placeMarkerAndPanTo(latLng, map, id, stripe_id, timeout) {
 
 
 function focus_map_place(map_place_id) {
-    $('#sprite-placelist-'+map_place_id).get(0).scrollIntoView( {behavior: "smooth"});
+    $('#sprite-placelist-' + map_place_id).get(0).scrollIntoView({
+        behavior: "smooth"
+    });
     $('.box-map-place-focus').removeClass('box-map-place-focus')
-    $('#sprite-placelist-'+map_place_id+' .box-map-place').addClass('box-map-place-focus')
-    // $('#sprite-display-map-place-'+map_place_id+' .box-map-place-content').addClass('box-map-place-focus')
+    $('#sprite-placelist-' + map_place_id + ' .box-map-place').addClass('box-map-place-focus')
+        // $('#sprite-display-map-place-'+map_place_id+' .box-map-place-content').addClass('box-map-place-focus')
 };
-
-
 
 function contentWidonsedition(map_place_id) {
     return 'hello'
 };
-
 
 // button respond for recenter the map
 function mapcenterlistener(centerPosition) {
@@ -162,76 +149,62 @@ function mapcenterlistener(centerPosition) {
     });
 };
 
-
-function placemarkerlink(){
+// link the marker and the place info.
+function placemarkerlink() {
     var timer;
-  $('.show-place-info').on('mouseenter',".placeslist", function() {
-    self = this
-    console.log('hello')
-    timer = setTimeout(function () {
-
-      var id = $(self).data('placeid');
-      var marker = markers.filter(function(marker) {
-          return marker.store_id == id
-      });
-
-
-      stripe_id = marker[0].stripe_id
-      var stripe_position = ((stripe_id * 45)-45)
-      var iconmarker = {
-          url: icon_sprite_url,
-          origin: new google.maps.Point(stripe_position, 0),
-          size: new google.maps.Size(45,50),
-          scaledSize: new google.maps.Size(720, 50)
-      };
-
-      var iconmarkerselected = {
-          url: icon_sprite_selected_url,
-          origin: new google.maps.Point(stripe_position, 0),
-          size: new google.maps.Size(45,50),
-          scaledSize: new google.maps.Size(720, 50)
-      };
-
-
-      marker[0].setIcon(iconmarkerselected);
-      console.log(marker)
-      marker[0].setAnimation(google.maps.Animation.BOUNCE);
-        setTimeout(function() {
-            marker[0].setAnimation(null);
-        },720);
-      map.panTo(marker[0].position);
-      infowindow.open(map, marker[0]);
-
-
-    }, 400);
-  }).on('mouseleave',".placeslist", function() {
-     clearTimeout(timer);
-    var id = $(self).data('placeid');
-    var marker = markers.filter(function(marker) {
-        return marker.store_id == id
-    });
-    stripe_id = marker[0].stripe_id
-    var stripe_position = ((stripe_id * 45)-45)
-    var iconmarker = {
-        url: icon_sprite_url,
-        origin: new google.maps.Point(stripe_position, 0),
-        size: new google.maps.Size(45,50),
-        scaledSize: new google.maps.Size(720, 50)
-    };
-
-    var iconmarkerselected = {
-        url: icon_sprite_url,
-        origin: new google.maps.Point(stripe_position, 0),
-        size: new google.maps.Size(45,50),
-        scaledSize: new google.maps.Size(720, 50)
-    };
+    $('.show-place-info').on('mouseenter', ".placeslist", function() {
+        self = this
+        console.log('hello')
+        timer = setTimeout(function() {
+            var id = $(self).data('placeid');
+            var marker = markers.filter(function(marker) {
+                return marker.store_id == id
+            });
+            stripe_id = marker[0].stripe_id
+            var stripe_position = ((stripe_id * 45) - 45)
+            var iconmarker = {
+                url: icon_sprite_url,
+                origin: new google.maps.Point(stripe_position, 0),
+                size: new google.maps.Size(45, 50),
+                scaledSize: new google.maps.Size(720, 50)
+            };
+            var iconmarkerselected = {
+                url: icon_sprite_selected_url,
+                origin: new google.maps.Point(stripe_position, 0),
+                size: new google.maps.Size(45, 50),
+                scaledSize: new google.maps.Size(720, 50)
+            };
+            marker[0].setIcon(iconmarkerselected);
+            marker[0].setAnimation(google.maps.Animation.BOUNCE);
+            setTimeout(function() {
+                marker[0].setAnimation(null);
+            }, 720);
+            map.panTo(marker[0].position);
+            infowindow.open(map, marker[0]);
+        }, 400);
+    }).on('mouseleave', ".placeslist", function() {
+        clearTimeout(timer);
+        var id = $(self).data('placeid');
+        var marker = markers.filter(function(marker) {
+            return marker.store_id == id
+        });
+        stripe_id = marker[0].stripe_id
+        var stripe_position = ((stripe_id * 45) - 45)
+        var iconmarker = {
+            url: icon_sprite_url,
+            origin: new google.maps.Point(stripe_position, 0),
+            size: new google.maps.Size(45, 50),
+            scaledSize: new google.maps.Size(720, 50)
+        };
+        var iconmarkerselected = {
+            url: icon_sprite_url,
+            origin: new google.maps.Point(stripe_position, 0),
+            size: new google.maps.Size(45, 50),
+            scaledSize: new google.maps.Size(720, 50)
+        };
         marker[0].setIcon(iconmarker);
-  });
+    });
 }
-
-
-
-
 
 /////////////////////////////////////////////
 //            submission             //
@@ -239,7 +212,6 @@ function placemarkerlink(){
 
 function createPlaces(place) {
     var data_place = {
-
         title: place.name,
         longitude: place.geometry.location.lng(),
         latitude: place.geometry.location.lat(),
@@ -271,11 +243,7 @@ function createPlaces(place) {
 
 function appendListPlace(html_to_append) {
     $(".show-place-info").prepend(html_to_append)
-
 };
-
-
-
 
 function reverseGeocoder(latlong) {
     var geocoder = new google.maps.Geocoder;
@@ -302,9 +270,7 @@ function searchAroundClick(latlong) {
         location: latlong,
         types: ['establishment'],
         rankBy: google.maps.places.RankBy.DISTANCE,
-
     }, resultsClick);
-
 }
 
 function resultsClick(results) {
@@ -313,41 +279,30 @@ function resultsClick(results) {
 
 // #00ffe6  #20B2AA #90EE90  	#9ACD32 #FF4500 #00008B
 var styles = [
-  // {
-  //   featureType: "poi",
-  //   elementType: "labels"
-  //   stylers: [
-  //     { visibility: "off" }
-  //   ]
-  // },
-  {
-    stylers: [{
-        hue: "#5303AB"
+    {
+        stylers: [{
+            hue: "#5303AB"
+        }, {
+            saturation: 0
+        }]
     }, {
-        saturation: 0
-    }]
-}, {
-    featureType: "road",
-    elementType: "geometry",
-    stylers: [{
-        lightness: 100
+        featureType: "road",
+        elementType: "geometry",
+        stylers: [{
+            lightness: 100
+        }, {
+            visibility: "simplified"
+        }]
     }, {
-        visibility: "simplified"
-    }]
-}, {
-    featureType: "road",
-    elementType: "labels",
-    stylers: [{
-        visibility: "off"
-    }]
-}
+        featureType: "road",
+        elementType: "labels",
+        stylers: [{
+            visibility: "off"
+        }]
+    }
 ];
 
-
-
-
 // add geolocalisation button symbol on the map. to do: get my own symbol
-
 function addYourLocationButton(map) {
     var controlDiv = document.createElement('div');
 

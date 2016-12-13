@@ -3,147 +3,152 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .header_listPlacesMap * {
-  display: inline-block;
-  vertical-align: middle;
+    display: inline-block;
+    vertical-align: middle;
 }
 
-.col-place-info{
-  max-height: 90vh;
+.col-place-info {
+    max-height: 90vh;
 }
-
 @media only screen and (max-width : 767px) {
     .col-place-info {
-          height: 400px;
+        height: 400px;
     }
-
 }
 
 .placeslist {
-  padding: 0 4px 9px 4px;
-  font-family: 'Comfortaa', cursive;
-  font-weight: 100;
-  font-size: 1.2em;
+    padding: 0 4px 9px;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 100;
+    font-size: 1.2em;
 }
 
-
 .placeslist h4 {
-      font-size: 1.8em;
-      color: #811F94;
+    font-size: 1.8em;
+    color: #811F94;
 }
 
 .box-map-place {
-margin: auto;
-background-color:  white;
-padding: 7px 7px 7px 7px;
-width: 98%;
--webkit-border-radius:  14px 14px 0 0;
--moz-border-radius:  14px 14px 0 0;
-border-radius: 14px 14px 0 0;
-border-bottom: solid 2px #81C9D0;
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: auto;
+    background-color: white;
+    padding: 7px;
+    width: 98%;
+    -webkit-border-radius: 14px 14px 0 0;
+    -moz-border-radius: 14px 14px 0 0;
+    border-radius: 14px 14px 0 0;
+    border-bottom: solid 2px #81C9D0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
-
 
 .box-map-place-content {
-  margin: auto;
-  margin-bottom: 5px;
-  background-color:  white;
-  padding: 7px 7px 7px 7px;
-  width: 98%;
-  -webkit-border-radius: 0 0 14px 14px;
-  -moz-border-radius: 0 0 14px 14px;
-  border-radius: 0 0 14px 14px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  font-family: Arial, sans-serif;
+    margin: auto auto 5px;
+    background-color: white;
+    padding: 7px;
+    width: 98%;
+    -webkit-border-radius: 0 0 14px 14px;
+    -moz-border-radius: 0 0 14px 14px;
+    border-radius: 0 0 14px 14px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: Arial, sans-serif;
 }
-
-
 // , .placeslist:hover:hover .box-map-place-content
-.placeslist:hover .box-map-place, .box-map-place-focus {
-  background-color: #81C9D0;
-  border-bottom: solid 2px #811F94;
+.box-map-place-focus,
+.placeslist:hover .box-map-place {
+    background-color: #81C9D0;
+    border-bottom: solid 2px #811F94;
 }
 
 .placeslist button {
-  background-color: #81C9D0;
-  border-radius: 2px;
-  padding: 4px 10px ;
-  border: none;
-  text-shadow: none;
-  color: #811F94;
-  border-radius: 30px;
-  font-size: 1.2em;
-
+    background-color: #81C9D0;
+    border-radius: 2px;
+    padding: 4px 10px;
+    border: none;
+    text-shadow: none;
+    color: #811F94;
+    border-radius: 30px;
+    font-size: 1.2em;
 }
 
 .placeslist:hover button {
-  background-color:  #811F94;
-  color: #81C9D0;
+    background-color: #811F94;
+    color: #81C9D0;
 }
 
 .sprite_category {
-  display: inline-block;
-  margin: 4px;
-  width: 45px;
-  height: 50px;
-  background-size: 720px 50px;
-  background-image: url("http://pipasmax.legtux.org/images/IH/pictos_45px.svg");
-  background-repeat: no-repeat;
-  background-position: 0 0; // negative ingrement -45
+    display: inline-block;
+    margin: 4px;
+    width: 45px;
+    height: 50px;
+    background-size: 720px 50px;
+    background-image: url("http://pipasmax.legtux.org/images/IH/pictos_45px.svg");
+    background-repeat: no-repeat;
+    background-position: 0 0; // negative ingrement -45
 }
 
 .sprite_category:hover {
-   background-image: url("http://pipasmax.legtux.org/images/IH/pictos_45px_selected.svg");
+    background-image: url("http://pipasmax.legtux.org/images/IH/pictos_45px_selected.svg");
 }
 
 .sprite_category-1 {
-  background-position: 0 0;
+    background-position: 0 0;
 }
 
 .sprite_category-2 {
-  background-position: -45px 0;
+    background-position: -45px 0;
 }
+
 .sprite_category-3 {
-  background-position: -90px 0;
+    background-position: -90px 0;
 }
+
 .sprite_category-4 {
-  background-position: -135px 0;
+    background-position: -135px 0;
 }
+
 .sprite_category-5 {
-  background-position: -180px 0;
+    background-position: -180px 0;
 }
+
 .sprite_category-6 {
-  background-position: -225px 0;
+    background-position: -225px 0;
 }
+
 .sprite_category-7 {
-  background-position: -270px 0;
+    background-position: -270px 0;
 }
+
 .sprite_category-8 {
-  background-position: -315px 0;
+    background-position: -315px 0;
 }
+
 .sprite_category-9 {
-  background-position: -360px 0;
+    background-position: -360px 0;
 }
+
 .sprite_category-10 {
-  background-position: -405px 0;
+    background-position: -405px 0;
 }
+
 .sprite_category-11 {
-  background-position: -450px 0;
+    background-position: -450px 0;
 }
 
 .sprite_category-12 {
-  background-position: -495px 0;
+    background-position: -495px 0;
 }
+
 .sprite_category-13 {
-  background-position: -540px 0;
+    background-position: -540px 0;
 }
+
 .sprite_category-14 {
-  background-position: -585px 0;
+    background-position: -585px 0;
 }
+
 .sprite_category-15 {
-  background-position: -630px 0;
+    background-position: -630px 0;
 }
+
 .sprite_category-16 {
-  background-position: -675px 0;
+    background-position: -675px 0;
 }

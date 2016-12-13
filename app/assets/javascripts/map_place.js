@@ -5,98 +5,100 @@ $(document).on('ready', function() {
     editcategory_sprite()
 });
 
-
 function focus_map_place_click() {
-  $('body').on('click',".placeslist", function() {
-      $('.box-map-place').removeClass('box-map-place-focus')
-      $(this).children('.box-map-place').addClass('box-map-place-focus')
-});
+    $('body').on('click', ".placeslist", function() {
+        $('.box-map-place').removeClass('box-map-place-focus')
+        $(this).children('.box-map-place').addClass('box-map-place-focus')
+    });
 };
 
 function listenEditComment() {
-    $('.show-place-info').on('click',".btn-field-toggler", function() {
+    $('.show-place-info').on('click', ".btn-field-toggler", function() {
         $(this).parent().parent().children('dd').children(".content-comment").toggle(120);
         $(this).parent().parent().children('dd').children(".form-edit-place").toggle(120);
     });
-
 };
 
 function listenSubmitComment() {
-    $('body').on('click',".btn-submit-comment", function(event) {
-    // $(".form-edit-place").bind("submit", function(event) {
+    $('body').on('click', ".btn-submit-comment", function(event) {
+        // $(".form-edit-place").bind("submit", function(event) {
         event.preventDefault();
         var new_comment = $(this).parent().children('textarea').val();
         var map_and_map_place_id = $(this).parent().children('input').attr('id');
-        update_comment(new_comment,map_and_map_place_id, $(this).parent());
+        update_comment(new_comment, map_and_map_place_id, $(this).parent());
     });
 };
 
-function update_comment(new_comment,map_and_map_place_id, form) {
-      var arr = map_and_map_place_id.split('&');
-      var map_id = arr[0];
-      var map_place_id = arr[1];
-     $.ajax({
-        url: '/maps/'+ map_id  + '/map_places/'+ map_place_id,
+function update_comment(new_comment, map_and_map_place_id, form) {
+    var arr = map_and_map_place_id.split('&');
+    var map_id = arr[0];
+    var map_place_id = arr[1];
+    $.ajax({
+        url: '/maps/' + map_id + '/map_places/' + map_place_id,
         type: "patch",
-        data: {comment: new_comment},
-        success: updateComment(new_comment,form) ,
+        data: {
+            comment: new_comment
+        },
+        success: updateComment(new_comment, form),
         error: function() {
             console.log("Update comment failed");
         }
     });
 };
 
-function updateComment(new_comment,form) {
-       $(form).toggle(120);
-       $(form).parent().children(".content-comment").empty();
-       if (new_comment){
-       $(form).parent().children(".content-comment").append(new_comment);
-       }else {
-      $(form).parent().children(".content-comment").append('You did not add any comment.');
-       }
-       $(form).parent().children(".content-comment").toggle(120);
+function updateComment(new_comment, form) {
+    $(form).toggle(120);
+    $(form).parent().children(".content-comment").empty();
+    if (new_comment) {
+        $(form).parent().children(".content-comment").append(new_comment);
+    } else {
+        $(form).parent().children(".content-comment").append('You did not add any comment.');
+    }
+    $(form).parent().children(".content-comment").toggle(120);
 };
 
 function editcategory_sprite() {
-    $('.show-place-info').on('click',".choice-sprite-category-list div", function() {
+    $('.show-place-info').on('click', ".choice-sprite-category-list div", function() {
         var sprite_id = this.dataset.spriteid;
         var map_place_id = $(this).parent()[0].dataset.mapplaceid
         var map_id = $(this).parent()[0].dataset.mapid
         updateSpriteMapPlace(sprite_id, map_place_id)
         $.ajax({
-           url: '/maps/'+ map_id  + '/map_places/'+ map_place_id,
-           type: "patch",
-           data: {sprite_number: sprite_id},
-           success: console.log('succes'),
-           error: function() {
-               console.log("Update comment failed");
-           }
-       });
+            url: '/maps/' + map_id + '/map_places/' + map_place_id,
+            type: "patch",
+            data: {
+                sprite_number: sprite_id
+            },
+            success: console.log('succes'),
+            error: function() {
+                console.log("Update comment failed");
+            }
+        });
     });
 }
 
 function updateSpriteMapPlace(sprite_id, map_place_id) {
-  $('#sprite-choice-map-place-'+map_place_id).modal('toggle');
-  $('#sprite-display-map-place-'+map_place_id+' ').removeClass()
-  $('#sprite-display-map-place-'+map_place_id+' ').addClass('sprite_category  sprite_category-'+sprite_id, 1500, "easeInOutQuad")
+    $('#sprite-choice-map-place-' + map_place_id).modal('toggle');
+    $('#sprite-display-map-place-' + map_place_id + ' ').removeClass()
+    $('#sprite-display-map-place-' + map_place_id + ' ').addClass('sprite_category  sprite_category-' + sprite_id, 1500, "easeInOutQuad")
 
-var index
-var marker_link
-    for ( var i = 0 ; i < markers.length; i++) {
-      if (markers[i].store_id == map_place_id) {
-        marker_link = markers[i];
-        index = i
-        markers[i].stripe_id = sprite_id
-        break
-      }
+    var index
+    var marker_link
+    for (var i = 0; i < markers.length; i++) {
+        if (markers[i].store_id == map_place_id) {
+            marker_link = markers[i];
+            index = i
+            markers[i].stripe_id = sprite_id
+            break
+        }
     }
-    var stripe_position = ((stripe_id * 45)-45)
+    var stripe_position = ((stripe_id * 45) - 45)
     var iconmarker = {
         url: icon_sprite_url,
         origin: new google.maps.Point(stripe_position, 0),
-        size: new google.maps.Size(45,67),
+        size: new google.maps.Size(45, 67),
         scaledSize: new google.maps.Size(720, 67)
     };
-   markers[index].setMap(null);
-   markers[index].setMap(map);
+    markers[index].setMap(null);
+    markers[index].setMap(map);
 }
