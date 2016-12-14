@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Hi  <%= @friend_name %></h1>
+    <p>Your friend <%=@user_email_name%> (<%=  @user_email %>) send you a Map!</p>
+    <p>
+      <%= @message_perso %>
+    </p>
+
+    <p>
+    Open your friend map on 'MapMap' at the link:
+    <a href="<%= map_public_url(@map.public_id) %>"><%= map_public_url(@map.public_id) %></a>
+    There you can consult the map without login
+    With an account, you can save, modify and even create your own map for free!
+    <p>
+
+    <p>Thanks for using MaxMap! and have a great day!</p>
+  </body>
+</html>

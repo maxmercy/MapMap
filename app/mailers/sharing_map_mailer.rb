@@ -11,6 +11,4 @@ class SharingMapMailer < ApplicationMailer
     mail(to: @friend_email, subject:  @user_email_name + " want to share a map with you")
   end
 
-
-
 end
